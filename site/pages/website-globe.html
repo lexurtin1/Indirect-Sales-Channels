@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Fund flow</title>
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <link rel="stylesheet" href="/shared/home.css">
+  <link rel="stylesheet" href="/shared/globe.css">
+</head>
+<body>
+  <header class="pulse-header">
+    <div class="ph-brand">
+      <a href="/"><img src="/assets/brand/calastone-wordmark-black.png" alt="Calastone"></a>
+      <span class="divider"></span>
+      <span class="pulse-label">Pulse</span>
+      <canvas id="ph-ecg" width="52" height="13"></canvas>
+    </div>
+    <nav class="ph-nav" aria-label="Pulse navigation">
+      <a href="/" class="ph-nav-link">System Architecture</a>
+    </nav>
+    <div class="ph-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="7" stroke="#9aa6b0" stroke-width="2"></circle>
+        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#9aa6b0" stroke-width="2" stroke-linecap="round"></line>
+      </svg>
+      <input id="nav-search" type="text" placeholder="Search workspaces, accounts, markets…" aria-label="Search options">
+    </div>
+    <div class="ph-user" aria-hidden="true"></div>
+  </header>
+
+  <div class="globe-stage" id="globe-wrap">
+    <div id="globe"></div>
+    <p class="loading" id="globe-status">Loading globe</p>
+  </div>
+
+  <section class="hero" id="hero">
+    <p class="kicker" id="hero-kicker">UK investors · Sep 2026</p>
+    <p class="count" id="hero-count"></p>
+    <p class="headline" id="hero-headline"></p>
+    <span class="badge published">Published</span>
+    <p class="mcp-line">Any other cut of this data is in the Calastone MCP.</p>
+    <ul class="strip" id="strip"></ul>
+    <div class="mcp" id="mcp">
+      <button type="button" class="mcp-btn hotspot" id="mcp-public">Install the Calastone MCP</button>
+      <button type="button" class="mcp-btn quiet" id="mcp-private">Request your private MCP</button>
+      <p class="contact"><span id="contact">clientservices@calastone.com</span> <button type="button" id="copy-contact">Copy</button></p>
+      <p class="toast" id="mcp-result"></p>
+    </div>
+  </section>
+
+  <aside class="country-card" id="country-card" hidden>
+    <button type="button" class="close" id="clear-country">Close</button>
+    <h2 id="card-name"></h2>
+    <p id="card-line"></p>
+    <span class="badge illustrative" id="card-badge" hidden>Illustrative</span>
+  </aside>
+  <div class="hover-card" id="hover-card" hidden></div>
+  <p class="notice" id="notice"></p>
+
+  <script type="application/json" id="isc-meta">
+  {
+    "channel": "Data as a hook. The public globe, then the MCP for anything deeper.",
+    "simulated": "The opening story is the published UK Fund Flow Index for September 2026. A country click shows one illustrative figure.",
+    "build": "A page on calastone.com, the globe, published FFI updates, and the MCP install path.",
+    "tour": [
+      { "selector": "#hero", "title": "Published fund flow", "body": "September 2026 equity flow for UK investors, from the published Fund Flow Index. The figure is exact." },
+      { "selector": "#globe", "title": "Turn the globe", "body": "Drag to turn it. Click a country for one illustrative line." },
+      { "selector": "#mcp", "title": "Query the data", "body": "Install the Calastone MCP, or request the private one. The address can be copied." }
+    ]
+  }
+  </script>
+  <script src="https://unpkg.com/globe.gl@2.46.2/dist/globe.gl.min.js"></script>
+  <script src="/shared/chrome.js"></script>
+  <script src="/shared/home.js"></script>
+  <script src="/shared/globe-app.js"></script>
+</body>
+</html>

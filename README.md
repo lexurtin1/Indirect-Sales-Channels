@@ -1,18 +1,18 @@
-# Calastone Indirect Channels: CEO Walkthrough
+# Calastone indirect sales channels
 
-A private, self-guided web prototype that shows the CEO how Calastone could win new business through indirect sales channels. Every screen is a simulation of what a client, prospect or Calastone salesperson would see. Nothing in it connects to live Calastone systems.
+A working prototype, instead of a slide deck, that shows options for winning business through indirect sales channels. Every screen is a simulation of what a client, prospect or Calastone salesperson would see. Nothing in it connects to live Calastone systems.
 
-The CEO explores it alone, in his own time, on a laptop or iPad. It must explain itself, never break, and make clear what is simulated.
+It must explain itself, never break, and make clear what is simulated. It works on a laptop and an iPad.
 
 ---
 
-## 1. What the CEO should take away
+## 1. What the screens show
 
 1. Calastone can create leads without adding salespeople.
 2. Each channel builds on something Calastone already owns: the network, the Fund Flow Index (FFI), connections to legacy TA systems, and SS&C's reach.
-3. Each channel has a cheap first test he can approve.
+3. Each channel has a cheap first test.
 
-The walkthrough asks him to approve tests, not a business case. Volumes, conversion rates and revenue are not yet known for any channel, and the front page says so.
+The screens compare options. They do not make a business case. Volumes, conversion rates and revenue are not yet known for any channel, and the front page says so.
 
 ---
 
@@ -23,12 +23,12 @@ The front page is the navigation. Each card opens one screen.
 | # | Screen | What it simulates | Channel it proves | Build approach |
 | --- | --- | --- | --- | --- |
 | 0 | Front page | Pulse-style card navigation and a one-paragraph intro | n/a | Reuse the front navigation from `calastone-network-vis` |
-| 1 | Calastone website with FFI globe | The calastone.com homepage with an interactive Fund Flow Index globe and an "install the Calastone MCP" call to action | Data as a hook; AI-led discovery | Recreate the homepage from screenshots; globe from published FFI data |
+| 1 | Calastone website with flow globe | The calastone.com homepage with an interactive globe: click any country to see fund flows in both directions, with deeper data offered through the Calastone MCP | Data as a hook; AI-led discovery | Recreate the homepage from screenshots; globe from published FFI data |
 | 2 | Calastone MCP sales assistant | A chatbot branded with a fund manager's logo. Questions trigger the Calastone MCP, which answers with a Calastone solution and a contact | AI-led discovery; lead creation | Original chat UI, scripted answers (section 3) |
 | 3 | Salesforce trend alert | A fund manager's Salesforce account page with a Calastone flow alert sliding in | Data product inside client CRMs | Recreate from screenshots using the Salesforce Lightning Design System |
 | 4 | Sales Navigator inside Salesforce | A consultancy record with a Sales Navigator panel showing which asset managers it advises and the warm path to them | Consultant relationships | Panel inside the Salesforce recreation |
 | 5 | Agent-to-agent network | Animated diagram of firms' AI agents messaging through Calastone, which verifies identity and permissions | Calastone as the trusted router for AI agents | Original animated diagram |
-| 6 | Channel map (close) | All channels on one screen with who pays and the first test, ending on the asks | Summary | Original layout |
+| 6 | Channel map | All channels on one screen with who pays and the first test | Summary | Original layout |
 
 ### Shared elements on every screen
 
@@ -52,7 +52,7 @@ Show what happens when a fund manager asks their AI assistant a business problem
 - Top left: the client's logo (for example a fund manager) and the label "AI assistant · Calastone MCP connected". A hidden logo switcher (keyboard shortcut) swaps between a generic firm and named clients.
 - Main area: the conversation.
 - Below the input: suggested questions grouped by topic.
-- Right side (desktop only): a "Calastone MCP activity" panel showing each tool call as it happens, and a "Lead created" card when the user asks to be contacted. This shows the CEO what Calastone would see.
+- Right side (desktop only): a "Calastone MCP activity" panel showing each tool call as it happens, and a "Lead created" card when the user asks to be contacted. This shows what Calastone would see.
 
 ### Conversation flow for every answer
 
@@ -79,7 +79,7 @@ Each topic maps to one simulated MCP tool. Keywords are examples; match on any.
 | Fund availability | "Is fund LU0000000001 on the network?" | ISIN, LU0, IE0, GB00, available, connected | `isin_check` | ISIN checker; "not connected" creates a lead |
 | Anything else | Any unmatched question | none | `no_match` | Polite answer that Calastone may help, plus the contact address; logged as an unanswered question |
 
-All product descriptions must be confirmed with the relevant Calastone product owner before the CEO sees them. Placeholders are marked `TODO(product)` in `data/chatbot/scripts.json`.
+All product descriptions must be confirmed with the relevant Calastone product owner before they are treated as final. Placeholders are marked `TODO(product)` in `data/chatbot/scripts.json`.
 
 ### Answer data format
 
@@ -120,13 +120,19 @@ Scripted answers live in `data/chatbot/scripts.json` so they can be edited witho
 
 ### Optional live mode (later step)
 
-A toggle can send questions to Claude through a server-side function, with a system prompt that limits answers to the topics in `scripts.json` and always ends with the contact address. If the call fails or takes longer than 8 seconds, fall back to the scripted answer. Keep scripted mode as the default for the CEO.
+A toggle can send questions to Claude through a server-side function, with a system prompt that limits answers to the topics in `scripts.json` and always ends with the contact address. If the call fails or takes longer than 8 seconds, fall back to the scripted answer. Keep scripted mode as the default.
 
 ---
 
 ## 4. Data
 
 ### Fund Flow Index (public reports only)
+
+Published data rules are in `docs/fund-flow-index.md`. The extracted dataset is `data/ffi/extracted/ffi.json` (June to September 2026 reports); check it with `node scripts/validate-ffi.mjs`.
+
+### Illustrative network data
+
+The globe lets the viewer click any country and see flows in both directions (investors in a country, and funds domiciled there). The published FFI only covers UK investors, so the rest uses a synthetic dataset, `data/network/illustrative-network.json`, generated by `node scripts/generate-illustrative-network.mjs`. Every figure from it is badged Illustrative. The globe design, data levels and privacy rules are in `docs/network-flow-globe.md`.
 
 - Put the downloaded public FFI reports in `data/ffi/raw/`.
 - Extract the published figures into `data/ffi/extracted/ffi.json` (schema below).
@@ -195,10 +201,16 @@ calastone-indirect-channels/
   data/
     ffi/raw/                 public FFI reports (PDF)
     ffi/extracted/ffi.json   extracted figures with sources
+    network/illustrative-network.json  synthetic country and corridor flows
+  scripts/
+    validate-ffi.mjs         checks ffi.json
+    generate-illustrative-network.mjs  builds the illustrative network data
     chatbot/scripts.json     chatbot topics and answers
   reference/screenshots/     screenshots used to recreate pages
   docs/
     build-log.md             what was built at each step
+    fund-flow-index.md       published FFI data rules
+    network-flow-globe.md    globe design, data levels, MCP hook
   vercel.json
 ```
 
@@ -214,7 +226,7 @@ Build one step at a time in Cursor. Finish each step's checks before starting th
 | 2 | Front page (screen 0), reusing the Pulse front navigation | All six cards link to placeholder pages; intro paragraph states that screens are simulated |
 | 3 | FFI data extraction from the public reports into `ffi.json` | Every figure has a source; totals match the reports |
 | 4 | Screen 1: Calastone website recreation | Side by side with the screenshot, layout and type match closely |
-| 5 | Screen 1: globe in the hero, MCP calls to action, region click shows FFI figures | Globe loads in under 3 seconds; works on iPad |
+| 5 | Screen 1: globe in the hero, MCP calls to action, region click shows FFI figures (sub-steps 5a to 5h in `docs/network-flow-globe.md`) | Globe loads in under 3 seconds; works on iPad |
 | 6 | Screen 2: chat UI with logo, suggested questions, scripted answers from `scripts.json` | All topics in section 3 answer correctly; unmatched questions use the fallback |
 | 7 | Screen 2: MCP activity panel and lead signal card | Each answer shows its tool call; contact requests create a lead card |
 | 8 | Screen 3: Salesforce account page recreation and the alert | Alert slides in, "Create task" adds a task to the timeline, reset replays it |
@@ -231,13 +243,14 @@ Build one step at a time in Cursor. Finish each step's checks before starting th
 
 ---
 
-## 7. Review checklist before the CEO sees it
+## 7. Review checklist
 
 - [ ] Repo is private.
 - [ ] Vercel site is password protected.
 - [ ] "Simulated view" tag is on every screen.
 - [ ] No real client data, names or faces anywhere.
 - [ ] Every FFI figure is from a public report and has a source.
+- [ ] Every illustrative figure carries the Illustrative badge.
 - [ ] Every product description is confirmed by its product owner.
 - [ ] Client logos are used only on the private site.
 - [ ] Contact address shows as text with a copy button.
@@ -253,7 +266,7 @@ Build one step at a time in Cursor. Finish each step's checks before starting th
 2. Which product owners sign off the ETF, tokenisation, money market and settlement descriptions.
 3. Whether the Sales Navigator screen stays in, depending on whether a consultant partnership is one of the asks.
 4. Whether live mode for the chatbot is wanted at all.
-5. Who else, besides the CEO, gets the link.
+5. Who gets the link.
 
 ---
 

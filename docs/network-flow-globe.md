@@ -19,7 +19,7 @@ Every number on screen carries one of these two badges. The illustrative data is
 
 ## 2. Levels of data Calastone could display
 
-Each level adds detail. The levels are what the CEO should see: how much the network knows, and how each level maps to a channel.
+Each level adds detail. The levels show how much the network knows, and how each level maps to a channel.
 
 | Level | What it shows | Singapore example | Where it appears |
 | --- | --- | --- | --- |
@@ -58,7 +58,7 @@ USD millions, from `illustrative-network.json`. The generator is set up so that 
 
 ## 4. Access and privacy rules
 
-These rules apply in the prototype and would be required with real data. Showing them to the CEO makes the proposal credible.
+These rules apply in the prototype and would be required with real data. Showing them in the prototype makes the option credible.
 
 | Rule | Prototype setting | Why |
 | --- | --- | --- |

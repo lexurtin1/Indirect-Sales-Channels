@@ -1,0 +1,708 @@
+{
+ "dataset": "Calastone Fund Flow Index (UK)",
+ "scope": "Net flows from UK-based investors into UK-domiciled funds. Funds of funds excluded. Totals scaled up for Calastone market share. Regions describe where a fund invests, not where investors are.",
+ "unit": "GBP m",
+ "as_of": "2026-09",
+ "sources": [
+  {
+   "id": "ffi-2026-06",
+   "title": "Bond funds enjoy third-best month on record in June as investors diversify risk away from equities while multi-asset funds boom",
+   "published": "2026-07-03",
+   "file": "b33358ef-Bond_funds_enjoy_third-best_month_on_record_in_June_as_investors_diversify_risk_away_from_equities_while_multi-asset_funds_boom_-_Calastone.pdf",
+   "url": null
+  },
+  {
+   "id": "ffi-2026-07",
+   "title": "Policy uncertainty drives sharp acceleration in fund outflows",
+   "published": "2026-08-05",
+   "file": "e783e1ec-POLICY_UNCERTAINTY_DRIVES_SHARP_ACCELERATION_IN_FUND_OUTFLOWS_-_Calastone.pdf",
+   "url": null
+  },
+  {
+   "id": "ffi-2026-08",
+   "title": "Equity funds suffer 14th month of outflows in last 15 as investors turn to cash",
+   "published": "2026-09-07",
+   "file": "538a2aaa-EQUITY_FUNDS_SUFFER_14TH_MONTH_OF_OUTFLOWS_IN_LAST_15_AS_INVESTORS_TURN_TO_CASH_-_Calastone.pdf",
+   "url": null
+  },
+  {
+   "id": "ffi-2026-09",
+   "title": "Equity funds hit by large outflows again in September as rising yields tempt investors into fixed income",
+   "published": "2026-10-07",
+   "file": "2fc4ef31-Equity_funds_hit_by_large_outflows_again_in_September_as_rising_yields_tempt_investors_into_fixed_income_-_Calastone.pdf",
+   "url": null
+  }
+ ],
+ "asset_classes": {
+  "columns": [
+   "equities",
+   "active",
+   "passive",
+   "uk_focused",
+   "esg",
+   "money_market",
+   "fixed_income",
+   "mixed_assets",
+   "property",
+   "total"
+  ],
+  "annual": {
+   "2015": {
+    "equities": 12300,
+    "active": 9810,
+    "passive": 2489,
+    "uk_focused": 5585,
+    "esg": -677,
+    "money_market": -37,
+    "fixed_income": 1743,
+    "mixed_assets": 7898,
+    "property": 2054,
+    "total": 23958,
+    "source": "ffi-2026-09"
+   },
+   "2016": {
+    "equities": -3336,
+    "active": -3965,
+    "passive": 629,
+    "uk_focused": -2945,
+    "esg": -737,
+    "money_market": 320,
+    "fixed_income": 3269,
+    "mixed_assets": 8475,
+    "property": -721,
+    "total": 8008,
+    "source": "ffi-2026-09"
+   },
+   "2017": {
+    "equities": 12188,
+    "active": 8686,
+    "passive": 3502,
+    "uk_focused": -1908,
+    "esg": -824,
+    "money_market": 460,
+    "fixed_income": 8283,
+    "mixed_assets": 17957,
+    "property": 608,
+    "total": 39496,
+    "source": "ffi-2026-09"
+   },
+   "2018": {
+    "equities": 9543,
+    "active": 4686,
+    "passive": 4857,
+    "uk_focused": -2320,
+    "esg": -1900,
+    "money_market": 619,
+    "fixed_income": 5144,
+    "mixed_assets": 14682,
+    "property": 614,
+    "total": 30602,
+    "source": "ffi-2026-09"
+   },
+   "2019": {
+    "equities": 4631,
+    "active": -3069,
+    "passive": 7701,
+    "uk_focused": -118,
+    "esg": 222,
+    "money_market": 746,
+    "fixed_income": 3444,
+    "mixed_assets": 13320,
+    "property": -1459,
+    "total": 20683,
+    "source": "ffi-2026-09"
+   },
+   "2020": {
+    "equities": 11440,
+    "active": 5348,
+    "passive": 6092,
+    "uk_focused": -3026,
+    "esg": 3390,
+    "money_market": 674,
+    "fixed_income": 976,
+    "mixed_assets": 10033,
+    "property": -715,
+    "total": 22409,
+    "source": "ffi-2026-09"
+   },
+   "2021": {
+    "equities": 19833,
+    "active": 12526,
+    "passive": 7307,
+    "uk_focused": -4373,
+    "esg": 6693,
+    "money_market": -181,
+    "fixed_income": 5908,
+    "mixed_assets": 15890,
+    "property": -1738,
+    "total": 39712,
+    "source": "ffi-2026-09"
+   },
+   "2022": {
+    "equities": 1329,
+    "active": -4771,
+    "passive": 6100,
+    "uk_focused": -8702,
+    "esg": 4954,
+    "money_market": 66,
+    "fixed_income": 1250,
+    "mixed_assets": 4107,
+    "property": -792,
+    "total": 5960,
+    "source": "ffi-2026-09"
+   },
+   "2023": {
+    "equities": 7983,
+    "active": -522,
+    "passive": 8505,
+    "uk_focused": -12068,
+    "esg": -4801,
+    "money_market": 4273,
+    "fixed_income": 4820,
+    "mixed_assets": 8897,
+    "property": -1014,
+    "total": 24958,
+    "source": "ffi-2026-09"
+   },
+   "2024": {
+    "equities": 27220,
+    "active": -2427,
+    "passive": 29647,
+    "uk_focused": -9561,
+    "esg": 2966,
+    "money_market": 2239,
+    "fixed_income": 907,
+    "mixed_assets": 14607,
+    "property": -1155,
+    "total": 43818,
+    "source": "ffi-2026-09"
+   },
+   "2025": {
+    "equities": -6710,
+    "active": -18875,
+    "passive": 12164,
+    "uk_focused": -9547,
+    "esg": -3564,
+    "money_market": 5841,
+    "fixed_income": 1506,
+    "mixed_assets": 11759,
+    "property": -745,
+    "total": 11651,
+    "source": "ffi-2026-09"
+   }
+  },
+  "quarterly": {
+   "2024-Q1": {
+    "equities": 10578,
+    "active": -1041,
+    "passive": 11619,
+    "uk_focused": -2742,
+    "esg": 4032,
+    "money_market": 177,
+    "fixed_income": 1145,
+    "mixed_assets": 3637,
+    "property": -274,
+    "total": 15263,
+    "source": "ffi-2026-09"
+   },
+   "2024-Q2": {
+    "equities": 7121,
+    "active": 117,
+    "passive": 7003,
+    "uk_focused": -3476,
+    "esg": 482,
+    "money_market": 44,
+    "fixed_income": -529,
+    "mixed_assets": 3667,
+    "property": -140,
+    "total": 10163,
+    "source": "ffi-2026-09"
+   },
+   "2024-Q3": {
+    "equities": 5033,
+    "active": -605,
+    "passive": 5638,
+    "uk_focused": -1984,
+    "esg": -261,
+    "money_market": 1107,
+    "fixed_income": -1894,
+    "mixed_assets": 3385,
+    "property": -319,
+    "total": 7312,
+    "source": "ffi-2026-09"
+   },
+   "2024-Q4": {
+    "equities": 4488,
+    "active": -898,
+    "passive": 5386,
+    "uk_focused": -1359,
+    "esg": -1287,
+    "money_market": 911,
+    "fixed_income": 2185,
+    "mixed_assets": 3919,
+    "property": -422,
+    "total": 11081,
+    "source": "ffi-2026-09"
+   },
+   "2025-Q1": {
+    "equities": 1823,
+    "active": -3363,
+    "passive": 5186,
+    "uk_focused": -3482,
+    "esg": 31,
+    "money_market": 1454,
+    "fixed_income": 82,
+    "mixed_assets": 2951,
+    "property": -243,
+    "total": 6067,
+    "source": "ffi-2026-09"
+   },
+   "2025-Q2": {
+    "equities": 1942,
+    "active": -2316,
+    "passive": 4258,
+    "uk_focused": -1563,
+    "esg": -755,
+    "money_market": 892,
+    "fixed_income": -720,
+    "mixed_assets": 2802,
+    "property": -198,
+    "total": 4718,
+    "source": "ffi-2026-09"
+   },
+   "2025-Q3": {
+    "equities": -3639,
+    "active": -5443,
+    "passive": 1805,
+    "uk_focused": -1892,
+    "esg": -1702,
+    "money_market": 1136,
+    "fixed_income": 621,
+    "mixed_assets": 2679,
+    "property": -136,
+    "total": 660,
+    "source": "ffi-2026-09"
+   },
+   "2025-Q4": {
+    "equities": -6837,
+    "active": -7753,
+    "passive": 916,
+    "uk_focused": -2610,
+    "esg": -1138,
+    "money_market": 2359,
+    "fixed_income": 1524,
+    "mixed_assets": 3327,
+    "property": -167,
+    "total": 206,
+    "source": "ffi-2026-09"
+   },
+   "2026-Q1": {
+    "equities": -3059,
+    "active": -6027,
+    "passive": 2967,
+    "uk_focused": -1842,
+    "esg": -665,
+    "money_market": 285,
+    "fixed_income": 377,
+    "mixed_assets": 3901,
+    "property": -115,
+    "total": 1389,
+    "source": "ffi-2026-09"
+   },
+   "2026-Q2": {
+    "equities": 389,
+    "active": -4746,
+    "passive": 5135,
+    "uk_focused": -356,
+    "esg": -1430,
+    "money_market": -1125,
+    "fixed_income": 1911,
+    "mixed_assets": 8007,
+    "property": -42,
+    "total": 9141,
+    "source": "ffi-2026-09"
+   }
+  },
+  "monthly": {
+   "2026-04": {
+    "equities": 1084,
+    "active": -1545,
+    "passive": 2629,
+    "uk_focused": -342,
+    "esg": -348,
+    "money_market": -671,
+    "fixed_income": -24,
+    "mixed_assets": 3320,
+    "property": -21,
+    "total": 4359,
+    "source": "ffi-2026-06"
+   },
+   "2026-05": {
+    "equities": -257,
+    "active": -1393,
+    "passive": 1135,
+    "uk_focused": 247,
+    "esg": -460,
+    "money_market": -669,
+    "fixed_income": 877,
+    "mixed_assets": 2720,
+    "property": -15,
+    "total": 3325,
+    "source": "ffi-2026-06"
+   },
+   "2026-06": {
+    "equities": -437,
+    "active": -1808,
+    "passive": 1371,
+    "uk_focused": -260,
+    "esg": -622,
+    "money_market": 215,
+    "fixed_income": 1058,
+    "mixed_assets": 1967,
+    "property": -6,
+    "total": 2582,
+    "source": "ffi-2026-06"
+   },
+   "2026-07": {
+    "equities": -1606,
+    "active": -3037,
+    "passive": 1431,
+    "uk_focused": -948,
+    "esg": -1251,
+    "money_market": 243,
+    "fixed_income": 179,
+    "mixed_assets": -463,
+    "property": -23,
+    "total": -1670,
+    "source": "ffi-2026-09"
+   },
+   "2026-08": {
+    "equities": -315,
+    "active": -1723,
+    "passive": 1407,
+    "uk_focused": -601,
+    "esg": -782,
+    "money_market": 364,
+    "fixed_income": 407,
+    "mixed_assets": 198,
+    "property": 52,
+    "total": 707,
+    "source": "ffi-2026-09"
+   },
+   "2026-09": {
+    "equities": -858,
+    "active": -1161,
+    "passive": 303,
+    "uk_focused": -708,
+    "esg": -248,
+    "money_market": 417,
+    "fixed_income": 655,
+    "mixed_assets": 1975,
+    "property": 99,
+    "total": 2288,
+    "source": "ffi-2026-09"
+   }
+  }
+ },
+ "equity_sectors": {
+  "2026-06": [
+   {
+    "region": "uk",
+    "label_in_report": "UK-focused",
+    "net_flow_gbp_m": -260,
+    "source": "ffi-2026-06",
+    "status": "outflow",
+    "note": "More than reversed May's rare inflow"
+   },
+   {
+    "region": "global",
+    "label_in_report": "Global",
+    "net_flow_gbp_m": 328,
+    "source": "ffi-2026-06",
+    "status": "inflow"
+   },
+   {
+    "region": "north-america",
+    "label_in_report": "North American",
+    "net_flow_gbp_m": 200,
+    "source": "ffi-2026-06",
+    "status": "inflow"
+   },
+   {
+    "region": "asia-pacific",
+    "label_in_report": "Asia-Pacific",
+    "net_flow_gbp_m": -312,
+    "source": "ffi-2026-06",
+    "status": "outflow",
+    "note": "38th consecutive month of outflows, the longest run of any sector; 7.05bn out since May 2023"
+   },
+   {
+    "region": "other",
+    "label_in_report": "All other equity sectors",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-06",
+    "status": "outflow-unpublished"
+   }
+  ],
+  "2026-07": [
+   {
+    "region": "uk",
+    "label_in_report": "UK-focused",
+    "net_flow_gbp_m": -948,
+    "source": "ffi-2026-07",
+    "status": "outflow",
+    "note": "52.6bn out since June 2020"
+   },
+   {
+    "region": "global",
+    "label_in_report": "Global",
+    "net_flow_gbp_m": -574,
+    "source": "ffi-2026-07",
+    "status": "outflow"
+   },
+   {
+    "region": "emerging-markets",
+    "label_in_report": "Emerging markets",
+    "net_flow_gbp_m": -224,
+    "source": "ffi-2026-07",
+    "status": "outflow"
+   },
+   {
+    "region": "north-america",
+    "label_in_report": "North American",
+    "net_flow_gbp_m": 227,
+    "source": "ffi-2026-07",
+    "status": "inflow",
+    "note": "Only sector with inflows"
+   },
+   {
+    "region": "europe",
+    "label_in_report": "European",
+    "net_flow_gbp_m": 0,
+    "source": "ffi-2026-07",
+    "status": "flat",
+    "note": "Reported as flat; exact figure not published"
+   },
+   {
+    "region": "asia-pacific",
+    "label_in_report": "Asia",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-07",
+    "status": "outflow-unpublished"
+   },
+   {
+    "region": "china",
+    "label_in_report": "China",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-07",
+    "status": "outflow-unpublished"
+   },
+   {
+    "region": "japan",
+    "label_in_report": "Japanese",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-07",
+    "status": "outflow-unpublished"
+   },
+   {
+    "region": "sector",
+    "label_in_report": "Sector-focused",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-07",
+    "status": "outflow-unpublished"
+   }
+  ],
+  "2026-08": [
+   {
+    "region": "uk",
+    "label_in_report": "UK",
+    "net_flow_gbp_m": -601,
+    "source": "ffi-2026-08",
+    "status": "outflow"
+   },
+   {
+    "region": "europe",
+    "label_in_report": "European",
+    "net_flow_gbp_m": -145,
+    "source": "ffi-2026-08",
+    "status": "outflow"
+   },
+   {
+    "region": "sector",
+    "label_in_report": "Specialist sector",
+    "net_flow_gbp_m": -52,
+    "source": "ffi-2026-08",
+    "status": "outflow"
+   },
+   {
+    "region": "north-america",
+    "label_in_report": "North American",
+    "net_flow_gbp_m": -3,
+    "source": "ffi-2026-08",
+    "status": "outflow",
+    "note": "First outflow since November 2025; 0.06% of 4.9bn of buy and sell orders"
+   }
+  ],
+  "2026-09": [
+   {
+    "region": "uk",
+    "label_in_report": "UK-focused",
+    "net_flow_gbp_m": -708,
+    "source": "ffi-2026-09",
+    "status": "outflow",
+    "note": "63rd month of outflows in the last 65; 47.7bn out over that period"
+   },
+   {
+    "region": "north-america",
+    "label_in_report": "North American",
+    "net_flow_gbp_m": -124,
+    "source": "ffi-2026-09",
+    "status": "outflow",
+    "note": "Largest outflow since November 2025"
+   },
+   {
+    "region": "asia-pacific",
+    "label_in_report": "Asian",
+    "net_flow_gbp_m": -371,
+    "source": "ffi-2026-09",
+    "status": "outflow",
+    "note": "Second-worst month on record; worst was -382.9m in April 2026"
+   },
+   {
+    "region": "global",
+    "label_in_report": "Global",
+    "net_flow_gbp_m": 410,
+    "source": "ffi-2026-09",
+    "status": "inflow"
+   },
+   {
+    "region": "emerging-markets",
+    "label_in_report": "Emerging markets",
+    "net_flow_gbp_m": 133,
+    "source": "ffi-2026-09",
+    "status": "inflow"
+   },
+   {
+    "region": "europe",
+    "label_in_report": "European",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-09",
+    "status": "outflow-unpublished"
+   },
+   {
+    "region": "japan",
+    "label_in_report": "Japanese",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-09",
+    "status": "outflow-unpublished"
+   },
+   {
+    "region": "china",
+    "label_in_report": "Chinese",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-09",
+    "status": "outflow-unpublished"
+   },
+   {
+    "region": "sector",
+    "label_in_report": "Sector-focused",
+    "net_flow_gbp_m": null,
+    "source": "ffi-2026-09",
+    "status": "outflow-unpublished"
+   }
+  ]
+ },
+ "fixed_income_sectors": {
+  "2026-09": [
+   {
+    "sector": "High yield",
+    "net_flow_gbp_m": 421,
+    "source": "ffi-2026-09",
+    "note": "3.17bn over two years, 46% of bond inflows"
+   },
+   {
+    "sector": "Sovereign",
+    "net_flow_gbp_m": 116,
+    "source": "ffi-2026-09"
+   }
+  ]
+ },
+ "headlines": {
+  "2026-06": {
+   "source": "ffi-2026-06",
+   "headline": "Bond funds had their third-best month on record and multi-asset funds took a record 11.9bn in H1 2026, while equity funds saw outflows.",
+   "facts": [
+    "Bond funds +1.06bn, third-best month on record",
+    "Multi-asset +1.97bn; H1 2026 record 11.9bn",
+    "Equity funds -437m",
+    "Money market funds back to inflows, +215m"
+   ]
+  },
+  "2026-07": {
+   "source": "ffi-2026-07",
+   "headline": "Equity outflows accelerated to 1.61bn as the change of government added uncertainty over tax policy.",
+   "facts": [
+    "Equity funds -1.61bn, fifth-worst month on the 11-year record",
+    "12-month equity outflow run rate a record 13.9bn",
+    "Active equity -3.04bn, passive +1.43bn",
+    "Multi-asset -463m, first outflow since October 2022"
+   ]
+  },
+  "2026-08": {
+   "source": "ffi-2026-08",
+   "headline": "Equity funds saw a fourth consecutive month of outflows while investors moved into bonds and money market funds.",
+   "facts": [
+    "Equity funds -315m; 15.16bn out since June 2025",
+    "Bond funds +407m, fourth consecutive month of inflows",
+    "Money market funds +364m, largest since November",
+    "Bonds and money market together 8.7bn in since June 2025"
+   ]
+  },
+  "2026-09": {
+   "source": "ffi-2026-09",
+   "headline": "Equity outflows of 858m as rising bond yields drew investors into fixed income and cash.",
+   "facts": [
+    "Equity funds -858m; year to date -5.45bn",
+    "Bond funds +655m; year to date 3.53bn",
+    "High yield +421m, the favourite bond category",
+    "Money market funds +417m, largest since November"
+   ]
+  }
+ },
+ "ytd": {
+  "as_of": "2026-09",
+  "equities": -5449,
+  "fixed_income": 3529,
+  "note": "Computed from 2026-Q1, 2026-Q2 and July to September; matches the published -5.45bn and 3.53bn."
+ },
+ "revisions": [
+  {
+   "period": "2026-07",
+   "field": "total",
+   "earlier": {
+    "value": -1913,
+    "source": "ffi-2026-07"
+   },
+   "latest": {
+    "value": -1670,
+    "source": "ffi-2026-09"
+   }
+  },
+  {
+   "period": "2026-04",
+   "field": "equities",
+   "note": "The July report's equity bar chart shows April 2026 near +800; the June and September reports show +1,084. Use the table value."
+  },
+  {
+   "period": "annual and quarterly",
+   "field": "total",
+   "note": "Total column differs between the June and September reports while every other column is identical (for example 2024: 41,578 in June, 43,818 in September). Total likely includes categories not shown. Use the latest report and never recompute Total from the columns."
+  }
+ ],
+ "known_report_errors": [
+  {
+   "source": "ffi-2026-06",
+   "note": "Body text says bonds attracted 2.25bn in H1 2026; the heading and the table give 2.29bn (377 + 1,911 = 2,288). Use 2,288."
+  }
+ ]
+}

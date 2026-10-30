@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Sales Navigator</title>
+  <link rel="stylesheet" href="https://unpkg.com/@salesforce-ux/design-system@2.264.3/assets/styles/salesforce-lightning-design-system.min.css">
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <link rel="stylesheet" href="/shared/sfdc.css">
+</head>
+<body>
+  <main class="crm slds-scope">
+    <header class="crm-head">
+      <div class="crm-kicker">Account · Salesforce · Sales Navigator</div>
+      <h1>Harbour Advisory</h1>
+      <div class="meta">
+        <span>Type: Consultancy</span>
+        <span>Focus: Asset manager distribution</span>
+        <span>People: not shown</span>
+      </div>
+    </header>
+    <div class="split">
+      <section class="crm-card">
+        <h2>Asset managers advised</h2>
+        <div class="firm-list" id="firms"></div>
+      </section>
+      <section class="crm-card" id="path-card">
+        <h2>Warm path</h2>
+        <p id="path-title"></p>
+        <ol class="path" id="path"></ol>
+      </section>
+    </div>
+  </main>
+  <script type="application/json" id="isc-meta">
+  {
+    "channel": "Consultant relationships. A warm path from Calastone to an asset manager through a consultancy.",
+    "simulated": "Harbour Advisory and the asset managers are fictional. No real people are shown.",
+    "build": "A panel on the consultancy account that lists advised asset managers and the path already on file.",
+    "tour": [
+      { "selector": "#firms", "title": "Advised managers", "body": "Click a name. The list is fictional." },
+      { "selector": "#path", "title": "Warm path", "body": "The steps highlight from Calastone, through Harbour Advisory, to that manager." }
+    ]
+  }
+  </script>
+  <script src="/shared/chrome.js"></script>
+  <script src="/shared/navigator.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Salesforce alert</title>
+  <link rel="stylesheet" href="https://unpkg.com/@salesforce-ux/design-system@2.264.3/assets/styles/salesforce-lightning-design-system.min.css">
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <link rel="stylesheet" href="/shared/sfdc.css">
+</head>
+<body>
+  <main class="crm slds-scope">
+    <header class="crm-head">
+      <div class="crm-kicker">Account · Salesforce</div>
+      <h1>Northwind Asset Management</h1>
+      <div class="meta">
+        <span>Type: Asset manager</span>
+        <span>Domicile: United Kingdom</span>
+        <span>Coverage: Institutional</span>
+        <span>Owner: Coverage desk</span>
+      </div>
+    </header>
+    <section class="alert hotspot" id="alert" aria-live="polite">
+      <div class="crm-kicker">Calastone · Published</div>
+      <h2 id="alert-title">Fund flow alert</h2>
+      <p id="alert-body">Loading the published figure.</p>
+      <p id="alert-source"></p>
+      <div class="actions">
+        <button type="button" class="btn" id="create-task">Create task</button>
+      </div>
+    </section>
+    <section class="crm-card">
+      <h2>Activity</h2>
+      <ul class="timeline" id="timeline">
+        <li><strong>Note.</strong> Coverage desk logged a quarterly check. No client figures are shown.</li>
+        <li><strong>Call.</strong> Introductory call with the distribution team. Fictional record.</li>
+      </ul>
+    </section>
+  </main>
+  <script type="application/json" id="isc-meta">
+  {
+    "channel": "A data product inside a client CRM.",
+    "simulated": "Northwind Asset Management is fictional. The alert uses the published September 2026 Fund Flow Index, not internal network volume.",
+    "build": "A Salesforce alert on the account, fed by the published index, with a task written back to the timeline.",
+    "tour": [
+      { "selector": "#alert", "title": "The alert", "body": "It slides in on the account. The figure is a published Fund Flow Index number, with its source." },
+      { "selector": "#create-task", "title": "Create task", "body": "Adds a follow-up to the timeline. Reset replays the alert." },
+      { "selector": "#timeline", "title": "Timeline", "body": "The new task appears above the existing fictional activity." }
+    ]
+  }
+  </script>
+  <script src="/shared/chrome.js"></script>
+  <script src="/shared/sfdc.js"></script>
+</body>
+</html>

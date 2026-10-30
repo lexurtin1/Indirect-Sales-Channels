@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/site/index.html" },
+    { "source": "/pages/:page", "destination": "/site/pages/:page.html" },
+    { "source": "/shared/:path*", "destination": "/site/shared/:path*" },
+    { "source": "/assets/:path*", "destination": "/site/assets/:path*" }
+  ]
+}

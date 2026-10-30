@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Agent network</title>
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <link rel="stylesheet" href="/shared/agents.css">
+</head>
+<body>
+  <main class="stage-page">
+    <div class="mode-row">
+      <button type="button" id="mode-before" class="btn secondary" aria-pressed="false">Before</button>
+      <button type="button" id="mode-after" class="btn secondary hotspot" aria-pressed="true">After</button>
+    </div>
+    <div class="stage" id="stage">
+      <div class="node" id="sender">Northwind agent<br><span>Order message</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="node router" id="router">Calastone<br><span>Identity and permission</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="node" id="receiver">Harbour Platform agent<br><span>Receives the message</span></div>
+    </div>
+    <p class="direct-note" id="direct-note"></p>
+    <ul class="checks" id="checks">
+      <li data-check="identity">Identity confirmed</li>
+      <li data-check="permission">Permission granted</li>
+      <li data-check="audit">Audit log written</li>
+    </ul>
+    <ul class="audit" id="audit"></ul>
+  </main>
+  <script type="application/json" id="isc-meta">
+  {
+    "channel": "Calastone as the router between firms' AI agents.",
+    "simulated": "Northwind and Harbour Platform are fictional. No live agents are connected.",
+    "build": "Identity check, permission check, and an audit log on messages between firms' agents.",
+    "tour": [
+      { "selector": "#mode-after", "title": "Before and after", "body": "Before is a direct message. After routes it through Calastone." },
+      { "selector": "#checks", "title": "Checks", "body": "In the after view, identity, permission and the audit log tick in order." },
+      { "selector": "#audit", "title": "Audit log", "body": "The log fills as the message moves. Reset plays the steps again." }
+    ]
+  }
+  </script>
+  <script src="/shared/chrome.js"></script>
+  <script src="/shared/agents.js"></script>
+</body>
+</html>

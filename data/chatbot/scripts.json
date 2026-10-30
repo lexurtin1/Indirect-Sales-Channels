@@ -1,0 +1,80 @@
+{
+  "contact": "clientservices@calastone.com",
+  "topics": [
+    {
+      "id": "distribution",
+      "label": "Distribution",
+      "tool": "distribution_reach",
+      "keywords": ["distribution", "distributor", "platform", "reach", "new market", "manual orders"],
+      "suggested_questions": ["How do I reach more distributors in Asia?", "Why do some platforms still send us orders by email?"],
+      "answer": {
+        "problem": "TODO: one sentence restating the distribution problem in the client's terms.",
+        "solution": "TODO(product): two to four sentences on Calastone order routing.",
+        "proof": { "text": "TODO(product): one public fact.", "source": "TODO: URL" },
+        "cta": "Talk to Calastone about distribution: clientservices@calastone.com"
+      }
+    },
+    {
+      "id": "etf",
+      "label": "ETFs",
+      "tool": "etf_distribution",
+      "keywords": ["etf", "exchange traded", "creation", "redemption"],
+      "suggested_questions": ["Can wealth platforms trade our ETFs like mutual funds?"],
+      "answer": {
+        "problem": "TODO",
+        "solution": "TODO(product): Calastone ETF solution.",
+        "proof": { "text": "TODO(product)", "source": "TODO: URL" },
+        "cta": "Talk to Calastone about ETF distribution: clientservices@calastone.com"
+      }
+    },
+    {
+      "id": "tokenisation",
+      "label": "Tokenisation",
+      "tool": "tokenised_distribution",
+      "keywords": ["tokenised", "tokenisation", "tokenization", "tokenized", "blockchain", "digital asset", "on-chain"],
+      "suggested_questions": ["How can we offer a tokenised share class without rebuilding our TA?"],
+      "answer": {
+        "problem": "You want to offer a tokenised share class but your transfer agent and distributors run on traditional systems.",
+        "solution": "TODO(product): Calastone Tokenised Distribution Solution.",
+        "proof": { "text": "TODO(product)", "source": "TODO: URL" },
+        "cta": "Talk to Calastone about tokenised distribution: clientservices@calastone.com"
+      }
+    },
+    {
+      "id": "mmf",
+      "label": "Money market funds",
+      "tool": "mmf_dealing",
+      "keywords": ["money market", "mmf", "treasury", "cash fund"],
+      "suggested_questions": ["How can corporate treasurers deal our MMFs more easily?"],
+      "answer": { "problem": "TODO", "solution": "TODO(product)", "proof": { "text": "TODO(product)", "source": "TODO: URL" }, "cta": "Talk to Calastone about money market funds: clientservices@calastone.com" }
+    },
+    {
+      "id": "settlement",
+      "label": "Settlement",
+      "tool": "settlement_check",
+      "keywords": ["settlement", "settle", "breaks", "fails"],
+      "suggested_questions": ["Our settlement breaks are rising. What can fix this?"],
+      "answer": { "problem": "TODO", "solution": "TODO(product)", "proof": { "text": "TODO(product)", "source": "TODO: URL" }, "cta": "Talk to Calastone about settlement: clientservices@calastone.com" }
+    },
+    {
+      "id": "cost",
+      "label": "Cost",
+      "tool": "cost_calculator",
+      "keywords": ["cost", "save", "saving", "automate", "manual"],
+      "suggested_questions": ["What would automating our manual orders save?"],
+      "answer": { "problem": "TODO", "solution": "Cost calculator: ask for monthly orders, manual share, minutes per manual order and hourly cost, then return the estimated annual saving.", "proof": { "text": "Estimate only, based on the inputs given.", "source": "" }, "cta": "Get a full assessment from Calastone: clientservices@calastone.com" }
+    },
+    {
+      "id": "isin",
+      "label": "Fund availability",
+      "tool": "isin_check",
+      "keywords": ["isin", "lu0", "ie0", "gb00", "available", "connected"],
+      "suggested_questions": ["Is fund LU0000000001 on the network?"],
+      "answer": { "problem": "You want to know whether a fund can be dealt on the Calastone network.", "solution": "Simulated result: LU0000000001 is not yet connected. Calastone has logged the request so the fund manager can be contacted.", "proof": { "text": "Simulated ISIN for demonstration.", "source": "" }, "cta": "Ask Calastone to connect this fund: clientservices@calastone.com" }
+    }
+  ],
+  "fallback": {
+    "tool": "no_match",
+    "answer": "Calastone may be able to help with this. Contact clientservices@calastone.com and the team will route your question."
+  }
+}

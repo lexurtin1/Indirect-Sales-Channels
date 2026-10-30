@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>MCP assistant</title>
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <link rel="stylesheet" href="/shared/chat.css">
+</head>
+<body>
+  <div class="chat-shell">
+    <section class="chat-main">
+      <header class="chat-top">
+        <div>
+          <div class="wordmark" id="firm-name">Generic firm</div>
+          <div class="muted">AI assistant · Calastone MCP connected</div>
+        </div>
+      </header>
+      <div class="thread" id="thread" aria-live="polite"></div>
+      <div class="composer">
+        <form id="ask">
+          <input id="question" name="question" placeholder="Ask a question a fund manager would ask" autocomplete="off">
+          <button class="btn" type="submit">Send</button>
+        </form>
+        <div class="suggestions" id="suggestions"></div>
+        <button type="button" class="ghost hotspot" id="request-contact">Request contact</button>
+      </div>
+    </section>
+    <aside class="activity">
+      <h2>Calastone MCP activity</h2>
+      <ol id="activity"></ol>
+      <div id="leads"></div>
+    </aside>
+  </div>
+  <script type="application/json" id="isc-meta">
+  {
+    "channel": "AI-led discovery. The firm's own assistant calls Calastone and creates a lead.",
+    "simulated": "Answers are scripted from a local file. Product text marked TODO is not signed off.",
+    "build": "A Calastone MCP with these tools, connected to the firm's assistant, and a lead record in Calastone.",
+    "tour": [
+      { "selector": "#suggestions", "title": "Suggested questions", "body": "Each topic calls one simulated tool. An unmatched question uses the fallback." },
+      { "selector": "#thread", "title": "The answer", "body": "You get the problem, the Calastone response, a proof point, and the contact address as text." },
+      { "selector": ".activity", "title": "What Calastone sees", "body": "Every answer logs the tool call. Request contact adds a Lead created card." },
+      { "selector": "#request-contact", "title": "Lead", "body": "Use this, or ask to be contacted in the question. Shift+L changes the firm name." }
+    ]
+  }
+  </script>
+  <script src="/shared/chrome.js"></script>
+  <script src="/shared/chat.js"></script>
+</body>
+</html>

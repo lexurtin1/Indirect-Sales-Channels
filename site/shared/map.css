@@ -1,0 +1,33 @@
+.map-page {
+  width: min(1100px, calc(100% - 32px));
+  margin: 72px auto 96px;
+}
+
+.map-page h1 { font-size: 32px; letter-spacing: -0.03em; }
+.map-page .lede { color: var(--ink-500); margin: 8px 0 18px; max-width: 640px; }
+
+.compare { display: grid; gap: 12px; }
+.compare article {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr 1.2fr;
+  gap: 14px;
+}
+.compare h2 { font-size: 16px; }
+.compare p { color: var(--ink-500); font-size: 14px; }
+.compare h3 {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-300);
+  margin-bottom: 4px;
+}
+
+@media (max-width: 900px) {
+  .compare article { grid-template-columns: 1fr; }
+  .map-page { margin-top: 64px; }
+}
