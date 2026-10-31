@@ -4,77 +4,92 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Fund flow</title>
+  <title>Calastone MCP · Download</title>
   <link rel="stylesheet" href="/shared/tokens.css">
   <link rel="stylesheet" href="/shared/chrome.css">
-  <link rel="stylesheet" href="/shared/home.css">
-  <link rel="stylesheet" href="/shared/globe.css">
+  <link rel="stylesheet" href="/shared/mcp-funnel.css">
 </head>
-<body>
-  <header class="pulse-header">
-    <div class="ph-brand">
-      <a href="/"><img src="/assets/brand/calastone-wordmark-black.png" alt="Calastone"></a>
-      <span class="divider"></span>
-      <span class="pulse-label">Pulse</span>
-      <canvas id="ph-ecg" width="52" height="13"></canvas>
-    </div>
-    <nav class="ph-nav" aria-label="Pulse navigation">
-      <a href="/" class="ph-nav-link">System Architecture</a>
-    </nav>
-    <div class="ph-search">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <circle cx="11" cy="11" r="7" stroke="#9aa6b0" stroke-width="2"></circle>
-        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#9aa6b0" stroke-width="2" stroke-linecap="round"></line>
-      </svg>
-      <input id="nav-search" type="text" placeholder="Search workspaces, accounts, markets…" aria-label="Search options">
-    </div>
-    <div class="ph-user" aria-hidden="true"></div>
-  </header>
-
-  <div class="globe-stage" id="globe-wrap">
-    <div id="globe"></div>
-    <p class="loading" id="globe-status">Loading globe</p>
+<body class="mcp-funnel" data-variant="1a">
+  <div class="variant-switch" id="variant-switch" role="group" aria-label="Hero layout options">
+    <span>Layout</span>
+    <button type="button" data-variant="1a" aria-pressed="true">1a</button>
+    <button type="button" data-variant="1b" aria-pressed="false">1b</button>
+    <button type="button" data-variant="1c" aria-pressed="false">1c</button>
   </div>
 
-  <section class="hero" id="hero">
-    <p class="kicker" id="hero-kicker">UK investors · Sep 2026</p>
-    <p class="count" id="hero-count"></p>
-    <p class="headline" id="hero-headline"></p>
-    <span class="badge published">Published</span>
-    <p class="mcp-line">Any other cut of this data is in the Calastone MCP.</p>
-    <ul class="strip" id="strip"></ul>
-    <div class="mcp" id="mcp">
-      <button type="button" class="mcp-btn hotspot" id="mcp-public">Install the Calastone MCP</button>
-      <button type="button" class="mcp-btn quiet" id="mcp-private">Request your private MCP</button>
-      <p class="contact"><span id="contact">clientservices@calastone.com</span> <button type="button" id="copy-contact">Copy</button></p>
-      <p class="toast" id="mcp-result"></p>
+  <header class="site-header">
+    <a class="logo" href="/" aria-label="Calastone home">
+      <img src="/assets/brand/calastone-wordmark-black.png" alt="Calastone">
+      <span class="tagline">An SS&amp;C Company</span>
+    </a>
+    <nav class="site-nav" aria-label="Calastone site">
+      <span>About Calastone ⌄</span>
+      <span>Solutions ⌄</span>
+      <span class="hide-narrow">Clients ⌄</span>
+      <span class="hide-narrow">Insights &amp; Events ⌄</span>
+      <span>Contact Us</span>
+    </nav>
+  </header>
+
+  <section class="hero-stage" id="hero" aria-label="Global network globe">
+    <div class="globe-host" id="globe-host"></div>
+    <div class="hero-overlay">
+      <aside class="mcp-card hotspot" id="mcp-card" aria-label="Calastone MCP download"></aside>
+      <div class="stat-block" id="stat-block">
+        <span class="label">Global network · 2025</span>
+        <div class="row">
+          <span class="value" id="stat-value">0</span>
+          <span class="unit">orders</span>
+        </div>
+        <span class="sub" id="stat-sub">51 countries · 321 corridors · 109.8m cross-border</span>
+      </div>
+      <div class="side-panel" id="side-panel"></div>
+      <div class="controls" id="controls">
+        <div class="seg" role="group" aria-label="Corridor filter">
+          <button type="button" id="arcs-all" aria-pressed="true">All corridors</button>
+          <button type="button" id="arcs-major" aria-pressed="false">Major corridors</button>
+        </div>
+        <button type="button" class="ctrl-btn" id="spin-toggle">Pause spin</button>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <div class="legend-row"><span class="legend-line"></span>Smaller corridor</div>
+        <div class="legend-row"><span class="legend-line major"></span>Major corridor</div>
+        <div class="legend-row"><span class="legend-dot"></span>Country · size = volume</div>
+      </div>
     </div>
   </section>
 
-  <aside class="country-card" id="country-card" hidden>
-    <button type="button" class="close" id="clear-country">Close</button>
-    <h2 id="card-name"></h2>
-    <p id="card-line"></p>
-    <span class="badge illustrative" id="card-badge" hidden>Illustrative</span>
-  </aside>
-  <div class="hover-card" id="hover-card" hidden></div>
-  <p class="notice" id="notice"></p>
+  <section class="capabilities" id="capabilities" aria-labelledby="cap-heading">
+    <div class="intro">
+      <span class="eyebrow">Capabilities</span>
+      <h2 id="cap-heading">What the MCP can do</h2>
+      <p>Four functions. Each example shows a query and the type of response returned. Responses use your firm's data only.</p>
+    </div>
+    <div class="cap-grid" id="cap-grid"></div>
+    <div class="cap-foot">
+      <span class="note">Example responses use placeholder values.</span>
+      <button type="button" class="btn btn-ink" id="cap-download">Download MCP</button>
+    </div>
+  </section>
 
   <script type="application/json" id="isc-meta">
   {
-    "channel": "Data as a hook. The public globe, then the MCP for anything deeper.",
-    "simulated": "The opening story is the published UK Fund Flow Index for September 2026. A country click shows one illustrative figure.",
-    "build": "A page on calastone.com, the globe, published FFI updates, and the MCP install path.",
+    "channel": "Data as a hook. The public globe leads to an MCP download.",
+    "simulated": "A calastone.com MCP download page with three hero layout options (1a Light, 1b Black, 1c Horizon) and 2025 order-routing figures on the globe.",
+    "build": "A page on calastone.com, the network globe, the MCP package, and entitlement-linked sign-in.",
     "tour": [
-      { "selector": "#hero", "title": "Published fund flow", "body": "September 2026 equity flow for UK investors, from the published Fund Flow Index. The figure is exact." },
-      { "selector": "#globe", "title": "Turn the globe", "body": "Drag to turn it. Click a country for one illustrative line." },
-      { "selector": "#mcp", "title": "Query the data", "body": "Install the Calastone MCP, or request the private one. The address can be copied." }
+      { "selector": "#variant-switch", "title": "Compare layouts", "body": "Switch between 1a Light, 1b Black and 1c Horizon. The URL hash keeps your choice." },
+      { "selector": "#globe-host", "title": "Explore the network", "body": "Drag to turn the globe. Hover a country or corridor for volumes. Click a country for the market panel." },
+      { "selector": "#mcp-card", "title": "Download the MCP", "body": "Start on the card, enter a work email, then copy the server config." },
+      { "selector": "#capabilities", "title": "Capabilities", "body": "Four example queries sit below the hero. The second Download button returns you to the card." }
     ]
   }
   </script>
+  <script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
   <script src="https://unpkg.com/globe.gl@2.46.2/dist/globe.gl.min.js"></script>
+  <script src="/shared/flows.js"></script>
+  <script src="/shared/flow-globe.js"></script>
   <script src="/shared/chrome.js"></script>
-  <script src="/shared/home.js"></script>
-  <script src="/shared/globe-app.js"></script>
+  <script src="/shared/mcp-funnel.js"></script>
 </body>
 </html>

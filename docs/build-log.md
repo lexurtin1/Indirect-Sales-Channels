@@ -4,6 +4,7 @@ One entry per build step. Newest first.
 
 | Date | Step | Files changed | Open items |
 | --- | --- | --- | --- |
+| 2026-10-31 | Screen 1: MCP download funnel with globe layouts 1a / 1b / 1c | site/pages/website-globe.html, site/shared/flows.js, site/shared/flow-globe.js, site/shared/mcp-funnel.css, site/shared/mcp-funnel.js, site/shared/tokens.css, site/index.html, site/pages/channel-map.html | Product copy still TODO. Report URLs still null. Live assistant mode not built. Old globe-app.js unused on this page. |
 | 2026-10-30 | Vercel deploy: turn off clean URLs so the home page and screen links resolve | vercel.json | Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-10-30 | Globe restyle: Pulse header and simple fund-flow globe | site/index.html, site/pages/website-globe.html, site/shared/home.css, site/shared/home.js, site/shared/globe.css, site/shared/globe-app.js, site/assets/brand/calastone-wordmark-black.png | Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-10-30 | 1 to 2, 4 to 13: site | site/, vercel.json, scripts/preview.mjs, README.md | Product copy still TODO. Report URLs still null. Live assistant mode not built. |
