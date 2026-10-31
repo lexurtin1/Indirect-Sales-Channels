@@ -28,10 +28,9 @@ The front page is the navigation. Each card opens one screen.
 | 3 | Salesforce trend alert | A fund manager's Salesforce account page with a Calastone flow alert sliding in | Data product inside client CRMs | Recreate from screenshots using the Salesforce Lightning Design System |
 | 4 | Sales Navigator inside Salesforce | A consultancy record with a Sales Navigator panel showing which asset managers it advises and the warm path to them | Consultant relationships | Panel inside the Salesforce recreation |
 | 5 | Agent-to-agent network | Animated diagram of firms' AI agents messaging through Calastone, which verifies identity and permissions | Calastone as the trusted router for AI agents | Original animated diagram |
-| 6 | Channel map | All channels on one screen with who pays and the first test | Summary | Original layout |
-| 7 | Chat | A fund manager's assistant (HSBC, BlackRock or Vanguard) calls Calastone MCP tools | AI-led discovery | Vanilla port of the Chat MCP package; scripted answers in `data/chatbot/chat-scripts.json` |
+| 6 | Chat | A fund manager's assistant (HSBC, BlackRock or Vanguard) calls Calastone MCP tools | AI-led discovery | Vanilla port of the Chat MCP package; scripted answers in `data/chatbot/chat-scripts.json` |
 
-Screen 1's Download MCP buttons also open screen 7 (Chat), with an optional install dialog.
+Screen 1's Download MCP buttons also open screen 6 (Chat), with an optional install dialog.
 
 ### Shared elements on every screen
 
@@ -193,8 +192,8 @@ calastone-indirect-channels/
       salesforce-alert.html  screen 3
       sales-navigator.html   screen 4
       agent-network.html     screen 5
-      channel-map.html       screen 6
-      chat.html              screen 7
+      chat.html              screen 6
+      channel-map.html       kept off the front page; not linked from navigation
     shared/
       tokens.css             Calastone design tokens
       chrome.css             simulated tag, info panel, hotspots, tour, reset
@@ -210,7 +209,7 @@ calastone-indirect-channels/
     ffi/extracted/ffi.json   extracted figures with sources
     network/illustrative-network.json  synthetic country and corridor flows
     chatbot/scripts.json     screen 2 chatbot topics and answers
-    chatbot/chat-scripts.json  screen 7 brands and scenarios
+    chatbot/chat-scripts.json  screen 6 brands and scenarios
   scripts/
     validate-ffi.mjs         checks ffi.json
     generate-illustrative-network.mjs  builds the illustrative network data
@@ -240,7 +239,7 @@ Build one step at a time in Cursor. Finish each step's checks before starting th
 | 8 | Screen 3: Salesforce account page recreation and the alert | Alert slides in, "Create task" adds a task to the timeline, reset replays it |
 | 9 | Screen 4: Sales Navigator panel | Warm path highlights on click; no real people shown |
 | 10 | Screen 5: agent-to-agent animation | Steps play in order; checks tick; audit log fills; before/after toggle works |
-| 11 | Screen 6: channel map and the asks | Each channel shows who pays and the first test |
+| 11 | Channel map removed from the front page | Front page shows six cards; channel map is not linked from navigation |
 | 12 | Guided tours for every screen | A first-time user can complete each screen without help |
 | 13 | Review pass | Checklist in section 7 passes on laptop and iPad |
 | 14 | Optional: live mode for the chatbot | Live answers stay on topic; fallback works when the API fails |
