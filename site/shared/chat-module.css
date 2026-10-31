@@ -12,8 +12,7 @@ body.chat-module {
 }
 
 /* No glowing green hotspot dots on this screen */
-body.chat-module .hotspot::after,
-body.chat-module .isc-tools button::after {
+body.chat-module .hotspot::after {
   display: none !important;
   animation: none !important;
   box-shadow: none !important;
@@ -245,17 +244,13 @@ body.chat-module .isc-tools button::after {
   align-items: center;
   gap: 12px;
   padding: 0 24px;
-  padding-right: min(540px, calc(100vw - 280px));
+  padding-right: 112px;
   border-bottom: 1px solid var(--cm-line);
 }
 
 body.chat-module .isc-tools {
   top: 8px;
   right: 14px;
-}
-
-body.chat-module .isc-panel {
-  top: 52px;
 }
 
 .cm-thread-title {

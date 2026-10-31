@@ -171,7 +171,6 @@ main { width: 100%; max-width: 1264px; margin: 0 auto; padding: 38px 28px 80px; 
 
 /* Keep chrome tools clear of the Pulse header */
 .isc-tools { top: 72px; }
-.isc-panel { top: 116px; }
 
 @media (max-width: 1100px) {
   .ph-search { width: 240px; }

@@ -4,68 +4,36 @@
   top: 14px;
   right: 14px;
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
   justify-content: flex-end;
-  max-width: min(560px, calc(100vw - 28px));
 }
 
-.isc-tools button,
-.isc-tools a {
+.isc-tool-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--surface);
   color: var(--ink);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 8px 12px;
+  padding: 0;
   text-decoration: none;
   box-shadow: var(--shadow);
   cursor: pointer;
 }
 
-.isc-tools button:hover,
-.isc-tools a:hover { border-color: var(--teal); }
-
-.isc-panel {
-  position: fixed;
-  z-index: 41;
-  right: 14px;
-  top: 56px;
-  width: min(380px, calc(100vw - 28px));
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 16px 18px;
+.isc-tool-btn:hover { border-color: var(--teal); color: var(--teal); }
+.isc-tool-btn:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
 }
 
-.isc-panel h2 {
-  font-size: 15px;
-  margin-bottom: 8px;
+.isc-tool-btn svg {
+  display: block;
 }
 
-.isc-panel p { color: var(--ink-500); font-size: 14px; margin-top: 8px; }
-.isc-panel strong { color: var(--ink); }
-
-.isc-tour {
-  position: fixed;
-  z-index: 45;
-  left: 50%;
-  bottom: 72px;
-  transform: translateX(-50%);
-  width: min(440px, calc(100vw - 28px));
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 16px 18px;
-}
-
-.isc-tour h2 { font-size: 16px; }
-.isc-tour p { color: var(--ink-500); margin: 8px 0 14px; }
-.isc-tour .row { display: flex; gap: 8px; align-items: center; }
-.isc-tour .row span { color: var(--ink-300); font-size: 13px; margin-right: auto; }
-
-.isc-tour button,
 .btn {
   background: var(--ink);
   color: var(--surface);
@@ -75,17 +43,10 @@
   cursor: pointer;
 }
 
-.btn.secondary,
-.isc-tour button.secondary {
+.btn.secondary {
   background: var(--surface);
   color: var(--ink);
   border: 1px solid var(--line);
-}
-
-.is-tour-target {
-  outline: 3px solid var(--teal);
-  outline-offset: 4px;
-  border-radius: 12px;
 }
 
 .hotspot { position: relative; }
