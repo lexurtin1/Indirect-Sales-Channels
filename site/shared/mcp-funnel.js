@@ -15,8 +15,7 @@
     spin: "on",
     ticks: [],
     cardStep: "intro",
-    market: null,
-    copied: false
+    market: null
   };
 
   const $ = (id) => document.getElementById(id);
@@ -180,18 +179,6 @@
     const card = $("mcp-card");
     if (!card) return;
     card.classList.toggle("is-prompt", state.cardStep === "prompt");
-    card.classList.toggle("is-done", state.cardStep === "done");
-
-    if (state.cardStep === "intro") {
-      card.innerHTML =
-        brandHead() +
-        '<p class="mcp-kicker">Calastone insights</p>' +
-        "<h1>To query this data further, download the MCP here.</h1>" +
-        '<p class="lede">Public network figures on the globe. Deeper cuts through the Calastone MCP in your AI assistant.</p>' +
-        '<button type="button" class="btn btn-teal hotspot" id="card-download">Download MCP</button>';
-      $("card-download").addEventListener("click", () => finishDownload());
-      return;
-    }
 
     if (state.cardStep === "prompt") {
       const market = state.market || "this market";
@@ -219,39 +206,15 @@
 
     card.innerHTML =
       brandHead() +
-      '<p class="mcp-kicker done">Ready to add</p>' +
-      "<h1>Paste this into your MCP client.</h1>" +
-      "<pre>\"calastone\": {\n  \"command\": \"calastone-mcp\"\n}</pre>" +
-      '<button type="button" class="btn btn-teal btn-sm" id="card-copy">' +
-      (state.copied ? "Copied" : "Copy config") +
-      "</button>" +
-      '<button type="button" class="back" id="card-again">Back</button>';
-    $("card-copy").addEventListener("click", () => {
-      const text = '"calastone": {\n  "command": "calastone-mcp"\n}';
-      const done = () => {
-        state.copied = true;
-        renderCard();
-        setTimeout(() => {
-          state.copied = false;
-          if (state.cardStep === "done") renderCard();
-        }, 1600);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done).catch(done);
-      } else done();
-    });
-    $("card-again").addEventListener("click", () => {
-      state.cardStep = "intro";
-      renderCard();
-    });
+      '<p class="mcp-kicker">Calastone insights</p>' +
+      "<h1>To query this data further, download the MCP here.</h1>" +
+      '<p class="lede">Public network figures on the globe. Deeper cuts through the Calastone MCP in your AI assistant.</p>' +
+      '<button type="button" class="btn btn-teal hotspot" id="card-download">Download MCP</button>';
+    $("card-download").addEventListener("click", () => finishDownload());
   }
 
   function finishDownload() {
-    const qs = new URLSearchParams({
-      from: "globe",
-      tier: "public",
-      download: "1"
-    });
+    const qs = new URLSearchParams({ from: "globe" });
     if (state.market) qs.set("market", state.market);
     if (typeof console !== "undefined" && console.info) {
       console.info("mcp_cta", { tier: "public", market: state.market || null });
@@ -360,7 +323,6 @@
     state.ticks = [];
     state.cardStep = "intro";
     state.market = null;
-    state.copied = false;
     renderControls();
     renderCard();
     mountGlobe();
