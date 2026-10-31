@@ -4,6 +4,7 @@ One entry per build step. Newest first.
 
 | Date | Step | Files changed | Open items |
 | --- | --- | --- | --- |
+| 2026-10-31 | Remove floating Simulated view tag across the site; drop front-page Simulated badge | site/shared/chrome.js, site/shared/chrome.css, site/shared/home.css, site/index.html, site/pages/website-globe.html, AGENTS.md, README.md | Product copy still TODO. Report URLs still null. Live assistant mode not built. Info panel still describes what is simulated. |
 | 2026-10-31 | Globe page: quieter public insights copy, slower signals, remove capabilities clutter | site/pages/website-globe.html, site/shared/mcp-funnel.js, site/shared/mcp-funnel.css, site/shared/flow-globe.js | Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-10-31 | Front page: remove channel map card; Chat becomes card 06 | site/index.html, README.md | Product copy still TODO. Report URLs still null. Live assistant mode not built. channel-map.html still on disk, unlinked. |
 | 2026-10-31 | Screen 7 polish: rename to Chat, full-screen assistant, HSBC/BlackRock/Vanguard logos, remove flashing tool dots | site/pages/chat.html, site/shared/chat-module.css, site/shared/chat-module.js, data/chatbot/chat-scripts.json, site/assets/brands/, site/index.html, site/shared/mcp-funnel.js, site/shared/globe-app.js, site/pages/channel-map.html, site/pages/mcp-download.html, README.md, docs/ | Product copy still TODO. Report URLs still null. Live assistant mode not built. |

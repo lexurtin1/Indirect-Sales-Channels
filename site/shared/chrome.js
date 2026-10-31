@@ -5,13 +5,6 @@
   let step = 0;
   let open = false;
 
-  if (!meta.hideSimTag) {
-    const tag = document.createElement("div");
-    tag.className = "isc-tag";
-    tag.textContent = "Simulated view";
-    document.body.appendChild(tag);
-  }
-
   const tools = document.createElement("div");
   tools.className = "isc-tools";
 

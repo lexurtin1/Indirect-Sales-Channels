@@ -133,28 +133,6 @@ main { width: 100%; max-width: 1264px; margin: 0 auto; padding: 38px 28px 80px; 
   color: var(--ink-600);
   font-size: 15px;
 }
-.live-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  height: 32px;
-  padding: 0 15px;
-  background: var(--green-100);
-  border: 1px solid #bfe6cf;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--green-700);
-}
-.live-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green-500);
-  box-shadow: 0 0 0 3px rgba(53, 181, 126, 0.22);
-  animation: csBlink 2.4s ease-in-out infinite;
-}
-
 .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
 .tool-card {
   position: relative;
@@ -194,10 +172,6 @@ main { width: 100%; max-width: 1264px; margin: 0 auto; padding: 38px 28px 80px; 
 
 .empty-note { color: var(--ink-500); margin-top: 16px; }
 
-.isc-tag { top: 78px; }
-
-@keyframes csBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-
 @media (max-width: 1100px) {
   .ph-search { width: 240px; }
   .page-head { padding-left: 148px; }
@@ -213,7 +187,6 @@ main { width: 100%; max-width: 1264px; margin: 0 auto; padding: 38px 28px 80px; 
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .live-dot { animation: none; }
   .tool-card { transition: none; }
   .tool-card:hover { transform: none; }
 }
