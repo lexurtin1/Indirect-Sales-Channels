@@ -6,18 +6,16 @@
   const params = new URLSearchParams(location.search);
   const state = {
     data: null,
-    brandKey: "northwind",
+    brandKey: "hsbc",
     menuOpen: false,
     msgs: [],
     busy: false,
     timers: [],
-    cardStep: "intro",
+    cardStep: params.get("download") === "1" ? "email" : "intro",
     email: "",
     market: params.get("market") || null,
     tier: params.get("tier") === "private" ? "private" : "public",
-    copied: false,
-    contactCopied: false,
-    drawerOpen: false
+    copied: false
   };
 
   const $ = (id) => document.getElementById(id);
@@ -33,7 +31,7 @@
   }
 
   function brand() {
-    return state.data.brands[state.brandKey] || state.data.brands.northwind;
+    return state.data.brands[state.brandKey] || state.data.brands.hsbc;
   }
 
   function fill(template, b) {
@@ -78,20 +76,43 @@
     return "Good evening";
   }
 
+  function setLogo(img, fallback, src, alt) {
+    if (!img || !fallback) return;
+    if (!src) {
+      img.hidden = true;
+      fallback.hidden = false;
+      fallback.textContent = alt;
+      return;
+    }
+    img.onload = () => {
+      img.hidden = false;
+      fallback.hidden = true;
+    };
+    img.onerror = () => {
+      img.hidden = true;
+      fallback.hidden = false;
+      fallback.textContent = alt;
+    };
+    img.alt = alt;
+    if (img.getAttribute("src") !== src) img.setAttribute("src", src);
+    else {
+      img.hidden = false;
+      fallback.hidden = true;
+    }
+  }
+
   function applyBrandTheme() {
     const b = brand();
-    const chat = document.querySelector(".md-chat");
-    if (chat) {
-      chat.style.setProperty("--b", b.accent);
-      chat.style.setProperty("--bd", b.dark);
-      chat.style.setProperty("--bs", b.soft);
+    const app = document.querySelector(".cm-app");
+    if (app) {
+      app.style.setProperty("--b", b.accent);
+      app.style.setProperty("--bd", b.dark);
+      app.style.setProperty("--bs", b.soft);
     }
-    $("md-brand-mark").textContent = b.mono;
-    $("md-brand-name").textContent = b.short;
-    $("md-greet-mark").textContent = b.mono;
-    $("md-greeting").textContent = greeting() + ", " + b.first;
-    $("md-user").innerHTML =
-      '<span class="md-user-avatar">' +
+    setLogo($("cm-brand-logo"), $("cm-brand-fallback"), b.logo, b.wordmark);
+    $("cm-greeting").textContent = greeting() + ", " + b.first;
+    $("cm-user").innerHTML =
+      '<span class="cm-user-avatar">' +
       esc(b.initials) +
       "</span><span><strong>" +
       esc(b.user) +
@@ -105,33 +126,33 @@
 
   function renderRecents() {
     const list = (state.data.recents && state.data.recents[state.brandKey]) || [];
-    $("md-recents").innerHTML = list
-      .map((r) => '<div class="md-recent">' + esc(r) + "</div>")
+    $("cm-recents").innerHTML = list
+      .map((r) => '<div class="cm-recent">' + esc(r) + "</div>")
       .join("");
   }
 
   function renderBrandMenu() {
-    const menu = $("md-brand-menu");
+    const menu = $("cm-brand-menu");
     const order = state.data.brandOrder || Object.keys(state.data.brands);
     menu.innerHTML = order
       .map((key) => {
         const b = state.data.brands[key];
         const selected = key === state.brandKey;
+        const logo = b.logo
+          ? '<img src="' + esc(b.logo) + '" alt="' + esc(b.wordmark) + '">'
+          : "<strong>" + esc(b.wordmark) + "</strong>";
         return (
-          '<button type="button" class="md-brand-option" role="option" data-brand="' +
+          '<button type="button" class="cm-brand-option" role="option" data-brand="' +
           esc(key) +
           '" aria-selected="' +
           selected +
           '">' +
-          '<span class="md-brand-swatch" style="background:' +
-          esc(b.accent) +
-          '"></span>' +
-          "<span><strong>" +
+          logo +
+          '<span class="meta"><strong>' +
           esc(b.name) +
           "</strong><span>" +
           esc(b.user) +
-          "</span></span>" +
-          "</button>"
+          "</span></span></button>"
         );
       })
       .join("");
@@ -147,26 +168,25 @@
     state.menuOpen = false;
     state.msgs = [];
     state.busy = false;
-    $("md-brand-menu").hidden = true;
-    $("md-brand-btn").setAttribute("aria-expanded", "false");
+    $("cm-brand-menu").hidden = true;
+    $("cm-brand-btn").setAttribute("aria-expanded", "false");
     applyBrandTheme();
     renderThread();
   }
 
   function renderChips() {
     const b = brand();
-    $("md-chips").innerHTML = state.data.scenarios
-      .map((sc) => {
-        return (
-          '<button type="button" class="md-chip hotspot" data-sc="' +
+    $("cm-chips").innerHTML = state.data.scenarios
+      .map(
+        (sc) =>
+          '<button type="button" class="cm-chip hotspot" data-sc="' +
           esc(sc.id) +
           '">' +
           esc(sc.chip) +
           "</button>"
-        );
-      })
+      )
       .join("");
-    $("md-chips").querySelectorAll("[data-sc]").forEach((btn) => {
+    $("cm-chips").querySelectorAll("[data-sc]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const sc = state.data.scenarios.find((x) => x.id === btn.dataset.sc);
         if (!sc) return;
@@ -197,8 +217,8 @@
   }
 
   function richHtml(text) {
-    const parts = String(text).split("**");
-    return parts
+    return String(text)
+      .split("**")
       .map((part, i) => {
         const marked = String(part).includes("TODO")
           ? '<span class="todo-copy">' + esc(part) + "</span>"
@@ -208,42 +228,22 @@
       .join("");
   }
 
-  function cellHtml(value) {
-    let s = String(value);
-    let cls = "";
-    if (s.charAt(0) === "✓") {
-      cls = "md-cell-good";
-      s = s.slice(1);
-    } else if (s.charAt(0) === "!") {
-      cls = "md-cell-bad";
-      s = s.slice(1);
-    } else if (s.charAt(0) === "~") {
-      cls = "md-cell-warn";
-      s = s.slice(1);
-    }
-    return '<td class="' + cls + '">' + esc(s) + "</td>";
-  }
-
   function blockHtml(blk) {
-    if (blk.type === "p") return '<div class="md-p">' + richHtml(blk.s) + "</div>";
+    if (blk.type === "p") return '<p class="cm-p">' + richHtml(blk.s) + "</p>";
     if (blk.type === "metrics") {
       return (
-        '<div class="md-metrics">' +
+        '<div class="cm-metrics">' +
         blk.items
           .map((item) => {
-            const label = item[0];
-            const value = item[1];
-            const delta = item[2];
-            const tone = item[3] || "flat";
             return (
-              '<div class="md-metric"><div class="label">' +
-              esc(label) +
+              '<div class="cm-metric"><div class="label">' +
+              esc(item[0]) +
               '</div><div class="value">' +
-              esc(value) +
+              esc(item[1]) +
               '</div><div class="delta ' +
-              esc(tone) +
+              esc(item[3] || "flat") +
               '">' +
-              esc(delta) +
+              esc(item[2]) +
               "</div></div>"
             );
           })
@@ -253,13 +253,16 @@
     }
     if (blk.type === "table") {
       return (
-        '<table class="md-table"><thead><tr>' +
+        '<div class="cm-table-wrap"><table class="cm-table"><thead><tr>' +
         blk.head.map((h) => "<th>" + esc(h) + "</th>").join("") +
         "</tr></thead><tbody>" +
         blk.rows
-          .map((row) => "<tr>" + row.map(cellHtml).join("") + "</tr>")
+          .map(
+            (row) =>
+              "<tr>" + row.map((cell) => "<td>" + esc(cell) + "</td>").join("") + "</tr>"
+          )
           .join("") +
-        "</tbody></table>"
+        "</tbody></table></div>"
       );
     }
     if (blk.type === "bars") {
@@ -268,7 +271,7 @@
       const mn = Math.min.apply(null, vals);
       const pctScale = mx > 90;
       return (
-        '<div class="md-bars"><div class="md-bars-title">' +
+        '<div class="cm-bars"><div class="cm-bars-title">' +
         esc(blk.title) +
         "</div>" +
         blk.bars
@@ -281,11 +284,9 @@
             else pct = (100 * v) / mx;
             const display = String(v) + (pctScale ? "%" : "");
             return (
-              '<div class="md-bar-row"><span>' +
+              '<div class="cm-bar-row"><span>' +
               esc(label) +
-              '</span><div class="md-bar-track"><div class="md-bar-fill' +
-              (v === mx ? " max" : "") +
-              '" style="width:' +
+              '</span><div class="cm-bar-track"><div class="cm-bar-fill" style="width:' +
               pct +
               '%"></div></div><span>' +
               esc(display) +
@@ -298,17 +299,17 @@
     }
     if (blk.type === "steps") {
       return (
-        '<div class="md-steps">' +
+        '<div class="cm-steps">' +
         blk.steps
           .map((step) => {
             return (
-              '<div class="md-step"><div class="md-step-n">' +
+              '<div class="cm-step"><div class="n">' +
               esc(step[0]) +
-              "</div><div><strong>" +
+              "</div><strong>" +
               esc(step[1]) +
               "</strong><span>" +
               richHtml(step[2]) +
-              "</span></div></div>"
+              "</span></div>"
             );
           })
           .join("") +
@@ -320,16 +321,16 @@
 
   function contactHtml() {
     return (
-      '<div class="md-contact">Talk to Calastone: <code>' +
+      '<div class="cm-contact">Talk to Calastone: <code>' +
       CONTACT +
-      '</code> <button type="button" class="md-copy-btn" data-copy-contact="1">Copy</button></div>'
+      '</code> <button type="button" class="cm-text-btn" data-copy-contact="1">Copy</button></div>'
     );
   }
 
   function renderThread() {
-    const empty = $("md-empty");
-    const msgs = $("md-msgs");
-    const title = $("md-thread-title");
+    const empty = $("cm-empty");
+    const msgs = $("cm-msgs");
+    const title = $("cm-thread-title");
     const firstUser = state.msgs.find((m) => m.role === "user");
     title.textContent = firstUser ? firstUser.text : "";
 
@@ -346,46 +347,47 @@
     msgs.innerHTML = state.msgs
       .map((m) => {
         if (m.role === "user") {
-          return '<div class="md-bubble-user">' + esc(m.text) + "</div>";
+          return '<div class="cm-bubble-user">' + esc(m.text) + "</div>";
         }
         const sc = m.scId ? state.data.scenarios.find((x) => x.id === m.scId) : null;
         const tools = sc ? fill(sc.tools, b) : [];
-        const shownCount = m.phase === "tools" ? m.toolsShown : m.toolsShown;
-        const shown = tools.slice(0, shownCount);
-        const running = m.phase === "tools" && shownCount < tools.length;
+        const shown = tools.slice(0, m.toolsShown);
         const totalMs = shown.reduce((a, t) => a + (t.latency || 0), 0);
         const traceTitle =
           m.phase === "tools"
-            ? "Querying"
+            ? "Calling tools"
             : tools.length
               ? tools.length + " calls · " + (totalMs / 1000).toFixed(1) + "s"
               : "Reply";
 
-        let html = '<div class="md-asst" data-msg="' + esc(m.id) + '">';
+        let html = '<div class="cm-asst">';
         if (sc) {
           html +=
-            '<div class="md-trace"><button type="button" class="md-trace-head" data-toggle-trace="' +
+            '<div class="cm-trace"><button type="button" class="cm-trace-head" data-toggle-trace="' +
             esc(m.id) +
-            '">' +
-            '<img class="md-trace-logo" src="/assets/brand/calastone-wordmark-black.png" alt="Calastone">' +
-            '<span class="md-trace-label">MCP</span>' +
-            '<span class="md-trace-meta">' +
+            '"><span class="cm-trace-brand"><img src="/assets/brand/calastone-wordmark-black.png" alt="Calastone"><em>MCP</em></span><span class="cm-trace-meta">' +
             esc(traceTitle) +
-            "</span><span>" +
+            '</span><span class="cm-trace-chev">' +
             (m.traceOpen ? "▴" : "▾") +
             "</span></button>";
           if (m.traceOpen) {
-            html += '<div class="md-tool-rows">';
-            tools.slice(0, m.phase === "tools" ? m.toolsShown + 1 : m.toolsShown).forEach((t, i) => {
+            html += '<div class="cm-tool-rows">';
+            const rows = tools.slice(0, m.phase === "tools" ? Math.max(m.toolsShown, 1) : m.toolsShown);
+            rows.forEach((t, i) => {
               const done = i < m.toolsShown;
+              const mark = done
+                ? t.kind === "mcp"
+                  ? "done-mcp"
+                  : "done-int"
+                : "pending";
               const prefix = t.kind === "mcp" ? "calastone." : "internal.";
               html +=
-                '<div class="md-tool-row"><span class="md-tool-dot ' +
-                (done ? (t.kind === "mcp" ? "" : "int") : "run") +
-                '"></span><span>' +
+                '<div class="cm-tool-row"><span class="cm-tool-mark ' +
+                mark +
+                '"></span><span class="cm-tool-name">' +
                 esc(prefix + t.name) +
                 "</span>" +
-                (done ? '<span class="md-tool-status">' + esc(t.status) + "</span>" : "") +
+                (done ? '<span class="cm-tool-status">' + esc(t.status) + "</span>" : "") +
                 "</div>";
             });
             html += "</div>";
@@ -394,23 +396,23 @@
         }
 
         if (m.phase === "writing") {
-          html += '<div class="md-writing" aria-hidden="true"><span></span><span></span><span></span></div>';
+          html += '<div class="cm-writing">Writing reply…</div>';
         }
 
         if (m.blocksShown > 0) {
           const blocks = (m.liveBlocks || (sc ? fill(sc.blocks, b) : [])).slice(0, m.blocksShown);
-          html += '<div class="md-blocks">' + blocks.map(blockHtml).join("") + "</div>";
+          html += '<div class="cm-blocks">' + blocks.map(blockHtml).join("") + "</div>";
         }
 
         if (m.done) {
           if (tools.length) {
             html +=
-              '<div class="md-sources">' +
+              '<div class="cm-sources">' +
               tools
                 .map((t) => {
                   return (
-                    '<span class="md-source' +
-                    (t.kind === "mcp" ? "" : " int") +
+                    '<span class="cm-source' +
+                    (t.kind === "mcp" ? " mcp" : "") +
                     '">' +
                     esc(t.name) +
                     "</span>"
@@ -420,20 +422,20 @@
               "</div>";
           }
           html += contactHtml();
-          html += '<div class="md-end-actions">';
+          html += '<div class="cm-end-actions">';
           html +=
-            '<button type="button" class="md-copy-btn" data-copy-msg="' +
+            '<button type="button" class="cm-text-btn" data-copy-msg="' +
             esc(m.id) +
             '">' +
             (m.copied ? "Copied" : "Copy") +
             "</button>";
           html +=
-            '<button type="button" class="md-retry-btn" data-retry="' +
+            '<button type="button" class="cm-text-btn" data-retry="' +
             esc(m.id) +
             '">Retry</button>';
           (sc ? sc.follow : []).forEach((f) => {
             html +=
-              '<button type="button" class="md-follow" data-follow="' +
+              '<button type="button" class="cm-follow" data-follow="' +
               esc(f) +
               '">' +
               esc(f) +
@@ -472,7 +474,7 @@
       btn.addEventListener("click", () => copyText(CONTACT, btn));
     });
 
-    const scroller = $("md-scroll");
+    const scroller = $("cm-scroll");
     requestAnimationFrame(() => {
       scroller.scrollTop = scroller.scrollHeight;
     });
@@ -529,7 +531,7 @@
       : matchScenario(text);
     const id = String(Date.now()) + Math.random().toString(16).slice(2);
     state.busy = true;
-    $("md-question").value = "";
+    $("cm-question").value = "";
     state.msgs.push({ id: id + "u", role: "user", text: text });
     state.msgs.push({
       id: id,
@@ -556,7 +558,7 @@
             ...(i === n ? { done: true, phase: "done", traceOpen: false } : {})
           });
           if (i === n) state.busy = false;
-        }, i * 420);
+        }, i * 280);
       }
       if (!n) {
         patchMsg(id, { done: true, phase: "done", blocksShown: 0 });
@@ -567,7 +569,7 @@
     const answer = () => {
       patchMsg(id, { phase: "writing" });
       if (sc) {
-        later(() => finish(), 650);
+        later(() => finish(), 400);
       } else {
         later(() => {
           finish([
@@ -578,68 +580,40 @@
                 "I can help with that. Talk to Calastone: clientservices@calastone.com"
             }
           ]);
-        }, 900);
+        }, 500);
       }
     };
 
     if (sc) {
       const tools = fill(sc.tools, b);
-      let t = 300;
+      let t = 180;
       tools.forEach((tl, i) => {
-        t += tl.latency || 400;
+        t += Math.min(tl.latency || 300, 420);
         later(() => patchMsg(id, { toolsShown: i + 1 }), t);
       });
-      later(answer, t + 200);
+      later(answer, t + 120);
     } else {
-      later(answer, 300);
+      later(answer, 200);
     }
-  }
-
-  function openCaptureDrawer(force) {
-    if (window.matchMedia("(max-width: 980px)").matches || force === "drawer") {
-      state.drawerOpen = true;
-      document.body.classList.add("md-capture-open");
-      $("md-drawer-backdrop").hidden = false;
-      $("md-capture-close").hidden = false;
-    }
-  }
-
-  function closeCaptureDrawer() {
-    state.drawerOpen = false;
-    document.body.classList.remove("md-capture-open");
-    $("md-drawer-backdrop").hidden = true;
   }
 
   function renderCapture() {
-    const card = $("md-capture-card");
+    const card = $("cm-capture-card");
+    if (!card) return;
     const privateTier = state.tier === "private";
-    const caps = (state.data && state.data.capabilities) || [
-      "Query orders and flows",
-      "Create custom reports",
-      "Review ISIN checks",
-      "Review market coverage"
-    ];
+    const caps = (state.data && state.data.capabilities) || [];
 
     if (state.cardStep === "intro") {
       card.innerHTML =
-        '<span class="eyebrow">Calastone MCP</span>' +
-        "<div><h2>" +
+        '<div class="cm-capture"><p class="lede">' +
         (privateTier
-          ? "Request a private MCP for your firm."
-          : "Connect your AI assistant to your Calastone data.") +
-        "</h2>" +
-        '<p class="lede">' +
-        (privateTier
-          ? "A private MCP server scoped to your entitlements. Simulated request only."
-          : "An MCP server that lets any MCP-compatible assistant read your firm's Calastone data.") +
-        "</p></div>" +
-        '<div class="md-cap-list">' +
+          ? "Request a private MCP scoped to your firm's entitlements. Simulated only."
+          : "An MCP server that lets an MCP-compatible assistant read your firm's Calastone data.") +
+        '</p><div class="cap-list">' +
         caps.map((c) => "<span>" + esc(c) + "</span>").join("") +
-        "</div>" +
-        '<button type="button" class="md-btn md-btn-ink hotspot" id="cap-to-email">' +
-        (privateTier ? "Request access" : "Download") +
-        "</button>" +
-        '<span class="md-fine">Read-only · scoped to your entitlements</span>';
+        '</div><button type="button" class="cm-btn cm-btn-ink" id="cap-to-email">' +
+        (privateTier ? "Request access" : "Continue") +
+        '</button><span class="cm-fine">Read-only · scoped to your entitlements</span></div>';
       $("cap-to-email").addEventListener("click", () => {
         state.cardStep = "email";
         renderCapture();
@@ -649,17 +623,15 @@
 
     if (state.cardStep === "email") {
       card.innerHTML =
-        '<button type="button" class="md-back" id="cap-back">← Back</button>' +
-        '<span class="eyebrow">Step 1 of 2</span>' +
-        '<p class="lede">Enter your work email. It is used to link the MCP to your firm\'s entitlements.</p>' +
+        '<div class="cm-capture"><button type="button" class="back" id="cap-back">Back</button>' +
+        '<p class="lede">Enter your work email to link the MCP to your firm\'s entitlements.</p>' +
         '<label>Work email<input type="email" id="cap-email" placeholder="name@yourfirm.com" value="' +
         esc(state.email) +
-        '" autocomplete="email"><span class="md-hint" id="cap-hint"></span></label>' +
-        '<button type="button" class="md-btn md-btn-ink" id="cap-submit">' +
+        '" autocomplete="email"><span class="hint" id="cap-hint"></span></label>' +
+        '<button type="button" class="cm-btn cm-btn-ink" id="cap-submit">' +
         (privateTier ? "Submit request" : "Download") +
-        "</button>";
-      const hint = $("cap-hint");
-      hint.textContent = state.market
+        "</button></div>";
+      $("cap-hint").textContent = state.market
         ? "Market selected: " + state.market
         : "Business address required";
       const input = $("cap-email");
@@ -688,26 +660,20 @@
       : "net flows by distributor, last month.";
     const snippet = (state.data && state.data.configSnippet) || CONFIG;
     card.innerHTML =
-      '<span class="eyebrow done">Step 2 of 2 · ' +
-      (privateTier ? "Requested" : "Downloaded") +
-      "</span>" +
-      '<div class="md-setup">' +
+      '<div class="cm-capture"><div class="cm-setup">' +
       "<span>1. Open your client's MCP settings.</span>" +
       "<span>2. Add the server config below.</span>" +
       "<span>3. Sign in with Calastone credentials.</span>" +
-      "</div>" +
-      "<pre>" +
+      "</div><pre>" +
       esc(snippet) +
-      "</pre>" +
-      '<button type="button" class="md-btn md-btn-secondary" id="cap-copy">' +
+      '</pre><button type="button" class="cm-btn cm-btn-secondary" id="cap-copy">' +
       (state.copied ? "Copied" : "Copy config") +
-      "</button>" +
-      '<div class="md-contact">Talk to Calastone: <code>' +
+      '</button><div class="cm-contact">Talk to Calastone: <code>' +
       CONTACT +
-      '</code> <button type="button" class="md-copy-btn" id="cap-contact-copy">Copy</button></div>' +
-      '<span class="md-fine">Example query: ' +
+      '</code> <button type="button" class="cm-text-btn" id="cap-contact-copy">Copy</button></div>' +
+      '<span class="cm-fine">Example query: ' +
       esc(prompt) +
-      "</span>";
+      "</span></div>";
     $("cap-copy").addEventListener("click", () => {
       copyText(snippet, $("cap-copy"));
       state.copied = true;
@@ -719,42 +685,55 @@
     $("cap-contact-copy").addEventListener("click", () => copyText(CONTACT, $("cap-contact-copy")));
   }
 
+  function openDialog() {
+    const dialog = $("cm-dialog");
+    if (!dialog) return;
+    renderCapture();
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+  }
+
+  function closeDialog() {
+    const dialog = $("cm-dialog");
+    if (!dialog) return;
+    if (typeof dialog.close === "function") dialog.close();
+    else dialog.removeAttribute("open");
+  }
+
   function wire() {
-    $("md-brand-btn").addEventListener("click", () => {
+    $("cm-brand-btn").addEventListener("click", () => {
       state.menuOpen = !state.menuOpen;
-      $("md-brand-menu").hidden = !state.menuOpen;
-      $("md-brand-btn").setAttribute("aria-expanded", state.menuOpen ? "true" : "false");
+      $("cm-brand-menu").hidden = !state.menuOpen;
+      $("cm-brand-btn").setAttribute("aria-expanded", state.menuOpen ? "true" : "false");
     });
 
     document.addEventListener("click", (e) => {
       if (!state.menuOpen) return;
-      const wrap = document.querySelector(".md-brand-wrap");
+      const wrap = document.querySelector(".cm-brand-wrap");
       if (wrap && !wrap.contains(e.target)) {
         state.menuOpen = false;
-        $("md-brand-menu").hidden = true;
-        $("md-brand-btn").setAttribute("aria-expanded", "false");
+        $("cm-brand-menu").hidden = true;
+        $("cm-brand-btn").setAttribute("aria-expanded", "false");
       }
     });
 
-    $("md-new-chat").addEventListener("click", () => {
+    $("cm-new-chat").addEventListener("click", () => {
       clearTimers();
       state.msgs = [];
       state.busy = false;
       renderThread();
     });
 
-    $("md-ask").addEventListener("submit", (e) => {
+    $("cm-ask").addEventListener("submit", (e) => {
       e.preventDefault();
-      send($("md-question").value);
+      send($("cm-question").value);
     });
 
-    $("md-open-capture").addEventListener("click", () => {
-      openCaptureDrawer("drawer");
-      $("md-capture-card").scrollIntoView({ block: "nearest", behavior: motionOk() ? "smooth" : "auto" });
+    $("cm-dialog-close").addEventListener("click", closeDialog);
+    $("cm-dialog").addEventListener("cancel", (e) => {
+      e.preventDefault();
+      closeDialog();
     });
-
-    $("md-capture-close").addEventListener("click", closeCaptureDrawer);
-    $("md-drawer-backdrop").addEventListener("click", closeCaptureDrawer);
 
     document.addEventListener("keydown", (event) => {
       if (event.key.toLowerCase() !== "l" || !event.shiftKey) return;
@@ -770,17 +749,17 @@
     clearTimers();
     state.msgs = [];
     state.busy = false;
-    state.brandKey = "northwind";
+    state.brandKey = "hsbc";
     state.cardStep = params.get("download") === "1" ? "email" : "intro";
     state.email = "";
     state.copied = false;
     state.market = params.get("market") || null;
     state.tier = params.get("tier") === "private" ? "private" : "public";
-    closeCaptureDrawer();
+    closeDialog();
     applyBrandTheme();
     renderThread();
     renderCapture();
-    if (params.get("download") === "1") openCaptureDrawer("drawer");
+    if (params.get("download") === "1") openDialog();
   }
 
   window.iscReset = reset;
@@ -788,24 +767,17 @@
   function init(data) {
     state.data = data;
     wire();
-    if (params.get("download") === "1") {
-      state.cardStep = "email";
-    }
     applyBrandTheme();
     renderThread();
     renderCapture();
-    if (params.get("download") === "1") openCaptureDrawer("drawer");
+    if (params.get("download") === "1") openDialog();
   }
 
-  fetch("/data/chatbot/mcp-download-scripts.json")
+  fetch("/data/chatbot/chat-scripts.json")
     .then((r) => r.json())
     .then(init)
     .catch((err) => {
       console.error(err);
-      const card = $("md-capture-card");
-      if (card) {
-        card.innerHTML =
-          '<p class="lede">Could not load the demo scripts. Check /data/chatbot/mcp-download-scripts.json.</p>';
-      }
+      $("cm-greeting").textContent = "Could not load chat scripts.";
     });
 })();

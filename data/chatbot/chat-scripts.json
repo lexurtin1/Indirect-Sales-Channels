@@ -8,70 +8,70 @@
     "Review market coverage"
   ],
   "brands": {
-    "northwind": {
-      "key": "northwind",
-      "name": "Northwind Asset Management",
-      "short": "Northwind",
-      "wordmark": "Northwind",
-      "mono": "N",
-      "accent": "#0f7d6b",
-      "dark": "#0a5a4d",
-      "soft": "#e7f6f2",
-      "logo": null,
-      "user": "Alex Mercer",
-      "first": "Alex",
-      "initials": "AM",
+    "hsbc": {
+      "key": "hsbc",
+      "name": "HSBC Asset Management",
+      "short": "HSBC AM",
+      "wordmark": "HSBC",
+      "mono": "H",
+      "accent": "#DB0011",
+      "dark": "#A8000B",
+      "soft": "#FBEDEE",
+      "logo": "/assets/brands/hsbc.svg",
+      "user": "Daniel Cheung",
+      "first": "Daniel",
+      "initials": "DC",
       "role": "Head of Distribution, APAC",
-      "fund": "Northwind Asia Equity Fund",
-      "fundShort": "Asia Equity",
+      "fund": "HSBC GIF Asia ex Japan Equity",
+      "fundShort": "Asia ex Japan Equity",
       "isin": "LU0164865239",
       "ac": "Asia-Pacific equity",
       "dist": ["Allfunds", "Fundsupermart", "Hargreaves Lansdown", "iFAST", "Raiffeisen"]
     },
-    "ashworth": {
-      "key": "ashworth",
-      "name": "Ashworth Investors",
-      "short": "Ashworth",
-      "wordmark": "Ashworth",
-      "mono": "A",
-      "accent": "#1c2430",
-      "dark": "#0d1418",
-      "soft": "#e4ebef",
-      "logo": null,
-      "user": "Jordan Blake",
-      "first": "Jordan",
-      "initials": "JB",
+    "blackrock": {
+      "key": "blackrock",
+      "name": "BlackRock",
+      "short": "BlackRock",
+      "wordmark": "BlackRock",
+      "mono": "B",
+      "accent": "#111111",
+      "dark": "#000000",
+      "soft": "#EFEFEC",
+      "logo": "/assets/brands/blackrock.svg",
+      "user": "James Okafor",
+      "first": "James",
+      "initials": "JO",
       "role": "Head of Wholesale Ops, EMEA",
-      "fund": "Ashworth World Technology Fund",
+      "fund": "BGF World Technology Fund",
       "fundShort": "World Technology",
       "isin": "LU0056508442",
       "ac": "technology equity",
       "dist": ["Allfunds", "Fondsdepot Bank", "AJ Bell", "Banca Generali", "UBS Wealth"]
     },
-    "harbour": {
-      "key": "harbour",
-      "name": "Harbour Capital",
-      "short": "Harbour",
-      "wordmark": "Harbour",
-      "mono": "H",
-      "accent": "#1d6f9a",
-      "dark": "#14506f",
-      "soft": "#e8f3f8",
-      "logo": null,
-      "user": "Sam Rivera",
-      "first": "Sam",
-      "initials": "SR",
+    "vanguard": {
+      "key": "vanguard",
+      "name": "Vanguard",
+      "short": "Vanguard",
+      "wordmark": "Vanguard",
+      "mono": "V",
+      "accent": "#96151D",
+      "dark": "#6E0F15",
+      "soft": "#F5EAEA",
+      "logo": "/assets/brands/vanguard.svg",
+      "user": "Emma Ward",
+      "first": "Emma",
+      "initials": "EW",
       "role": "Distribution Analytics Lead",
-      "fund": "Harbour Global Bond Index Fund",
+      "fund": "Vanguard Global Bond Index Fund",
       "fundShort": "Global Bond Index",
       "isin": "IE00B18GC888",
       "ac": "global bonds",
       "dist": ["Hargreaves Lansdown", "Allfunds", "Interactive Investor", "Fidelity FundsNetwork", "Nordnet"]
     }
   },
-  "brandOrder": ["northwind", "ashworth", "harbour"],
+  "brandOrder": ["hsbc", "blackrock", "vanguard"],
   "recents": {
-    "northwind": [
+    "hsbc": [
       "Q3 board pack summary",
       "Draft client letter, Jersey",
       "ESMA update notes",
@@ -79,7 +79,7 @@
       "Fee schedule review",
       "Team offsite agenda"
     ],
-    "ashworth": [
+    "blackrock": [
       "EMEA ops weekly",
       "Summarise SFDR changes",
       "Wholesale pipeline review",
@@ -87,7 +87,7 @@
       "Vendor contract questions",
       "Q4 planning"
     ],
-    "harbour": [
+    "vanguard": [
       "Adviser webinar outline",
       "Platform fee comparison",
       "Board report draft",
@@ -124,10 +124,10 @@
           "head": ["Platform", "Type", "Status", "Readiness"],
           "grid": "1.2fr 1.2fr 1.1fr .9fr",
           "rows": [
-            ["Northstar Digital", "DPT exchange", "Connected", "✓Ready"],
-            ["Kairos Wealth", "Crypto wealth app", "Live distributor", "✓Ready"],
-            ["Lumen Invest", "Token marketplace", "CRM pipeline", "~4 to 6 wks"],
-            ["Halcyon Custody", "Digital custodian", "Not connected", "~6 to 8 wks"]
+            ["Northstar Digital", "DPT exchange", "Connected", "Ready"],
+            ["Kairos Wealth", "Crypto wealth app", "Live distributor", "Ready"],
+            ["Lumen Invest", "Token marketplace", "CRM pipeline", "4 to 6 wks"],
+            ["Halcyon Custody", "Digital custodian", "Not connected", "6 to 8 wks"]
           ]
         },
         {
@@ -168,9 +168,9 @@
           "head": ["Line item", "Aug", "Sep", "Change"],
           "grid": "1.6fr 1fr 1fr 1fr",
           "rows": [
-            ["Order routing", "£31,880", "£38,420", "~+£6,540"],
+            ["Order routing", "£31,880", "£38,420", "+£6,540"],
             ["Settlement messages", "£6,210", "£6,690", "+£480"],
-            ["Repairs and exceptions", "£2,210", "£3,100", "!+£890"]
+            ["Repairs and exceptions", "£2,210", "£3,100", "+£890"]
           ]
         },
         { "type": "p", "s": "**212 of the 312 repairs** were caused by {{dist1}} sending orders without settlement instructions. If this is fixed, you would save about **£600 a month**." }
@@ -194,10 +194,10 @@
           "head": ["Distributor", "Market", "Issue", "Fix"],
           "grid": "1.2fr .5fr 1.3fr 1.1fr",
           "rows": [
-            ["{{dist0}}", "ES", "!Cut-off mismatch", "Update static data"],
-            ["{{dist1}}", "SG", "!Class not enabled", "Enable in portal"],
-            ["{{dist3}}", "UK", "~Agreement expired", "Renew"],
-            ["{{dist4}}", "DE", "~No EUR settlement", "Add EUR"]
+            ["{{dist0}}", "ES", "Cut-off mismatch", "Update static data"],
+            ["{{dist1}}", "SG", "Class not enabled", "Enable in portal"],
+            ["{{dist3}}", "UK", "Agreement expired", "Renew"],
+            ["{{dist4}}", "DE", "No EUR settlement", "Add EUR"]
           ]
         },
         { "type": "p", "s": "You can fix the first two issues yourself today. Together they affect about **$6.2m** of orders each month." }
@@ -295,9 +295,9 @@
           "head": ["Top cause", "Events", "Trend"],
           "grid": "2fr 1fr 1fr",
           "rows": [
-            ["Missing settlement instructions", "412", "!Rising"],
-            ["Cut-off breaches", "288", "✓Falling"],
-            ["Unknown ISIN", "161", "✓Falling"]
+            ["Missing settlement instructions", "412", "Rising"],
+            ["Cut-off breaches", "288", "Falling"],
+            ["Unknown ISIN", "161", "Falling"]
           ]
         }
       ],
@@ -320,10 +320,10 @@
           "head": ["Distributor", "Net flow", "vs 3m avg", "Owner"],
           "grid": "1.4fr 1fr 1fr 1fr",
           "rows": [
-            ["{{dist2}}", "!−$18.4m", "!−310%", "A. Quinn"],
-            ["{{dist0}}", "!−$8.9m", "~−120%", "M. Costa"],
-            ["{{dist3}}", "!−$4.7m", "~−60%", "A. Quinn"],
-            ["{{dist1}}", "✓+$6.1m", "✓+40%", "L. Ng"]
+            ["{{dist2}}", "−$18.4m", "−310%", "A. Quinn"],
+            ["{{dist0}}", "−$8.9m", "−120%", "M. Costa"],
+            ["{{dist3}}", "−$4.7m", "−60%", "A. Quinn"],
+            ["{{dist1}}", "+$6.1m", "+40%", "L. Ng"]
           ]
         },
         { "type": "p", "s": "Your CRM shows that {{dist2}} completed a **model portfolio rebalance** on 12 September, which explains their outflow." }
