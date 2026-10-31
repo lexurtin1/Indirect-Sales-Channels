@@ -29,6 +29,9 @@ The front page is the navigation. Each card opens one screen.
 | 4 | Sales Navigator inside Salesforce | A consultancy record with a Sales Navigator panel showing which asset managers it advises and the warm path to them | Consultant relationships | Panel inside the Salesforce recreation |
 | 5 | Agent-to-agent network | Animated diagram of firms' AI agents messaging through Calastone, which verifies identity and permissions | Calastone as the trusted router for AI agents | Original animated diagram |
 | 6 | Channel map | All channels on one screen with who pays and the first test | Summary | Original layout |
+| 7 | MCP download | Capture card download flow plus a client-branded assistant that calls Calastone MCP tools | Data as a hook; AI-led discovery | Vanilla port of the Chat MCP download package; scripted answers in `data/chatbot/mcp-download-scripts.json` |
+
+Screen 1's Download MCP buttons also open screen 7.
 
 ### Shared elements on every screen
 
@@ -191,10 +194,13 @@ calastone-indirect-channels/
       sales-navigator.html   screen 4
       agent-network.html     screen 5
       channel-map.html       screen 6
+      mcp-download.html      screen 7
     shared/
       tokens.css             Calastone design tokens
       chrome.css             simulated tag, info panel, hotspots, tour, reset
       chrome.js              shared behaviour for the above
+      mcp-download.css       MCP download module layout
+      mcp-download.js        capture card and client chat demo
     assets/
       brand/                 Calastone wordmark and brand assets
       logos/                 client logos for the chatbot (private use only)
@@ -202,10 +208,11 @@ calastone-indirect-channels/
     ffi/raw/                 public FFI reports (PDF)
     ffi/extracted/ffi.json   extracted figures with sources
     network/illustrative-network.json  synthetic country and corridor flows
+    chatbot/scripts.json     screen 2 chatbot topics and answers
+    chatbot/mcp-download-scripts.json  screen 7 brands and scenarios
   scripts/
     validate-ffi.mjs         checks ffi.json
     generate-illustrative-network.mjs  builds the illustrative network data
-    chatbot/scripts.json     chatbot topics and answers
   reference/screenshots/     screenshots used to recreate pages
   docs/
     build-log.md             what was built at each step

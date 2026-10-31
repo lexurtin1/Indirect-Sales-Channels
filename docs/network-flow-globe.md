@@ -146,9 +146,9 @@ The globe gives enough at levels 1 to 3 to be worth exploring. Every locked card
 | Changes lens, metric or month | Globe updates | `globe_filter` |
 | Clicks a locked card | "Available in the Calastone MCP" with the install options | `lock_click` (card, country) |
 | Copies an example question | "Copied. Paste it into Claude or ChatGPT once the MCP is installed" | `question_copy` (question) |
-| Clicks install or request private MCP | Install page (public) or contact form (private) | `mcp_cta` (tier, country) |
+| Clicks install or request private MCP | Navigates to the MCP download module (`/pages/mcp-download`) with public or private tier | `mcp_cta` (tier, country) |
 
-These events feed the MCP analytics screen: which countries and questions drive installs, and which visitors are existing clients.
+These events feed the MCP analytics screen: which countries and questions drive installs, and which visitors are existing clients. Download MCP on the Screen 1 funnel opens `/pages/mcp-download?from=globe&tier=public&download=1` (and may pass `market`).
 
 ---
 

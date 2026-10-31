@@ -220,10 +220,7 @@
         "</div>" +
         '<button type="button" class="btn btn-ink hotspot" id="card-download">Download</button>' +
         '<span class="fine">Read-only · scoped to your entitlements</span>';
-      $("card-download").addEventListener("click", () => {
-        state.cardStep = "email";
-        renderCard();
-      });
+      $("card-download").addEventListener("click", () => openDownload(state.market));
       return;
     }
 
@@ -300,11 +297,17 @@
   }
 
   function openDownload(market) {
-    state.market = market || null;
-    state.cardStep = "email";
-    renderCard();
-    const card = $("mcp-card");
-    if (card) card.scrollIntoView({ block: "nearest", behavior: motionOk() ? "smooth" : "auto" });
+    const m = market || state.market || null;
+    const qs = new URLSearchParams({
+      from: "globe",
+      tier: "public",
+      download: "1"
+    });
+    if (m) qs.set("market", m);
+    if (typeof console !== "undefined" && console.info) {
+      console.info("mcp_cta", { tier: "public", market: m });
+    }
+    location.href = "/pages/mcp-download?" + qs.toString();
   }
 
   function renderControls() {

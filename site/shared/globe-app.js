@@ -253,11 +253,15 @@
     $("clear-country").addEventListener("click", clearCard);
     $("mcp-public").addEventListener("click", () => {
       log("mcp_cta", { tier: "public", country: selectedIso });
-      $("mcp-result").textContent = "Simulated. A public install page would open here.";
+      const qs = new URLSearchParams({ from: "globe", tier: "public", download: "1" });
+      if (selectedIso) qs.set("market", selectedIso);
+      location.href = "/pages/mcp-download?" + qs.toString();
     });
     $("mcp-private").addEventListener("click", () => {
       log("mcp_cta", { tier: "private", country: selectedIso });
-      $("mcp-result").textContent = "Simulated request. Talk to Calastone: clientservices@calastone.com";
+      const qs = new URLSearchParams({ from: "globe", tier: "private", download: "1" });
+      if (selectedIso) qs.set("market", selectedIso);
+      location.href = "/pages/mcp-download?" + qs.toString();
     });
     $("copy-contact").addEventListener("click", async () => {
       const text = $("contact").textContent;

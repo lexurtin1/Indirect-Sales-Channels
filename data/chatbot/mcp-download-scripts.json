@@ -1,0 +1,337 @@
+{
+  "contact": "clientservices@calastone.com",
+  "configSnippet": "\"calastone\": {\n  \"command\": \"calastone-mcp\"\n}",
+  "capabilities": [
+    "Query orders and flows",
+    "Create custom reports",
+    "Review ISIN checks",
+    "Review market coverage"
+  ],
+  "brands": {
+    "northwind": {
+      "key": "northwind",
+      "name": "Northwind Asset Management",
+      "short": "Northwind",
+      "wordmark": "Northwind",
+      "mono": "N",
+      "accent": "#0f7d6b",
+      "dark": "#0a5a4d",
+      "soft": "#e7f6f2",
+      "logo": null,
+      "user": "Alex Mercer",
+      "first": "Alex",
+      "initials": "AM",
+      "role": "Head of Distribution, APAC",
+      "fund": "Northwind Asia Equity Fund",
+      "fundShort": "Asia Equity",
+      "isin": "LU0164865239",
+      "ac": "Asia-Pacific equity",
+      "dist": ["Allfunds", "Fundsupermart", "Hargreaves Lansdown", "iFAST", "Raiffeisen"]
+    },
+    "ashworth": {
+      "key": "ashworth",
+      "name": "Ashworth Investors",
+      "short": "Ashworth",
+      "wordmark": "Ashworth",
+      "mono": "A",
+      "accent": "#1c2430",
+      "dark": "#0d1418",
+      "soft": "#e4ebef",
+      "logo": null,
+      "user": "Jordan Blake",
+      "first": "Jordan",
+      "initials": "JB",
+      "role": "Head of Wholesale Ops, EMEA",
+      "fund": "Ashworth World Technology Fund",
+      "fundShort": "World Technology",
+      "isin": "LU0056508442",
+      "ac": "technology equity",
+      "dist": ["Allfunds", "Fondsdepot Bank", "AJ Bell", "Banca Generali", "UBS Wealth"]
+    },
+    "harbour": {
+      "key": "harbour",
+      "name": "Harbour Capital",
+      "short": "Harbour",
+      "wordmark": "Harbour",
+      "mono": "H",
+      "accent": "#1d6f9a",
+      "dark": "#14506f",
+      "soft": "#e8f3f8",
+      "logo": null,
+      "user": "Sam Rivera",
+      "first": "Sam",
+      "initials": "SR",
+      "role": "Distribution Analytics Lead",
+      "fund": "Harbour Global Bond Index Fund",
+      "fundShort": "Global Bond Index",
+      "isin": "IE00B18GC888",
+      "ac": "global bonds",
+      "dist": ["Hargreaves Lansdown", "Allfunds", "Interactive Investor", "Fidelity FundsNetwork", "Nordnet"]
+    }
+  },
+  "brandOrder": ["northwind", "ashworth", "harbour"],
+  "recents": {
+    "northwind": [
+      "Q3 board pack summary",
+      "Draft client letter, Jersey",
+      "ESMA update notes",
+      "APAC sales targets",
+      "Fee schedule review",
+      "Team offsite agenda"
+    ],
+    "ashworth": [
+      "EMEA ops weekly",
+      "Summarise SFDR changes",
+      "Wholesale pipeline review",
+      "T+1 readiness notes",
+      "Vendor contract questions",
+      "Q4 planning"
+    ],
+    "harbour": [
+      "Adviser webinar outline",
+      "Platform fee comparison",
+      "Board report draft",
+      "UK Consumer Duty notes",
+      "Q3 flows commentary",
+      "Hiring plan"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "token",
+      "chip": "Tokenised distribution",
+      "keywords": ["token", "crypto", "digital asset", "blockchain", "stablecoin", "web3", "tokenised", "tokenisation", "tokenization"],
+      "prompt": "I'm interested in tokenised distribution for our {{fundShort}} fund in Singapore. Can we reach crypto-native investors?",
+      "tools": [
+        { "name": "tokenisation.eligibility", "args": { "isin": "{{isin}}", "market": "SG" }, "status": "Eligible", "kind": "mcp", "latency": 820, "rows": 14 },
+        { "name": "network.coverage", "args": { "market": "SG", "segment": "digital_asset" }, "status": "11 platforms", "kind": "mcp", "latency": 640, "rows": 212 },
+        { "name": "fund_register.get", "args": { "isin": "{{isin}}" }, "status": "MAS restricted scheme", "kind": "int", "latency": 380, "rows": 6 },
+        { "name": "crm.pipeline", "args": { "region": "SEA", "tag": "digital" }, "status": "3 leads", "kind": "int", "latency": 450, "rows": 3 }
+      ],
+      "blocks": [
+        { "type": "p", "s": "TODO(product): Yes. You can distribute **{{fundShort}}** as a tokenised share class in Singapore through Calastone. The fund, transfer agent and dealing cycle stay the same." },
+        {
+          "type": "metrics",
+          "items": [
+            ["Digital-asset platforms, SG", "11", "+4 this year", "good"],
+            ["Already your distributors", "2", "Connected", "flat"],
+            ["Reachable accounts", "1.4m", "Estimated", "flat"],
+            ["Time to first order", "8 wks", "From go decision", "flat"]
+          ]
+        },
+        {
+          "type": "table",
+          "head": ["Platform", "Type", "Status", "Readiness"],
+          "grid": "1.2fr 1.2fr 1.1fr .9fr",
+          "rows": [
+            ["Northstar Digital", "DPT exchange", "Connected", "✓Ready"],
+            ["Kairos Wealth", "Crypto wealth app", "Live distributor", "✓Ready"],
+            ["Lumen Invest", "Token marketplace", "CRM pipeline", "~4 to 6 wks"],
+            ["Halcyon Custody", "Digital custodian", "Not connected", "~6 to 8 wks"]
+          ]
+        },
+        {
+          "type": "steps",
+          "steps": [
+            ["01", "Mint token class", "TA register stays the golden source."],
+            ["02", "Stablecoin rails", "TODO(product): USDC and XSGD settle via Calastone."],
+            ["03", "Activate 2 platforms", "Already connected."],
+            ["04", "Onboard pipeline", "One connection each."]
+          ]
+        }
+      ],
+      "follow": ["Model revenue from 2 platforms", "Retail restrictions?", "Draft committee note"]
+    },
+    {
+      "id": "billing",
+      "chip": "Billing query",
+      "keywords": ["bill", "invoice", "fee", "charge", "cost", "pricing"],
+      "prompt": "Why did our Calastone invoice go up in September?",
+      "tools": [
+        { "name": "billing.invoices", "args": { "period": "2026-07..2026-09" }, "status": "42 line items", "kind": "mcp", "latency": 540, "rows": 42 },
+        { "name": "orders.volume", "args": { "group_by": "message_type" }, "status": "1,840 rows", "kind": "mcp", "latency": 710, "rows": 1840 },
+        { "name": "finance.accruals", "args": { "vendor": "Calastone" }, "status": "£44k budget", "kind": "int", "latency": 300, "rows": 3 }
+      ],
+      "blocks": [
+        { "type": "p", "s": "Your September invoice was **£48,210**, which is **18%** higher than August. The increase is due to higher order volumes. Your cost per order went down." },
+        {
+          "type": "metrics",
+          "items": [
+            ["September invoice", "£48.2k", "+18% vs Aug", "bad"],
+            ["Orders routed", "61.4k", "+21%", "good"],
+            ["Cost per order", "£0.79", "−2%", "good"],
+            ["Repair fees", "£3.1k", "+40%", "bad"]
+          ]
+        },
+        {
+          "type": "table",
+          "head": ["Line item", "Aug", "Sep", "Change"],
+          "grid": "1.6fr 1fr 1fr 1fr",
+          "rows": [
+            ["Order routing", "£31,880", "£38,420", "~+£6,540"],
+            ["Settlement messages", "£6,210", "£6,690", "+£480"],
+            ["Repairs and exceptions", "£2,210", "£3,100", "!+£890"]
+          ]
+        },
+        { "type": "p", "s": "**212 of the 312 repairs** were caused by {{dist1}} sending orders without settlement instructions. If this is fixed, you would save about **£600 a month**." }
+      ],
+      "follow": ["Repairs by distributor", "Forecast Q4", "Email ops a summary"]
+    },
+    {
+      "id": "isin",
+      "chip": "ISIN check",
+      "keywords": ["isin", "static data", "routable", "share class"],
+      "prompt": "Run an ISIN check on {{isin}}. Is it routable for all our distributors?",
+      "tools": [
+        { "name": "static_data.isin_check", "args": { "isin": "{{isin}}" }, "status": "97% match", "kind": "mcp", "latency": 480, "rows": 64 },
+        { "name": "routing.validate", "args": { "isin": "{{isin}}", "counterparties": "all" }, "status": "4 issues", "kind": "mcp", "latency": 1120, "rows": 38 },
+        { "name": "distribution_agreements.list", "args": { "isin": "{{isin}}" }, "status": "38 agreements", "kind": "int", "latency": 360, "rows": 38 }
+      ],
+      "blocks": [
+        { "type": "p", "s": "**34 of your 38** distributors can currently route orders to **{{isin}}**. The **4 distributors** below have issues that need fixing." },
+        {
+          "type": "table",
+          "head": ["Distributor", "Market", "Issue", "Fix"],
+          "grid": "1.2fr .5fr 1.3fr 1.1fr",
+          "rows": [
+            ["{{dist0}}", "ES", "!Cut-off mismatch", "Update static data"],
+            ["{{dist1}}", "SG", "!Class not enabled", "Enable in portal"],
+            ["{{dist3}}", "UK", "~Agreement expired", "Renew"],
+            ["{{dist4}}", "DE", "~No EUR settlement", "Add EUR"]
+          ]
+        },
+        { "type": "p", "s": "You can fix the first two issues yourself today. Together they affect about **$6.2m** of orders each month." }
+      ],
+      "follow": ["Fix both now", "Check all our ISINs", "Who owns the renewal?"]
+    },
+    {
+      "id": "coverage",
+      "chip": "Market coverage",
+      "keywords": ["coverage", "market", "where", "countr", "expand", "whitespace", "reach"],
+      "prompt": "Where could we distribute {{fundShort}} that we aren't today?",
+      "tools": [
+        { "name": "network.coverage", "args": { "isin": "{{isin}}", "compare": "current_distributors" }, "status": "2,940 distributors", "kind": "mcp", "latency": 930, "rows": 2940 },
+        { "name": "ffi.demand", "args": { "asset_class": "{{ac}}" }, "status": "51 markets", "kind": "mcp", "latency": 520, "rows": 51 },
+        { "name": "registrations.list", "args": { "isin": "{{isin}}" }, "status": "22 markets", "kind": "int", "latency": 290, "rows": 22 }
+      ],
+      "blocks": [
+        { "type": "p", "s": "There are **156 distributors** connected to Calastone in markets where your fund is registered but they do not currently trade it. The breakdown by market is below." },
+        {
+          "type": "bars",
+          "title": "Connected distributors not trading your fund",
+          "bars": [
+            ["Germany", 47],
+            ["Italy", 31],
+            ["Switzerland", 26],
+            ["Singapore", 19],
+            ["Spain", 18],
+            ["Nordics", 15]
+          ]
+        },
+        { "type": "p", "s": "Germany and Italy also have **strong inflows** into this sector. All of these distributors are already connected to Calastone, so no technical setup is needed to start trading." }
+      ],
+      "follow": ["List German distributors", "Size the opportunity", "Assign to sales"]
+    },
+    {
+      "id": "ffi",
+      "chip": "Fund Flow Index",
+      "keywords": ["flow index", "ffi", "sentiment", "sector flow"],
+      "prompt": "What is the Fund Flow Index saying about {{ac}} this quarter, and how does our fund compare?",
+      "tools": [
+        { "name": "ffi.series", "args": { "sector": "{{ac}}", "period": "2026-Q3" }, "status": "4 readings", "kind": "mcp", "latency": 610, "rows": 4 },
+        { "name": "ffi.peer_rank", "args": { "isin": "{{isin}}" }, "status": "Rank 7 of 41", "kind": "mcp", "latency": 540, "rows": 41 },
+        { "name": "fund_flows.daily", "args": { "isin": "{{isin}}" }, "status": "92 days", "kind": "int", "latency": 330, "rows": 92 }
+      ],
+      "blocks": [
+        { "type": "p", "s": "The Fund Flow Index for **{{ac}}** is **54.2**, which means net inflows. Your fund's inflows are higher than the sector average. (Illustrative demo figures.)" },
+        {
+          "type": "metrics",
+          "items": [
+            ["FFI reading", "54.2", "Above 50 = inflow", "good"],
+            ["Your net flows", "+$212m", "Q3", "good"],
+            ["Peer rank", "7 / 41", "Up 5", "good"],
+            ["Share of sector inflow", "3.1%", "+0.4 pts", "good"]
+          ]
+        },
+        {
+          "type": "bars",
+          "title": "FFI by month",
+          "bars": [
+            ["Jul", 51.8],
+            ["Aug", 53.6],
+            ["Sep", 55.9],
+            ["Oct", 54.2]
+          ]
+        }
+      ],
+      "follow": ["Which peers beat us?", "Flows by market", "Add to board pack"]
+    },
+    {
+      "id": "ops",
+      "chip": "Operations trend",
+      "keywords": ["operation", "manual", "exception", "fail", "stp", "repair", "settle"],
+      "prompt": "Show our operations trend: STP rate and manual interventions, last 6 months.",
+      "tools": [
+        { "name": "ops.stp_rate", "args": { "months": 6 }, "status": "6 months", "kind": "mcp", "latency": 580, "rows": 6 },
+        { "name": "ops.exceptions", "args": { "group_by": "cause" }, "status": "1,184 events", "kind": "mcp", "latency": 760, "rows": 1184 },
+        { "name": "ops.ticketing", "args": { "team": "dealing" }, "status": "214 tickets", "kind": "int", "latency": 410, "rows": 214 }
+      ],
+      "blocks": [
+        { "type": "p", "s": "Your STP rate has increased to **96.8%** over the last 6 months. Manual interventions have decreased by **23%**." },
+        {
+          "type": "bars",
+          "title": "STP rate",
+          "bars": [
+            ["May", 94.9],
+            ["Jun", 95.2],
+            ["Jul", 95.6],
+            ["Aug", 96.1],
+            ["Sep", 96.4],
+            ["Oct", 96.8]
+          ]
+        },
+        {
+          "type": "table",
+          "head": ["Top cause", "Events", "Trend"],
+          "grid": "2fr 1fr 1fr",
+          "rows": [
+            ["Missing settlement instructions", "412", "!Rising"],
+            ["Cut-off breaches", "288", "✓Falling"],
+            ["Unknown ISIN", "161", "✓Falling"]
+          ]
+        }
+      ],
+      "follow": ["Which distributors cause most?", "Cost of manual work", "Set an alert"]
+    },
+    {
+      "id": "dist",
+      "chip": "Distribution insight",
+      "keywords": ["distributor", "outflow", "inflow", "platform", "redemption", "distribution", "sales"],
+      "prompt": "Which distributors drove net outflows in {{fundShort}} last month?",
+      "tools": [
+        { "name": "orders.flows", "args": { "isin": "{{isin}}", "group_by": "distributor", "period": "2026-09" }, "status": "41 distributors", "kind": "mcp", "latency": 880, "rows": 41 },
+        { "name": "crm.accounts", "args": { "ids": "top_outflows" }, "status": "5 accounts", "kind": "int", "latency": 360, "rows": 5 },
+        { "name": "sales.coverage_owner", "args": {}, "status": "5 owners", "kind": "int", "latency": 240, "rows": 5 }
+      ],
+      "blocks": [
+        { "type": "p", "s": "Net outflow of **$38m** from {{fundShort}} last month. **84%** of that outflow came from the three distributors listed below." },
+        {
+          "type": "table",
+          "head": ["Distributor", "Net flow", "vs 3m avg", "Owner"],
+          "grid": "1.4fr 1fr 1fr 1fr",
+          "rows": [
+            ["{{dist2}}", "!−$18.4m", "!−310%", "A. Quinn"],
+            ["{{dist0}}", "!−$8.9m", "~−120%", "M. Costa"],
+            ["{{dist3}}", "!−$4.7m", "~−60%", "A. Quinn"],
+            ["{{dist1}}", "✓+$6.1m", "✓+40%", "L. Ng"]
+          ]
+        },
+        { "type": "p", "s": "Your CRM shows that {{dist2}} completed a **model portfolio rebalance** on 12 September, which explains their outflow." }
+      ],
+      "follow": ["Show the rebalance detail", "Brief A. Quinn", "Watch next week"]
+    }
+  ],
+  "fallback": {
+    "text": "I can help with that. For questions about your funds, flows, billing or distribution, I will also use Calastone network data. Talk to Calastone: clientservices@calastone.com"
+  }
+}
