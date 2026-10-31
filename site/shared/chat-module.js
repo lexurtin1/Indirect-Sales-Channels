@@ -118,9 +118,12 @@
     document.documentElement.style.background = b.soft;
     setLogo($("cm-brand-logo"), $("cm-brand-fallback"), b.logo, b.wordmark);
     $("cm-greeting").textContent = greeting() + ", " + b.first;
+    const markSrc = b.mark || b.logo || "";
     $("cm-user").innerHTML =
-      '<span class="cm-user-avatar">' +
-      esc(b.initials) +
+      '<span class="cm-user-avatar" aria-hidden="true">' +
+      (markSrc
+        ? '<img src="' + esc(markSrc) + '" alt="">'
+        : esc(b.initials || b.mono || "")) +
       "</span><span><strong>" +
       esc(b.user) +
       "</strong><span>" +

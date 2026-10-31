@@ -1,29 +1,13 @@
-.isc-tag {
-  position: fixed;
-  z-index: 40;
-  top: 14px;
-  left: 14px;
-  background: var(--ink);
-  color: var(--surface);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 6px 10px;
-  border-radius: 999px;
-  pointer-events: none;
-}
-
 .isc-tools {
   position: fixed;
   z-index: 40;
+  top: 14px;
   right: 14px;
-  bottom: 14px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   justify-content: flex-end;
-  max-width: min(520px, calc(100vw - 28px));
+  max-width: min(560px, calc(100vw - 28px));
 }
 
 .isc-tools button,
@@ -45,7 +29,7 @@
   position: fixed;
   z-index: 41;
   right: 14px;
-  bottom: 64px;
+  top: 56px;
   width: min(380px, calc(100vw - 28px));
   background: var(--surface);
   border: 1px solid var(--line);
@@ -127,8 +111,4 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hotspot::after { animation: none; }
-}
-
-@media (max-width: 720px) {
-  .isc-tag { top: auto; bottom: 64px; left: 14px; }
 }

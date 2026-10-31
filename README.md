@@ -33,7 +33,7 @@ Screen 1's Download MCP buttons also open screen 2 (MCP assistant), with an opti
 
 ### Shared elements on every screen
 
-- **"Simulated view" tag**, visible at all times.
+- **Chrome tools** (What you're looking at, Guided tour, Reset, Front page) sit in the top right.
 - **"What you're looking at" panel**, collapsible: which channel this is, what is simulated, what would need building.
 - **Pulsing hotspots** on anything clickable.
 - **Guided tour button** that steps through the key clicks.
@@ -195,7 +195,7 @@ calastone-indirect-channels/
       channel-map.html       kept off the front page; not linked from navigation
     shared/
       tokens.css             Calastone design tokens
-      chrome.css             simulated tag, info panel, hotspots, tour, reset
+      chrome.css             top-right tools, info panel, hotspots, tour, reset
       chrome.js              shared behaviour for the above
       chat-module.css        full-screen MCP assistant layout
       chat-module.js         brand switcher, scripted MCP chat, optional install dialog
@@ -228,7 +228,7 @@ Build one step at a time in Cursor. Finish each step's checks before starting th
 
 | Step | Build | Done when |
 | --- | --- | --- |
-| 1 | Repo setup, `vercel.json`, shared tokens, shared chrome (simulated tag, info panel, hotspots, reset, back link) | A blank page shows all shared elements and deploys to Vercel behind a password |
+| 1 | Repo setup, `vercel.json`, shared tokens, shared chrome (top-right tools, info panel, hotspots, reset, back link) | A blank page shows all shared elements and deploys to Vercel behind a password |
 | 2 | Front page (screen 0), reusing the Pulse front navigation | All six cards link to placeholder pages; intro paragraph states that screens are simulated |
 | 3 | FFI data extraction from the public reports into `ffi.json` | Every figure has a source; totals match the reports |
 | 4 | Screen 1: Calastone website recreation | Side by side with the screenshot, layout and type match closely |
@@ -253,7 +253,8 @@ Build one step at a time in Cursor. Finish each step's checks before starting th
 
 - [ ] Repo is private.
 - [ ] Vercel site is password protected.
-- [ ] "Simulated view" tag is on every screen.
+- [ ] No floating "Simulated view" tag covering interactive UI.
+- [ ] Chrome tools sit in the top right on every screen.
 - [ ] No real client data, names or faces anywhere.
 - [ ] Every FFI figure is from a public report and has a source.
 - [ ] Every illustrative figure carries the Illustrative badge.

@@ -9,7 +9,7 @@ Read README.md before every task. It is the source of truth for screens, data fo
 
 ## Content
 
-- Every screen is a simulation. Keep the "Simulated view" tag on every page.
+- Every screen is a simulation. Do not add a floating "Simulated view" tag; it covers interactive UI.
 - Never add real client data, real people's names or faces, or internal Calastone network data.
 - Fund Flow Index figures come only from `data/ffi/extracted/ffi.json`, and each one keeps its source.
 - Product descriptions come only from `data/chatbot/scripts.json`. Do not invent product capabilities. Leave `TODO(product)` markers in place until a product owner supplies the text.
