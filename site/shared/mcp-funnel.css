@@ -137,42 +137,23 @@ body[data-variant="1c"] .globe-host {
   position: absolute;
   left: 40px;
   top: 32px;
-  width: 300px;
+  width: 280px;
   box-sizing: border-box;
   isolation: isolate;
-  background:
-    linear-gradient(165deg, rgba(255, 255, 255, 0.97) 0%, rgba(238, 248, 246, 0.96) 55%, rgba(255, 255, 255, 0.98) 100%);
-  border: 1px solid rgba(45, 154, 142, 0.35);
-  border-radius: 14px;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.7) inset,
-    0 18px 40px rgba(13, 20, 24, 0.16),
-    0 4px 14px rgba(15, 184, 156, 0.12);
-  padding: 22px 20px 18px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--ink-200);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 20px 18px 16px;
   color: var(--ink-800);
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  backdrop-filter: blur(10px);
-}
-
-.mcp-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 18px;
-  bottom: 18px;
-  width: 4px;
-  border-radius: 0 4px 4px 0;
-  background: linear-gradient(180deg, var(--teal-500), var(--accent-500));
+  gap: 12px;
+  backdrop-filter: blur(8px);
 }
 
 .mcp-card.is-prompt {
-  border-color: rgba(15, 184, 156, 0.55);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.7) inset,
-    0 22px 48px rgba(13, 20, 24, 0.2),
-    0 0 0 4px rgba(15, 184, 156, 0.12);
+  border-color: var(--teal-300, #7cc4bb);
 }
 
 .mcp-card.pulse-once {
@@ -224,52 +205,17 @@ body[data-variant="1c"] .globe-host {
 }
 
 .mcp-card h1 {
-  font-size: 22px;
-  line-height: 1.18;
+  font-size: 18px;
+  line-height: 1.25;
   font-weight: 500;
   color: var(--ink-900);
   letter-spacing: -0.01em;
 }
 
 .mcp-card .lede {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.45;
-  color: var(--ink-700);
-}
-
-.cap-chips {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.cap-chips li {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-800);
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid var(--ink-200);
-  border-radius: 8px;
-  padding: 8px 10px;
-}
-
-.prompt-examples {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.prompt-examples span {
-  font-size: 12px;
-  line-height: 1.4;
-  color: var(--ink-800);
-  background: rgba(255, 255, 255, 0.9);
-  border-left: 3px solid var(--accent-500);
-  padding: 8px 10px;
-  border-radius: 0 8px 8px 0;
+  color: var(--ink-600);
 }
 
 .mcp-card .fine {
@@ -331,13 +277,12 @@ body[data-variant="1c"] .globe-host {
 }
 
 .btn-teal {
-  background: linear-gradient(135deg, var(--teal-500), var(--accent-500));
+  background: var(--ink-900);
   color: #fff;
-  box-shadow: 0 8px 18px rgba(15, 184, 156, 0.28);
 }
 
 .btn-teal:hover {
-  filter: brightness(1.04);
+  background: var(--ink-800);
 }
 
 .btn-secondary {
@@ -423,14 +368,14 @@ body[data-variant="1b"] .stat-block .sub {
   position: absolute;
   right: 40px;
   top: 32px;
-  width: 320px;
+  width: 280px;
   box-sizing: border-box;
   z-index: 2;
 }
 
 body[data-variant="1c"] .side-panel {
   top: 170px;
-  width: 300px;
+  width: 260px;
 }
 
 .ticker {

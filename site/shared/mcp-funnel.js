@@ -6,51 +6,8 @@
   };
 
   const ASSET = ["equity", "fixed income", "money market", "mixed assets", "ETF"];
-  const SECTOR = ["technology", "healthcare", "financials", "industrials", "global income"];
-  const PERIOD = ["this week", "this month", "Q3 2025", "the last 30 days", "year to date"];
-
-  const CAPS = [
-    {
-      num: "01",
-      title: "Query data",
-      prompt: "Net flows from Spanish distributors into our Luxembourg funds, by month, 2025.",
-      rows: [
-        { k: "Jul 2025", v: "+182.4k" },
-        { k: "Aug 2025", v: "+141.0k" },
-        { k: "Sep 2025", v: "−36.7k" }
-      ]
-    },
-    {
-      num: "02",
-      title: "Custom reports",
-      prompt: "Quarterly order volume by distributor, top 10, as a spreadsheet.",
-      rows: [
-        { k: "Rows", v: "10" },
-        { k: "Period", v: "Q3 2025" },
-        { k: "Format", v: ".xlsx" }
-      ]
-    },
-    {
-      num: "03",
-      title: "ISIN checks",
-      prompt: "Is LU0000000000 set up for routing to Taiwanese distributors?",
-      rows: [
-        { k: "Status", v: "Set up" },
-        { k: "Routing paths", v: "3" },
-        { k: "Last order", v: "2 days ago" }
-      ]
-    },
-    {
-      num: "04",
-      title: "Market coverage",
-      prompt: "Hong Kong distributors on the network not currently trading our funds.",
-      rows: [
-        { k: "On network", v: "18" },
-        { k: "Not trading", v: "6" },
-        { k: "Related service", v: "Order routing" }
-      ]
-    }
-  ];
+  const PERIOD = ["this month", "Q3 2025", "year to date"];
+  const TICK_MS = 5500;
 
   const state = {
     variant: "1a",
@@ -72,16 +29,13 @@
       "United States": "US",
       "Czech Republic": "Czech",
       "South Africa": "South African",
-      "New Zealand": "New Zealand",
       "Hong Kong": "Hong Kong",
-      "Isle of Man": "Isle of Man",
       "United Arab Emirates": "UAE",
       "Cayman Islands": "Cayman",
       "Brunei Darussalam": "Brunei"
     };
     if (map[name]) return map[name];
     if (name.endsWith("y")) return name.slice(0, -1) + "ian";
-    if (name.endsWith("land")) return name + "ic";
     if (name.endsWith("a")) return name + "n";
     return name;
   };
@@ -164,99 +118,45 @@
     const from = adj(arc.from);
     const to = adj(arc.to);
     const asset = pick(ASSET);
-    const sector = pick(SECTOR);
     const period = pick(PERIOD);
-    const vol = Math.max(1, Math.round((arc.orders / 105120) * (0.6 + Math.random() * 0.8)));
     const templates = [
       {
-        kind: "Flow surge",
-        text: from + " distributors into " + to + " " + asset + " funds " + pct(4, 28) + " " + period,
-        metric: pct(4, 28)
+        kind: "Flow",
+        text: from + " " + asset + " into " + to + " funds " + pct(3, 18) + " " + period,
+        metric: pct(3, 18)
       },
       {
-        kind: "Net inflow",
-        text: to + " " + asset + " books saw " + fmt(vol * 1200) + " from " + from + " platforms " + period,
-        metric: fmt(vol * 1200)
+        kind: "Share",
+        text: from + " → " + to + " " + (1.1 + Math.random() * 5).toFixed(1) + "% of cross-border " + asset,
+        metric: (1.1 + Math.random() * 5).toFixed(1) + "%"
       },
       {
-        kind: "Corridor share",
-        text: from + " → " + to + " now " + (1.2 + Math.random() * 6).toFixed(1) + "% of cross-border " + asset,
-        metric: (1.2 + Math.random() * 6).toFixed(1) + "%"
+        kind: "Volume",
+        text: fmt(Math.max(2, Math.round(arc.orders / 90000))) + " " + asset + " orders " + from + " → " + to,
+        metric: fmt(Math.max(2, Math.round(arc.orders / 90000)))
       },
       {
-        kind: "STP rate",
-        text: from + " to " + to + " straight-through processing at " + (88 + Math.random() * 11).toFixed(1) + "%",
-        metric: (88 + Math.random() * 11).toFixed(1) + "%"
+        kind: "STP",
+        text: from + " to " + to + " straight-through at " + (90 + Math.random() * 8).toFixed(1) + "%",
+        metric: (90 + Math.random() * 8).toFixed(1) + "%"
       },
       {
-        kind: "Manual drop",
-        text: "Manual " + asset + " orders " + from + " → " + to + " down " + pct(-22, -3).replace("+", ""),
-        metric: pct(-22, -3)
-      },
-      {
-        kind: "New ISINs",
-        text: (2 + Math.floor(Math.random() * 9)) + " new " + to + " " + asset + " ISINs opened to " + from + " distributors",
-        metric: String(2 + Math.floor(Math.random() * 9))
-      },
-      {
-        kind: "Coverage gap",
-        text: (3 + Math.floor(Math.random() * 12)) + " " + from + " distributors not yet trading your " + to + " range",
-        metric: String(3 + Math.floor(Math.random() * 12))
-      },
-      {
-        kind: "Sector tilt",
-        text: from + " " + sector + " " + asset + " into " + to + " " + pct(-12, 34) + " vs prior month",
-        metric: pct(-12, 34)
-      },
-      {
-        kind: "Settlement",
-        text: to + " settlement breaks on " + from + " tickets " + pct(-18, -2).replace("+", "") + " " + period,
-        metric: pct(-18, -2)
-      },
-      {
-        kind: "MMF spike",
-        text: from + " corporate treasurers into " + to + " money market funds " + pct(6, 41) + " " + period,
-        metric: pct(6, 41)
-      },
-      {
-        kind: "ETF creation",
-        text: to + " ETF creations from " + from + " wealth platforms up " + pct(3, 19).replace("+", ""),
-        metric: pct(3, 19)
-      },
-      {
-        kind: "Order latency",
-        text: "Median " + from + " → " + to + " order time now " + (0.4 + Math.random() * 2.2).toFixed(1) + "s",
-        metric: (0.4 + Math.random() * 2.2).toFixed(1) + "s"
-      },
-      {
-        kind: "Rank change",
-        text: from + " climbs to #" + (1 + Math.floor(Math.random() * 8)) + " source market for " + to + " " + asset,
-        metric: "#" + (1 + Math.floor(Math.random() * 8))
-      },
-      {
-        kind: "Tokenised cut",
-        text: "Tokenised " + asset + " share class interest from " + from + " into " + to + " + " + (1 + Math.floor(Math.random() * 5)) + " enquiries",
-        metric: "+" + (1 + Math.floor(Math.random() * 5))
-      },
-      {
-        kind: "Volume pulse",
-        text: fmt(vol) + " live " + asset + " orders " + from + " distributors → " + to + " managers",
-        metric: fmt(vol)
+        kind: "Rank",
+        text: from + " is #" + (1 + Math.floor(Math.random() * 6)) + " source for " + to + " " + asset,
+        metric: "#" + (1 + Math.floor(Math.random() * 6))
       }
     ];
-    const row = pick(templates);
-    return { kind: row.kind, text: row.text, metric: row.metric, arc: arc };
+    return Object.assign({ arc: arc }, pick(templates));
   }
 
   function renderSide() {
     const panel = $("side-panel");
     if (!panel) return;
-    const limit = state.variant === "1c" ? 3 : 4;
-    const ticks = state.ticks.slice(0, limit);
+    const ticks = state.ticks.slice(0, 3);
     panel.innerHTML =
       '<div class="ticker" id="ticker">' +
       '<div class="ticker-head"><span class="dot" aria-hidden="true"></span>' +
-      "<span>Signals · live</span></div>" +
+      "<span>Network insights</span></div>" +
       ticks
         .map(
           (t) =>
@@ -285,17 +185,10 @@
     if (state.cardStep === "intro") {
       card.innerHTML =
         brandHead() +
-        '<p class="mcp-kicker">For your AI assistant</p>' +
-        "<h1>Ask Calastone data in plain language.</h1>" +
-        '<p class="lede">Install once. Query orders, flows, ISINs and market coverage with your firm\'s entitlements.</p>' +
-        '<ul class="cap-chips">' +
-        "<li>Orders &amp; flows</li>" +
-        "<li>Custom reports</li>" +
-        "<li>ISIN checks</li>" +
-        "<li>Coverage gaps</li>" +
-        "</ul>" +
-        '<button type="button" class="btn btn-teal hotspot" id="card-download">Download MCP</button>' +
-        '<span class="fine">Read-only · scoped to your entitlements</span>';
+        '<p class="mcp-kicker">Calastone insights</p>' +
+        "<h1>To query this data further, download the MCP here.</h1>" +
+        '<p class="lede">Public network figures on the globe. Deeper cuts through the Calastone MCP in your AI assistant.</p>' +
+        '<button type="button" class="btn btn-teal hotspot" id="card-download">Download MCP</button>';
       $("card-download").addEventListener("click", () => finishDownload());
       return;
     }
@@ -304,24 +197,15 @@
       const market = state.market || "this market";
       card.innerHTML =
         brandHead() +
-        '<p class="mcp-kicker">Country selected</p>' +
-        "<h1>Open " +
+        '<p class="mcp-kicker">' +
         esc(market) +
-        " in your AI.</h1>" +
-        '<p class="lede">Download the Calastone MCP to query distributors, corridors and fund flows for ' +
+        "</p>" +
+        "<h1>To query " +
         esc(market) +
-        ".</p>" +
-        '<div class="prompt-examples">' +
-        "<span>Order volume by " +
+        " further, download the MCP here.</h1>" +
+        '<p class="lede">Example: order volume and corridors for ' +
         esc(market) +
-        " distributor, Q3 2025</span>" +
-        "<span>Net flows into and out of " +
-        esc(market) +
-        ", by month</span>" +
-        "<span>Counterparties in " +
-        esc(market) +
-        " not trading our funds</span>" +
-        "</div>" +
+        ", by month.</p>" +
         '<button type="button" class="btn btn-teal hotspot" id="card-download">Download MCP</button>' +
         '<button type="button" class="back" id="card-dismiss">Keep exploring</button>';
       $("card-download").addEventListener("click", () => finishDownload());
@@ -333,26 +217,15 @@
       return;
     }
 
-    const prompt = state.market
-      ? "order volume by distributor in " + state.market + ", Q3 2025."
-      : "net flows by distributor, last month.";
     card.innerHTML =
       brandHead() +
-      '<p class="mcp-kicker done">Downloaded</p>' +
-      "<h1>Add the server to your client.</h1>" +
-      '<div class="setup">' +
-      "<span>1. Open your client's MCP settings.</span>" +
-      "<span>2. Paste the config below.</span>" +
-      "<span>3. Sign in with Calastone credentials.</span>" +
-      "</div>" +
+      '<p class="mcp-kicker done">Ready to add</p>' +
+      "<h1>Paste this into your MCP client.</h1>" +
       "<pre>\"calastone\": {\n  \"command\": \"calastone-mcp\"\n}</pre>" +
       '<button type="button" class="btn btn-teal btn-sm" id="card-copy">' +
       (state.copied ? "Copied" : "Copy config") +
       "</button>" +
-      '<span class="fine">Try: ' +
-      esc(prompt) +
-      "</span>" +
-      '<button type="button" class="back" id="card-again">Download again</button>';
+      '<button type="button" class="back" id="card-again">Back</button>';
     $("card-copy").addEventListener("click", () => {
       const text = '"calastone": {\n  "command": "calastone-mcp"\n}';
       const done = () => {
@@ -367,15 +240,16 @@
         navigator.clipboard.writeText(text).then(done).catch(done);
       } else done();
     });
-    $("card-again").addEventListener("click", () => finishDownload());
+    $("card-again").addEventListener("click", () => {
+      state.cardStep = "intro";
+      renderCard();
+    });
   }
 
   function finishDownload() {
     state.cardStep = "done";
     state.copied = false;
     renderCard();
-    const card = $("mcp-card");
-    if (card) card.scrollIntoView({ block: "nearest", behavior: motionOk() ? "smooth" : "auto" });
   }
 
   function openDownload(market) {
@@ -409,27 +283,6 @@
     if (el) el.textContent = fmt(value);
   }
 
-  function renderCapabilities() {
-    const grid = $("cap-grid");
-    if (!grid) return;
-    grid.innerHTML = CAPS.map(
-      (c) =>
-        '<article class="cap-tile">' +
-        '<span class="num">' +
-        esc(c.num) +
-        "</span>" +
-        '<div class="title">' +
-        esc(c.title) +
-        "</div>" +
-        '<div class="prompt">' +
-        esc(c.prompt) +
-        "</div>" +
-        '<div class="rows">' +
-        c.rows.map((r) => "<div>" + esc(r.k) + "<span>" + esc(r.v) + "</span></div>").join("") +
-        "</div></article>"
-    ).join("");
-  }
-
   function pushTick() {
     const arcs = window.CALASTONE_FLOWS && window.CALASTONE_FLOWS.arcs;
     if (!arcs || !arcs.length) return;
@@ -445,7 +298,7 @@
     }
     const insight = buildInsight(arcs[i]);
     window.dispatchEvent(new CustomEvent("flowglobe:pulse", { detail: { arc: arcs[i] } }));
-    state.ticks = [insight, ...state.ticks].slice(0, 5);
+    state.ticks = [insight, ...state.ticks].slice(0, 3);
     renderSide();
   }
 
@@ -457,7 +310,7 @@
     }
     const t0 = performance.now();
     const tick = (now) => {
-      const p = Math.min(1, (now - t0) / 1600);
+      const p = Math.min(1, (now - t0) / 2200);
       const e = 1 - Math.pow(1 - p, 3);
       renderStat(target * e);
       if (p < 1) requestAnimationFrame(tick);
@@ -486,11 +339,6 @@
       applyGlobeAttrs();
     });
 
-    $("cap-download").addEventListener("click", () => {
-      state.market = state.market;
-      finishDownload();
-    });
-
     window.addEventListener("flowglobe:select", (e) => {
       if (!e.detail || !e.detail.node) return;
       promptCountry(e.detail.node.name);
@@ -509,12 +357,14 @@
     renderControls();
     renderCard();
     mountGlobe();
-    for (let i = 0; i < 4; i++) pushTick();
+    pushTick();
+    pushTick();
     renderSide();
     startStat();
   }
 
   window.iscReset = reset;
+  window.openDownload = openDownload;
 
   function waitFlows(cb) {
     if (window.CALASTONE_FLOWS) cb();
@@ -522,20 +372,20 @@
   }
 
   function init() {
-    renderCapabilities();
     wire();
     setVariant(parseHash(), true);
     renderControls();
     renderCard();
     waitFlows(() => {
       startStat();
-      for (let i = 0; i < 4; i++) pushTick();
+      pushTick();
+      pushTick();
       renderSide();
       const loop = () => {
         pushTick();
-        setTimeout(loop, 2200);
+        setTimeout(loop, TICK_MS);
       };
-      setTimeout(loop, 2200);
+      setTimeout(loop, TICK_MS);
     });
   }
 
