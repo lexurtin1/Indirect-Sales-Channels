@@ -214,7 +214,7 @@
           '<div style="font-size:15px;font-weight:600;color:#0d1418">' + n.name + "</div>" +
           '<div style="font-size:26px;line-height:1.1;margin-top:4px;color:#0d1418">' + fmt(n.total) + "</div>" +
           '<div style="font-size:12px;color:#7a8893;margin-top:2px">orders placed + received · 2025</div>' +
-          '<div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#2d9a8e;margin-top:8px">Click to ask the MCP</div>'
+          '<div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#2d9a8e;margin-top:8px">Click to download the MCP</div>'
         );
 
       const arcTip = (a) =>

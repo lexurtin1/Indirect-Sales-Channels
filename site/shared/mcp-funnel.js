@@ -5,6 +5,10 @@
     "1c": { theme: "light", pov: "26,8,1.2", label: "1c Horizon" }
   };
 
+  const ASSET = ["equity", "fixed income", "money market", "mixed assets", "ETF"];
+  const SECTOR = ["technology", "healthcare", "financials", "industrials", "global income"];
+  const PERIOD = ["this week", "this month", "Q3 2025", "the last 30 days", "year to date"];
+
   const CAPS = [
     {
       num: "01",
@@ -53,9 +57,7 @@
     arcs: "all",
     spin: "on",
     ticks: [],
-    sel: null,
     cardStep: "intro",
-    email: "",
     market: null,
     copied: false
   };
@@ -63,6 +65,26 @@
   const $ = (id) => document.getElementById(id);
   const motionOk = () =>
     window.iscMotionOk ? window.iscMotionOk() : !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const adj = (name) => {
+    const map = {
+      "United Kingdom": "UK",
+      "United States": "US",
+      "Czech Republic": "Czech",
+      "South Africa": "South African",
+      "New Zealand": "New Zealand",
+      "Hong Kong": "Hong Kong",
+      "Isle of Man": "Isle of Man",
+      "United Arab Emirates": "UAE",
+      "Cayman Islands": "Cayman",
+      "Brunei Darussalam": "Brunei"
+    };
+    if (map[name]) return map[name];
+    if (name.endsWith("y")) return name.slice(0, -1) + "ian";
+    if (name.endsWith("land")) return name + "ic";
+    if (name.endsWith("a")) return name + "n";
+    return name;
+  };
 
   function esc(value) {
     return String(value == null ? "" : value)
@@ -76,6 +98,21 @@
     if (n >= 1e6) return (n / 1e6).toFixed(1) + "m";
     if (n >= 1e3) return (n / 1e3).toFixed(1) + "k";
     return String(Math.round(n));
+  }
+
+  function pct(min, max) {
+    const v = min + Math.random() * (max - min);
+    const sign = v >= 0 ? "+" : "";
+    return sign + v.toFixed(1) + "%";
+  }
+
+  function brandHead() {
+    return (
+      '<div class="mcp-brand">' +
+      '<img src="/assets/brand/calastone-wordmark-black.png" alt="Calastone">' +
+      "<em>MCP</em>" +
+      "</div>"
+    );
   }
 
   function parseHash() {
@@ -97,9 +134,7 @@
           ? "51 countries · 321 corridors"
           : "51 countries · 321 corridors · 109.8m cross-border";
     }
-    if (pushHash !== false) {
-      history.replaceState(null, "", "#" + v);
-    }
+    if (pushHash !== false) history.replaceState(null, "", "#" + v);
     mountGlobe();
     renderSide();
   }
@@ -125,142 +160,176 @@
     el.setAttribute("spin", state.spin);
   }
 
-  function selView(d) {
-    if (!d) return null;
-    const n = d.node;
-    const rows = [
-      ...d.out.map((a) => ({ route: "To " + a.to, n: fmt(a.orders), o: a.orders })),
-      ...d.inn.map((a) => ({ route: "From " + a.from, n: fmt(a.orders), o: a.orders }))
-    ]
-      .sort((x, y) => y.o - x.o)
-      .slice(0, 4);
-    return {
-      name: n.name,
-      total: fmt(n.total),
-      rows: rows,
-      prompts: [
-        "Order volume from " + n.name + " distributors, by fund, 2025",
-        "Net flows into and out of " + n.name + ", by month",
-        "Counterparties in " + n.name + " not currently trading our funds"
-      ]
-    };
+  function buildInsight(arc) {
+    const from = adj(arc.from);
+    const to = adj(arc.to);
+    const asset = pick(ASSET);
+    const sector = pick(SECTOR);
+    const period = pick(PERIOD);
+    const vol = Math.max(1, Math.round((arc.orders / 105120) * (0.6 + Math.random() * 0.8)));
+    const templates = [
+      {
+        kind: "Flow surge",
+        text: from + " distributors into " + to + " " + asset + " funds " + pct(4, 28) + " " + period,
+        metric: pct(4, 28)
+      },
+      {
+        kind: "Net inflow",
+        text: to + " " + asset + " books saw " + fmt(vol * 1200) + " from " + from + " platforms " + period,
+        metric: fmt(vol * 1200)
+      },
+      {
+        kind: "Corridor share",
+        text: from + " → " + to + " now " + (1.2 + Math.random() * 6).toFixed(1) + "% of cross-border " + asset,
+        metric: (1.2 + Math.random() * 6).toFixed(1) + "%"
+      },
+      {
+        kind: "STP rate",
+        text: from + " to " + to + " straight-through processing at " + (88 + Math.random() * 11).toFixed(1) + "%",
+        metric: (88 + Math.random() * 11).toFixed(1) + "%"
+      },
+      {
+        kind: "Manual drop",
+        text: "Manual " + asset + " orders " + from + " → " + to + " down " + pct(-22, -3).replace("+", ""),
+        metric: pct(-22, -3)
+      },
+      {
+        kind: "New ISINs",
+        text: (2 + Math.floor(Math.random() * 9)) + " new " + to + " " + asset + " ISINs opened to " + from + " distributors",
+        metric: String(2 + Math.floor(Math.random() * 9))
+      },
+      {
+        kind: "Coverage gap",
+        text: (3 + Math.floor(Math.random() * 12)) + " " + from + " distributors not yet trading your " + to + " range",
+        metric: String(3 + Math.floor(Math.random() * 12))
+      },
+      {
+        kind: "Sector tilt",
+        text: from + " " + sector + " " + asset + " into " + to + " " + pct(-12, 34) + " vs prior month",
+        metric: pct(-12, 34)
+      },
+      {
+        kind: "Settlement",
+        text: to + " settlement breaks on " + from + " tickets " + pct(-18, -2).replace("+", "") + " " + period,
+        metric: pct(-18, -2)
+      },
+      {
+        kind: "MMF spike",
+        text: from + " corporate treasurers into " + to + " money market funds " + pct(6, 41) + " " + period,
+        metric: pct(6, 41)
+      },
+      {
+        kind: "ETF creation",
+        text: to + " ETF creations from " + from + " wealth platforms up " + pct(3, 19).replace("+", ""),
+        metric: pct(3, 19)
+      },
+      {
+        kind: "Order latency",
+        text: "Median " + from + " → " + to + " order time now " + (0.4 + Math.random() * 2.2).toFixed(1) + "s",
+        metric: (0.4 + Math.random() * 2.2).toFixed(1) + "s"
+      },
+      {
+        kind: "Rank change",
+        text: from + " climbs to #" + (1 + Math.floor(Math.random() * 8)) + " source market for " + to + " " + asset,
+        metric: "#" + (1 + Math.floor(Math.random() * 8))
+      },
+      {
+        kind: "Tokenised cut",
+        text: "Tokenised " + asset + " share class interest from " + from + " into " + to + " + " + (1 + Math.floor(Math.random() * 5)) + " enquiries",
+        metric: "+" + (1 + Math.floor(Math.random() * 5))
+      },
+      {
+        kind: "Volume pulse",
+        text: fmt(vol) + " live " + asset + " orders " + from + " distributors → " + to + " managers",
+        metric: fmt(vol)
+      }
+    ];
+    const row = pick(templates);
+    return { kind: row.kind, text: row.text, metric: row.metric, arc: arc };
   }
 
   function renderSide() {
     const panel = $("side-panel");
     if (!panel) return;
-    const sel = selView(state.sel);
-    if (sel) {
-      panel.innerHTML =
-        '<div class="market-panel" id="market-panel">' +
-        '<div class="head"><span class="label">Market · 2025</span>' +
-        '<button type="button" class="close" id="close-market" aria-label="Close">×</button></div>' +
-        '<div class="name">' + esc(sel.name) + "</div>" +
-        '<div class="total">' + esc(sel.total) + " orders placed and received</div>" +
-        '<div class="rows">' +
-        sel.rows
-          .map(
-            (r) =>
-              "<div>" + esc(r.route) + "<span>" + esc(r.n) + "</span></div>"
-          )
-          .join("") +
-        "</div>" +
-        '<div class="prompts-label">Example MCP queries</div>' +
-        sel.prompts.map((p) => '<div class="prompt">' + esc(p) + "</div>").join("") +
-        '<button type="button" class="btn btn-ink btn-sm" id="market-download">Download MCP</button>' +
-        "</div>";
-      $("close-market").addEventListener("click", () => {
-        state.sel = null;
-        renderSide();
-      });
-      $("market-download").addEventListener("click", () => openDownload(sel.name));
-      return;
-    }
-
-    const limit = state.variant === "1c" ? 3 : 5;
+    const limit = state.variant === "1c" ? 3 : 4;
     const ticks = state.ticks.slice(0, limit);
     panel.innerHTML =
       '<div class="ticker" id="ticker">' +
       '<div class="ticker-head"><span class="dot" aria-hidden="true"></span>' +
-      "<span>Orders routed · live</span></div>" +
+      "<span>Signals · live</span></div>" +
       ticks
         .map(
           (t) =>
-            '<div class="tick-row"><div class="route">' +
-            esc(t.from) +
-            " → " +
-            esc(t.to) +
-            '</div><span class="n">' +
-            esc(t.n) +
-            "</span></div>"
+            '<div class="tick-row">' +
+            '<div class="tick-kind">' +
+            esc(t.kind) +
+            "</div>" +
+            '<div class="tick-text">' +
+            esc(t.text) +
+            "</div>" +
+            '<div class="tick-metric">' +
+            esc(t.metric) +
+            "</div>" +
+            "</div>"
         )
         .join("") +
       "</div>";
   }
 
-  function emailValid() {
-    return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(state.email);
-  }
-
   function renderCard() {
     const card = $("mcp-card");
     if (!card) return;
+    card.classList.toggle("is-prompt", state.cardStep === "prompt");
+    card.classList.toggle("is-done", state.cardStep === "done");
+
     if (state.cardStep === "intro") {
       card.innerHTML =
-        '<span class="eyebrow">Calastone MCP</span>' +
-        "<div>" +
-        "<h1>Connect your AI assistant to your Calastone data.</h1>" +
-        '<p class="lede">An MCP server that lets any MCP-compatible assistant read your firm\'s Calastone data.</p>' +
-        "</div>" +
-        '<div class="cap-list">' +
-        "<span>Query orders and flows</span>" +
-        "<span>Create custom reports</span>" +
-        "<span>Review ISIN checks</span>" +
-        "<span>Review market coverage</span>" +
-        "</div>" +
-        '<button type="button" class="btn btn-ink hotspot" id="card-download">Download</button>' +
+        brandHead() +
+        '<p class="mcp-kicker">For your AI assistant</p>' +
+        "<h1>Ask Calastone data in plain language.</h1>" +
+        '<p class="lede">Install once. Query orders, flows, ISINs and market coverage with your firm\'s entitlements.</p>' +
+        '<ul class="cap-chips">' +
+        "<li>Orders &amp; flows</li>" +
+        "<li>Custom reports</li>" +
+        "<li>ISIN checks</li>" +
+        "<li>Coverage gaps</li>" +
+        "</ul>" +
+        '<button type="button" class="btn btn-teal hotspot" id="card-download">Download MCP</button>' +
         '<span class="fine">Read-only · scoped to your entitlements</span>';
-      $("card-download").addEventListener("click", () => {
-        state.cardStep = "email";
-        renderCard();
-      });
+      $("card-download").addEventListener("click", () => finishDownload());
       return;
     }
 
-    if (state.cardStep === "email") {
+    if (state.cardStep === "prompt") {
+      const market = state.market || "this market";
       card.innerHTML =
-        '<button type="button" class="back" id="card-back">← Back</button>' +
-        '<span class="eyebrow">Step 1 of 2</span>' +
-        '<p class="lede">Enter your work email. It is used to link the MCP to your firm\'s entitlements.</p>' +
-        '<label>Work email' +
-        '<input type="email" id="card-email" placeholder="name@yourfirm.com" value="' +
-        esc(state.email) +
-        '" autocomplete="email">' +
-        '<span class="hint" id="card-hint"></span>' +
-        "</label>" +
-        '<button type="button" class="btn btn-ink" id="card-submit">Download</button>';
-      const hint = $("card-hint");
-      hint.textContent = state.market
-        ? "Market selected: " + state.market
-        : "Business address required";
-      const input = $("card-email");
-      const submit = $("card-submit");
-      submit.disabled = !emailValid();
-      input.addEventListener("input", () => {
-        state.email = input.value;
-        submit.disabled = !emailValid();
-      });
-      $("card-back").addEventListener("click", () => {
+        brandHead() +
+        '<p class="mcp-kicker">Country selected</p>' +
+        "<h1>Open " +
+        esc(market) +
+        " in your AI.</h1>" +
+        '<p class="lede">Download the Calastone MCP to query distributors, corridors and fund flows for ' +
+        esc(market) +
+        ".</p>" +
+        '<div class="prompt-examples">' +
+        "<span>Order volume by " +
+        esc(market) +
+        " distributor, Q3 2025</span>" +
+        "<span>Net flows into and out of " +
+        esc(market) +
+        ", by month</span>" +
+        "<span>Counterparties in " +
+        esc(market) +
+        " not trading our funds</span>" +
+        "</div>" +
+        '<button type="button" class="btn btn-teal hotspot" id="card-download">Download MCP</button>' +
+        '<button type="button" class="back" id="card-dismiss">Keep exploring</button>';
+      $("card-download").addEventListener("click", () => finishDownload());
+      $("card-dismiss").addEventListener("click", () => {
         state.cardStep = "intro";
+        state.market = null;
         renderCard();
       });
-      submit.addEventListener("click", () => {
-        if (!emailValid()) return;
-        state.cardStep = "done";
-        state.copied = false;
-        renderCard();
-      });
-      input.focus();
       return;
     }
 
@@ -268,19 +337,22 @@
       ? "order volume by distributor in " + state.market + ", Q3 2025."
       : "net flows by distributor, last month.";
     card.innerHTML =
-      '<span class="eyebrow done">Step 2 of 2 · Downloaded</span>' +
+      brandHead() +
+      '<p class="mcp-kicker done">Downloaded</p>' +
+      "<h1>Add the server to your client.</h1>" +
       '<div class="setup">' +
       "<span>1. Open your client's MCP settings.</span>" +
-      "<span>2. Add the server config below.</span>" +
+      "<span>2. Paste the config below.</span>" +
       "<span>3. Sign in with Calastone credentials.</span>" +
       "</div>" +
       "<pre>\"calastone\": {\n  \"command\": \"calastone-mcp\"\n}</pre>" +
-      '<button type="button" class="btn btn-secondary btn-sm" id="card-copy">' +
+      '<button type="button" class="btn btn-teal btn-sm" id="card-copy">' +
       (state.copied ? "Copied" : "Copy config") +
       "</button>" +
-      '<span class="fine">Example query: ' +
+      '<span class="fine">Try: ' +
       esc(prompt) +
-      "</span>";
+      "</span>" +
+      '<button type="button" class="back" id="card-again">Download again</button>';
     $("card-copy").addEventListener("click", () => {
       const text = '"calastone": {\n  "command": "calastone-mcp"\n}';
       const done = () => {
@@ -293,18 +365,42 @@
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(done).catch(done);
-      } else {
-        done();
-      }
+      } else done();
     });
+    $("card-again").addEventListener("click", () => finishDownload());
+  }
+
+  function finishDownload() {
+    state.cardStep = "done";
+    state.copied = false;
+    renderCard();
+    const card = $("mcp-card");
+    if (card) card.scrollIntoView({ block: "nearest", behavior: motionOk() ? "smooth" : "auto" });
   }
 
   function openDownload(market) {
     state.market = market || null;
-    state.cardStep = "email";
+    state.cardStep = market ? "prompt" : "done";
+    state.copied = false;
+    if (!market) state.cardStep = "done";
     renderCard();
     const card = $("mcp-card");
-    if (card) card.scrollIntoView({ block: "nearest", behavior: motionOk() ? "smooth" : "auto" });
+    if (card) {
+      card.classList.add("pulse-once");
+      setTimeout(() => card.classList.remove("pulse-once"), 900);
+      card.scrollIntoView({ block: "nearest", behavior: motionOk() ? "smooth" : "auto" });
+    }
+  }
+
+  function promptCountry(market) {
+    state.market = market;
+    state.cardStep = "prompt";
+    renderCard();
+    const card = $("mcp-card");
+    if (card) {
+      card.classList.add("pulse-once");
+      setTimeout(() => card.classList.remove("pulse-once"), 900);
+    }
   }
 
   function renderControls() {
@@ -338,9 +434,7 @@
         esc(c.prompt) +
         "</div>" +
         '<div class="rows">' +
-        c.rows
-          .map((r) => "<div>" + esc(r.k) + "<span>" + esc(r.v) + "</span></div>")
-          .join("") +
+        c.rows.map((r) => "<div>" + esc(r.k) + "<span>" + esc(r.v) + "</span></div>").join("") +
         "</div></article>"
     ).join("");
   }
@@ -358,11 +452,10 @@
       r -= pushTick._w[i];
       i++;
     }
-    const a = arcs[i];
-    const n = Math.max(1, Math.round((a.orders / 105120) * (0.6 + Math.random() * 0.8)));
-    window.dispatchEvent(new CustomEvent("flowglobe:pulse", { detail: { arc: a } }));
-    state.ticks = [{ from: a.from, to: a.to, n: n.toLocaleString("en-GB") }, ...state.ticks].slice(0, 5);
-    if (!state.sel) renderSide();
+    const insight = buildInsight(arcs[i]);
+    window.dispatchEvent(new CustomEvent("flowglobe:pulse", { detail: { arc: arcs[i] } }));
+    state.ticks = [insight, ...state.ticks].slice(0, 5);
+    renderSide();
   }
 
   function startStat() {
@@ -402,12 +495,14 @@
       applyGlobeAttrs();
     });
 
-    $("cap-download").addEventListener("click", () => openDownload(state.market));
+    $("cap-download").addEventListener("click", () => {
+      state.market = state.market;
+      finishDownload();
+    });
 
     window.addEventListener("flowglobe:select", (e) => {
-      if (!e.detail) return;
-      state.sel = e.detail;
-      renderSide();
+      if (!e.detail || !e.detail.node) return;
+      promptCountry(e.detail.node.name);
     });
 
     window.addEventListener("hashchange", () => setVariant(parseHash(), false));
@@ -417,9 +512,7 @@
     state.arcs = "all";
     state.spin = "on";
     state.ticks = [];
-    state.sel = null;
     state.cardStep = "intro";
-    state.email = "";
     state.market = null;
     state.copied = false;
     renderControls();
@@ -449,9 +542,9 @@
       renderSide();
       const loop = () => {
         pushTick();
-        setTimeout(loop, 1800);
+        setTimeout(loop, 2200);
       };
-      setTimeout(loop, 1800);
+      setTimeout(loop, 2200);
     });
   }
 
