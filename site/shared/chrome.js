@@ -5,20 +5,37 @@
   let step = 0;
   let open = false;
 
-  const tag = document.createElement("div");
-  tag.className = "isc-tag";
-  tag.textContent = "Simulated view";
-  document.body.appendChild(tag);
+  if (!meta.hideSimTag) {
+    const tag = document.createElement("div");
+    tag.className = "isc-tag";
+    tag.textContent = "Simulated view";
+    document.body.appendChild(tag);
+  }
 
   const tools = document.createElement("div");
   tools.className = "isc-tools";
 
-  const about = document.createElement("button");
-  about.type = "button";
-  about.textContent = "What you're looking at";
-  tools.appendChild(about);
+  if (!meta.hideAbout) {
+    const about = document.createElement("button");
+    about.type = "button";
+    about.textContent = "What you're looking at";
+    tools.appendChild(about);
 
-  if (tour.length) {
+    const panel = document.createElement("aside");
+    panel.className = "isc-panel";
+    panel.hidden = true;
+    panel.innerHTML =
+      "<h2>What you're looking at</h2>" +
+      "<p><strong>Channel.</strong> " + esc(meta.channel || "Indirect sales channels") + "</p>" +
+      "<p><strong>Simulated.</strong> " + esc(meta.simulated || "This screen is a simulation.") + "</p>" +
+      "<p><strong>What would need building.</strong> " + esc(meta.build || "Not specified.") + "</p>";
+    document.body.appendChild(panel);
+    about.addEventListener("click", () => {
+      panel.hidden = !panel.hidden;
+    });
+  }
+
+  if (tour.length && !meta.hideTour) {
     const tourBtn = document.createElement("button");
     tourBtn.type = "button";
     tourBtn.textContent = "Guided tour";
@@ -43,19 +60,6 @@
   }
 
   document.body.appendChild(tools);
-
-  const panel = document.createElement("aside");
-  panel.className = "isc-panel";
-  panel.hidden = true;
-  panel.innerHTML =
-    "<h2>What you're looking at</h2>" +
-    "<p><strong>Channel.</strong> " + esc(meta.channel || "Indirect sales channels") + "</p>" +
-    "<p><strong>Simulated.</strong> " + esc(meta.simulated || "This screen is a simulation.") + "</p>" +
-    "<p><strong>What would need building.</strong> " + esc(meta.build || "Not specified.") + "</p>";
-  document.body.appendChild(panel);
-  about.addEventListener("click", () => {
-    panel.hidden = !panel.hidden;
-  });
 
   const card = document.createElement("div");
   card.className = "isc-tour";
