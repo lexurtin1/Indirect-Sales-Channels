@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Chat</title>
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <link rel="stylesheet" href="/shared/chat-module.css">
+</head>
+<body class="chat-module">
+  <div class="cm-app" aria-label="Client AI assistant">
+    <aside class="cm-rail" id="cm-rail">
+      <div class="cm-brand-wrap">
+        <button type="button" class="cm-brand-btn hotspot" id="cm-brand-btn" aria-expanded="false" aria-haspopup="listbox">
+          <img class="cm-brand-logo" id="cm-brand-logo" alt="" hidden>
+          <span class="cm-brand-fallback" id="cm-brand-fallback">HSBC</span>
+          <span class="cm-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="cm-brand-menu" id="cm-brand-menu" role="listbox" hidden></div>
+      </div>
+      <button type="button" class="cm-new-chat" id="cm-new-chat">New chat</button>
+      <div class="cm-recents">
+        <span class="cm-recents-label">Recents</span>
+        <div id="cm-recents"></div>
+      </div>
+      <div class="cm-user" id="cm-user"></div>
+    </aside>
+
+    <main class="cm-main">
+      <header class="cm-header">
+        <span class="cm-thread-title" id="cm-thread-title"></span>
+      </header>
+      <div class="cm-scroll" id="cm-scroll" aria-live="polite">
+        <div class="cm-empty" id="cm-empty">
+          <h1 id="cm-greeting">Good morning</h1>
+          <div class="cm-chips" id="cm-chips"></div>
+        </div>
+        <div class="cm-msgs" id="cm-msgs" hidden></div>
+      </div>
+      <div class="cm-composer">
+        <form id="cm-ask" class="cm-ask">
+          <input id="cm-question" name="question" placeholder="Ask anything" autocomplete="off" aria-label="Ask a question">
+          <button class="cm-send" type="submit">Send</button>
+        </form>
+        <p class="cm-disclaimer">Sample data. The assistant can make mistakes.</p>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="cm-dialog" id="cm-dialog" aria-labelledby="cm-dialog-title">
+    <div class="cm-dialog-inner">
+      <div class="cm-dialog-head">
+        <h2 id="cm-dialog-title">Calastone MCP</h2>
+        <button type="button" class="cm-dialog-close" id="cm-dialog-close" aria-label="Close">Close</button>
+      </div>
+      <div id="cm-capture-card"></div>
+    </div>
+  </dialog>
+
+  <script type="application/json" id="isc-meta">
+  {
+    "channel": "AI-led discovery. A fund manager's assistant calls Calastone MCP tools.",
+    "simulated": "Answers are scripted. Figures are demo data. Product text marked TODO is not signed off. Client logos are for this private simulation only.",
+    "build": "A Calastone MCP connected to the firm's assistant, with entitlement-linked access.",
+    "tour": [
+      { "selector": "#cm-chips", "title": "Try a question", "body": "Each topic runs a scripted scenario with simulated Calastone MCP tool calls." },
+      { "selector": "#cm-msgs", "title": "The answer", "body": "Tool calls are listed quietly, then the reply. The contact address is selectable text." },
+      { "selector": "#cm-brand-btn", "title": "Change firm", "body": "Switch between HSBC, BlackRock and Vanguard. The chat resets. Shift+L also cycles brands." }
+    ]
+  }
+  </script>
+  <script src="/shared/chrome.js"></script>
+  <script src="/shared/chat-module.js"></script>
+</body>
+</html>

@@ -307,7 +307,7 @@
     if (typeof console !== "undefined" && console.info) {
       console.info("mcp_cta", { tier: "public", market: m });
     }
-    location.href = "/pages/mcp-download?" + qs.toString();
+    location.href = "/pages/chat?" + qs.toString();
   }
 
   function renderControls() {

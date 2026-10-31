@@ -2,87 +2,13 @@
 <html lang="en-GB">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>MCP download</title>
-  <link rel="stylesheet" href="/shared/tokens.css">
-  <link rel="stylesheet" href="/shared/chrome.css">
-  <link rel="stylesheet" href="/shared/mcp-download.css">
-</head>
-<body class="mcp-download">
-  <div class="md-shell">
-    <section class="md-chat" aria-label="Client AI assistant">
-      <aside class="md-rail" id="md-rail">
-        <div class="md-brand-wrap">
-          <button type="button" class="md-brand-btn hotspot" id="md-brand-btn" aria-expanded="false" aria-haspopup="listbox">
-            <span class="md-brand-mark" id="md-brand-mark" aria-hidden="true">N</span>
-            <span class="md-brand-name" id="md-brand-name">Northwind</span>
-            <span class="md-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="md-brand-menu" id="md-brand-menu" role="listbox" hidden></div>
-        </div>
-        <button type="button" class="md-new-chat" id="md-new-chat">
-          <span class="md-plus" aria-hidden="true">+</span>
-          New chat
-        </button>
-        <div class="md-recents">
-          <span class="md-recents-label">Recents</span>
-          <div id="md-recents"></div>
-        </div>
-        <div class="md-user" id="md-user"></div>
-      </aside>
-
-      <div class="md-main">
-        <header class="md-header">
-          <span class="md-thread-title" id="md-thread-title"></span>
-          <button type="button" class="md-open-capture hotspot" id="md-open-capture">Download MCP</button>
-        </header>
-        <div class="md-scroll" id="md-scroll" aria-live="polite">
-          <div class="md-empty" id="md-empty">
-            <div class="md-greeting">
-              <span class="md-greet-mark" id="md-greet-mark" aria-hidden="true">N</span>
-              <h1 id="md-greeting">Good morning</h1>
-            </div>
-            <div class="md-chips" id="md-chips"></div>
-          </div>
-          <div class="md-msgs" id="md-msgs" hidden></div>
-        </div>
-        <div class="md-composer">
-          <form id="md-ask" class="md-ask">
-            <input id="md-question" name="question" placeholder="Ask anything" autocomplete="off" aria-label="Ask a question">
-            <div class="md-ask-row">
-              <span class="md-tools-pill" aria-hidden="true">Tools</span>
-              <span class="md-mode">Scripted demo</span>
-              <button class="md-send" type="submit" aria-label="Send">↑</button>
-            </div>
-          </form>
-          <p class="md-disclaimer">Sample data. The assistant can make mistakes.</p>
-        </div>
-      </div>
-    </section>
-
-    <aside class="md-capture-panel" id="md-capture-panel" aria-label="Calastone MCP download">
-      <button type="button" class="md-capture-close" id="md-capture-close" hidden aria-label="Close download panel">×</button>
-      <div class="md-capture-card" id="md-capture-card"></div>
-    </aside>
-  </div>
-
-  <div class="md-drawer-backdrop" id="md-drawer-backdrop" hidden></div>
-
-  <script type="application/json" id="isc-meta">
-  {
-    "channel": "MCP download. A visitor installs the Calastone MCP, then sees what a firm's assistant can ask once connected.",
-    "simulated": "Download steps and chat answers are scripted. Figures in answers are demo data. Product text marked TODO is not signed off.",
-    "build": "A public MCP package, entitlement-linked sign-in, and a firm's AI assistant that can call Calastone tools.",
-    "tour": [
-      { "selector": "#md-chips", "title": "Try a question", "body": "Each chip runs a scripted scenario with simulated Calastone MCP tool calls." },
-      { "selector": "#md-msgs", "title": "Tool traces", "body": "Answers show which Calastone and internal tools were called before the reply." },
-      { "selector": "#md-capture-card", "title": "Download MCP", "body": "Enter a work email, then copy the simulated server config. The contact address is selectable text." },
-      { "selector": "#md-brand-btn", "title": "Change firm", "body": "Switch the client's brand. The chat resets. Shift+L also cycles brands." }
-    ]
-  }
+  <meta http-equiv="refresh" content="0; url=/pages/chat">
+  <title>Redirecting to Chat</title>
+  <script>
+    location.replace("/pages/chat" + location.search + location.hash);
   </script>
-  <script src="/shared/chrome.js"></script>
-  <script src="/shared/mcp-download.js"></script>
+</head>
+<body>
+  <p><a href="/pages/chat">Continue to Chat</a></p>
 </body>
 </html>
