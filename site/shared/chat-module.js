@@ -1,7 +1,6 @@
 (function () {
   const CONTACT = "clientservices@calastone.com";
   const CONFIG = '"calastone": {\n  "command": "calastone-mcp"\n}';
-  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
   const params = new URLSearchParams(location.search);
   const state = {
@@ -11,8 +10,7 @@
     msgs: [],
     busy: false,
     timers: [],
-    cardStep: params.get("download") === "1" ? "email" : "intro",
-    email: "",
+    cardStep: "intro",
     market: params.get("market") || null,
     tier: params.get("tier") === "private" ? "private" : "public",
     copied: false
@@ -612,63 +610,30 @@
     if (!card) return;
     const privateTier = state.tier === "private";
     const caps = (state.data && state.data.capabilities) || [];
+    const prompt = state.market
+      ? "order volume by distributor in " + state.market + ", Q3 2025."
+      : "net flows by distributor, last month.";
+    const snippet = (state.data && state.data.configSnippet) || CONFIG;
 
     if (state.cardStep === "intro") {
       card.innerHTML =
         '<div class="cm-capture"><p class="lede">' +
         (privateTier
-          ? "Request a private MCP scoped to your firm's entitlements. Simulated only."
-          : "An MCP server that lets an MCP-compatible assistant read your firm's Calastone data.") +
+          ? "Request a private MCP. Simulated only."
+          : "Use the Calastone MCP from this assistant to query network insights.") +
         '</p><div class="cap-list">' +
         caps.map((c) => "<span>" + esc(c) + "</span>").join("") +
-        '</div><button type="button" class="cm-btn cm-btn-ink" id="cap-to-email">' +
-        (privateTier ? "Request access" : "Continue") +
-        '</button><span class="cm-fine">Read-only · scoped to your entitlements</span></div>';
-      $("cap-to-email").addEventListener("click", () => {
-        state.cardStep = "email";
-        renderCapture();
-      });
-      return;
-    }
-
-    if (state.cardStep === "email") {
-      card.innerHTML =
-        '<div class="cm-capture"><button type="button" class="back" id="cap-back">Back</button>' +
-        '<p class="lede">Enter your work email to link the MCP to your firm\'s entitlements.</p>' +
-        '<label>Work email<input type="email" id="cap-email" placeholder="name@yourfirm.com" value="' +
-        esc(state.email) +
-        '" autocomplete="email"><span class="hint" id="cap-hint"></span></label>' +
-        '<button type="button" class="cm-btn cm-btn-ink" id="cap-submit">' +
-        (privateTier ? "Submit request" : "Download") +
+        '</div><button type="button" class="cm-btn cm-btn-ink" id="cap-continue">' +
+        (privateTier ? "Show config" : "Show config") +
         "</button></div>";
-      $("cap-hint").textContent = state.market
-        ? "Market selected: " + state.market
-        : "Business address required";
-      const input = $("cap-email");
-      const submit = $("cap-submit");
-      submit.disabled = !EMAIL_RE.test(state.email);
-      input.addEventListener("input", () => {
-        state.email = input.value;
-        submit.disabled = !EMAIL_RE.test(state.email);
-      });
-      $("cap-back").addEventListener("click", () => {
-        state.cardStep = "intro";
-        renderCapture();
-      });
-      submit.addEventListener("click", () => {
-        if (!EMAIL_RE.test(state.email)) return;
+      $("cap-continue").addEventListener("click", () => {
         state.cardStep = "done";
         state.copied = false;
         renderCapture();
       });
-      input.focus();
       return;
     }
 
-    const prompt = state.market
-      ? "order volume by distributor in " + state.market + ", Q3 2025."
-      : "net flows by distributor, last month.";
-    const snippet = (state.data && state.data.configSnippet) || CONFIG;
     card.innerHTML =
       '<div class="cm-capture"><div class="cm-setup">' +
       "<span>1. Open your client's MCP settings.</span>" +
@@ -760,8 +725,7 @@
     state.msgs = [];
     state.busy = false;
     state.brandKey = "hsbc";
-    state.cardStep = params.get("download") === "1" ? "email" : "intro";
-    state.email = "";
+    state.cardStep = "intro";
     state.copied = false;
     state.market = params.get("market") || null;
     state.tier = params.get("tier") === "private" ? "private" : "public";
@@ -769,7 +733,6 @@
     applyBrandTheme();
     renderThread();
     renderCapture();
-    if (params.get("download") === "1") openDialog();
   }
 
   window.iscReset = reset;
@@ -780,7 +743,6 @@
     applyBrandTheme();
     renderThread();
     renderCapture();
-    if (params.get("download") === "1") openDialog();
   }
 
   fetch("/data/chatbot/chat-scripts.json")
