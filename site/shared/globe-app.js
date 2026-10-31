@@ -255,13 +255,13 @@
       log("mcp_cta", { tier: "public", country: selectedIso });
       const qs = new URLSearchParams({ from: "globe", tier: "public", download: "1" });
       if (selectedIso) qs.set("market", selectedIso);
-      location.href = "/pages/chat?" + qs.toString();
+      location.href = "/pages/mcp-assistant?" + qs.toString();
     });
     $("mcp-private").addEventListener("click", () => {
       log("mcp_cta", { tier: "private", country: selectedIso });
       const qs = new URLSearchParams({ from: "globe", tier: "private", download: "1" });
       if (selectedIso) qs.set("market", selectedIso);
-      location.href = "/pages/chat?" + qs.toString();
+      location.href = "/pages/mcp-assistant?" + qs.toString();
     });
     $("copy-contact").addEventListener("click", async () => {
       const text = $("contact").textContent;

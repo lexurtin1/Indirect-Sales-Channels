@@ -247,9 +247,16 @@
   }
 
   function finishDownload() {
-    state.cardStep = "done";
-    state.copied = false;
-    renderCard();
+    const qs = new URLSearchParams({
+      from: "globe",
+      tier: "public",
+      download: "1"
+    });
+    if (state.market) qs.set("market", state.market);
+    if (typeof console !== "undefined" && console.info) {
+      console.info("mcp_cta", { tier: "public", market: state.market || null });
+    }
+    location.href = "/pages/mcp-assistant?" + qs.toString();
   }
 
   function openDownload(market) {

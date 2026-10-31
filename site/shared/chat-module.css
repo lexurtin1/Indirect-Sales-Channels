@@ -1,14 +1,22 @@
-/* Full-screen client chat module */
+/* Full-screen MCP assistant; colours come from the selected asset manager */
 
 html, body.chat-module {
   height: 100%;
   overflow: hidden;
-  background: #f7f7f5;
+  background: var(--cm-bg, #f7f7f5);
   color: var(--ink-800);
 }
 
 body.chat-module {
   margin: 0;
+}
+
+/* No glowing green hotspot dots on this screen */
+body.chat-module .hotspot::after,
+body.chat-module .isc-tools button::after {
+  display: none !important;
+  animation: none !important;
+  box-shadow: none !important;
 }
 
 .cm-app {
@@ -19,13 +27,18 @@ body.chat-module {
   --b: #111111;
   --bd: #000000;
   --bs: #efefec;
+  --cm-bg: #f7f7f5;
+  --cm-rail: #f0f0ed;
+  --cm-line: #e2e2dd;
+  --cm-surface: #fafaf8;
+  background: var(--cm-bg);
 }
 
 .cm-rail {
   width: 248px;
   flex: none;
-  background: #f0f0ed;
-  border-right: 1px solid #e2e2dd;
+  background: var(--cm-rail);
+  border-right: 1px solid var(--cm-line);
   display: flex;
   flex-direction: column;
   padding: 16px 12px;
@@ -48,7 +61,7 @@ body.chat-module {
   cursor: pointer;
 }
 
-.cm-brand-btn:hover { background: #e6e6e1; }
+.cm-brand-btn:hover { background: var(--bs); }
 
 .cm-brand-logo {
   height: 18px;
@@ -99,7 +112,7 @@ body.chat-module {
 }
 
 .cm-brand-option:hover,
-.cm-brand-option[aria-selected="true"] { background: var(--ink-050); }
+.cm-brand-option[aria-selected="true"] { background: var(--bs); }
 
 .cm-brand-option img {
   height: 16px;
@@ -124,7 +137,7 @@ body.chat-module {
 .cm-new-chat {
   height: 36px;
   border-radius: 6px;
-  border: 1px solid #ddd9d2;
+  border: 1px solid var(--cm-line);
   background: transparent;
   font-size: 13px;
   color: var(--ink-800);
@@ -133,7 +146,11 @@ body.chat-module {
   padding: 0 12px;
 }
 
-.cm-new-chat:hover { background: #e6e6e1; }
+.cm-new-chat:hover {
+  background: var(--bs);
+  border-color: var(--b);
+  color: var(--bd);
+}
 
 .cm-recents {
   display: flex;
@@ -171,15 +188,15 @@ body.chat-module {
   align-items: center;
   gap: 10px;
   padding: 10px;
-  border-top: 1px solid #e2e2dd;
+  border-top: 1px solid var(--cm-line);
 }
 
 .cm-user-avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #d8d8d2;
-  color: var(--ink-800);
+  background: var(--b);
+  color: #fff;
   font-size: 11px;
   font-weight: 600;
   display: flex;
@@ -209,7 +226,7 @@ body.chat-module {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  background: #fafaf8;
+  background: var(--cm-surface);
 }
 
 .cm-header {
@@ -217,16 +234,31 @@ body.chat-module {
   flex: none;
   display: flex;
   align-items: center;
+  gap: 12px;
   padding: 0 24px;
-  border-bottom: 1px solid #ebebe6;
+  border-bottom: 1px solid var(--cm-line);
 }
 
 .cm-thread-title {
+  flex: 1;
   font-size: 13px;
   color: var(--ink-600);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.cm-connected {
+  flex: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bd);
+  background: var(--bs);
+  border: 1px solid color-mix(in srgb, var(--b) 22%, transparent);
+  border-radius: 4px;
+  padding: 4px 8px;
 }
 
 .cm-scroll {
@@ -262,7 +294,7 @@ body.chat-module {
 }
 
 .cm-chip {
-  border: 1px solid #ddd9d2;
+  border: 1px solid var(--cm-line);
   background: #fff;
   border-radius: 6px;
   padding: 8px 12px;
@@ -272,8 +304,9 @@ body.chat-module {
 }
 
 .cm-chip:hover {
-  border-color: #bbb;
-  color: var(--ink-900);
+  border-color: var(--b);
+  color: var(--bd);
+  background: var(--bs);
 }
 
 .cm-msgs {
@@ -290,7 +323,8 @@ body.chat-module {
 .cm-bubble-user {
   align-self: flex-end;
   max-width: 78%;
-  background: #ecece7;
+  background: var(--bs);
+  border: 1px solid color-mix(in srgb, var(--b) 16%, transparent);
   border-radius: 12px;
   padding: 10px 14px;
   font-size: 15px;
@@ -307,7 +341,7 @@ body.chat-module {
 }
 
 .cm-trace {
-  border: 1px solid #e4e4df;
+  border: 1px solid color-mix(in srgb, var(--b) 18%, #e4e4df);
   border-radius: 8px;
   background: #fff;
   overflow: hidden;
@@ -328,7 +362,7 @@ body.chat-module {
   text-align: left;
 }
 
-.cm-trace-head:hover { background: #f5f5f1; }
+.cm-trace-head:hover { background: var(--bs); }
 
 .cm-trace-brand {
   display: flex;
@@ -346,7 +380,7 @@ body.chat-module {
 .cm-trace-brand em {
   font-style: normal;
   font-size: 10px;
-  color: var(--ink-500);
+  color: var(--bd);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -366,7 +400,7 @@ body.chat-module {
   display: flex;
   flex-direction: column;
   padding: 0 0 6px;
-  border-top: 1px solid #efefea;
+  border-top: 1px solid var(--cm-line);
 }
 
 .cm-tool-row {
@@ -385,11 +419,11 @@ body.chat-module {
   background: #c5c5be;
 }
 
-.cm-tool-mark.done-mcp { background: var(--teal-600); }
-.cm-tool-mark.done-int { background: #8a8a82; }
+.cm-tool-mark.done-mcp { background: var(--b); }
+.cm-tool-mark.done-int { background: var(--bd); }
 .cm-tool-mark.pending {
   background: transparent;
-  border: 1px solid #c5c5be;
+  border: 1px solid color-mix(in srgb, var(--b) 35%, #c5c5be);
   box-sizing: border-box;
 }
 
@@ -460,7 +494,7 @@ body.chat-module {
   color: var(--ink-500);
 }
 
-.cm-metric .delta.good { color: var(--teal-700); }
+.cm-metric .delta.good { color: var(--bd); }
 .cm-metric .delta.bad { color: var(--status-danger); }
 
 .cm-table-wrap {
@@ -531,7 +565,7 @@ body.chat-module {
 
 .cm-bar-fill {
   height: 100%;
-  background: #6e7a84;
+  background: var(--b);
   border-radius: 2px;
 }
 
@@ -551,7 +585,7 @@ body.chat-module {
 .cm-step .n {
   font-size: 11px;
   font-weight: 600;
-  color: var(--ink-500);
+  color: var(--bd);
   letter-spacing: 0.06em;
 }
 
@@ -586,8 +620,8 @@ body.chat-module {
 }
 
 .cm-source.mcp {
-  background: var(--teal-soft);
-  color: var(--teal-deep);
+  background: var(--bs);
+  color: var(--bd);
 }
 
 .cm-end-actions {
@@ -598,7 +632,7 @@ body.chat-module {
 }
 
 .cm-follow {
-  border: 1px solid #ddd9d2;
+  border: 1px solid var(--cm-line);
   background: #fff;
   border-radius: 6px;
   padding: 6px 10px;
@@ -607,7 +641,11 @@ body.chat-module {
   cursor: pointer;
 }
 
-.cm-follow:hover { border-color: #bbb; }
+.cm-follow:hover {
+  border-color: var(--b);
+  color: var(--bd);
+  background: var(--bs);
+}
 
 .cm-text-btn {
   border: none;
@@ -641,8 +679,8 @@ body.chat-module {
 .cm-composer {
   flex: none;
   padding: 12px 24px 20px;
-  border-top: 1px solid #ebebe6;
-  background: #fafaf8;
+  border-top: 1px solid var(--cm-line);
+  background: var(--cm-surface);
 }
 
 .cm-ask {
@@ -652,9 +690,14 @@ body.chat-module {
   gap: 8px;
   align-items: center;
   background: #fff;
-  border: 1px solid #ddd9d2;
+  border: 1px solid var(--cm-line);
   border-radius: 10px;
   padding: 8px 8px 8px 14px;
+}
+
+.cm-ask:focus-within {
+  border-color: var(--b);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--b) 18%, transparent);
 }
 
 .cm-ask input {
@@ -670,7 +713,7 @@ body.chat-module {
 .cm-send {
   border: none;
   border-radius: 6px;
-  background: var(--ink-900);
+  background: var(--b);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
@@ -679,7 +722,7 @@ body.chat-module {
   flex: none;
 }
 
-.cm-send:hover { background: var(--ink-800); }
+.cm-send:hover { background: var(--bd); }
 
 .cm-disclaimer {
   margin: 8px 0 0;
@@ -809,9 +852,11 @@ body.chat-module {
 }
 
 .cm-btn-ink {
-  background: var(--ink-900);
+  background: var(--b);
   color: #fff;
 }
+
+.cm-btn-ink:hover { background: var(--bd); }
 
 .cm-btn-ink:disabled {
   opacity: 0.4;

@@ -24,13 +24,12 @@ The front page is the navigation. Each card opens one screen.
 | --- | --- | --- | --- | --- |
 | 0 | Front page | Pulse-style card navigation and a one-paragraph intro | n/a | Reuse the front navigation from `calastone-network-vis` |
 | 1 | Calastone website with flow globe | The calastone.com homepage with an interactive globe: click any country to see fund flows in both directions, with deeper data offered through the Calastone MCP | Data as a hook; AI-led discovery | Recreate the homepage from screenshots; globe from published FFI data |
-| 2 | Calastone MCP sales assistant | A chatbot branded with a fund manager's logo. Questions trigger the Calastone MCP, which answers with a Calastone solution and a contact | AI-led discovery; lead creation | Original chat UI, scripted answers (section 3) |
+| 2 | MCP assistant | A fund manager's assistant (HSBC, BlackRock or Vanguard) calls Calastone MCP tools; colours follow the selected firm | AI-led discovery | Full-screen chat; scripted answers in `data/chatbot/chat-scripts.json` |
 | 3 | Salesforce trend alert | A fund manager's Salesforce account page with a Calastone flow alert sliding in | Data product inside client CRMs | Recreate from screenshots using the Salesforce Lightning Design System |
 | 4 | Sales Navigator inside Salesforce | A consultancy record with a Sales Navigator panel showing which asset managers it advises and the warm path to them | Consultant relationships | Panel inside the Salesforce recreation |
 | 5 | Agent-to-agent network | Animated diagram of firms' AI agents messaging through Calastone, which verifies identity and permissions | Calastone as the trusted router for AI agents | Original animated diagram |
-| 6 | Chat | A fund manager's assistant (HSBC, BlackRock or Vanguard) calls Calastone MCP tools | AI-led discovery | Vanilla port of the Chat MCP package; scripted answers in `data/chatbot/chat-scripts.json` |
 
-Screen 1's Download MCP buttons also open screen 6 (Chat), with an optional install dialog.
+Screen 1's Download MCP buttons also open screen 2 (MCP assistant), with an optional install dialog.
 
 ### Shared elements on every screen
 
@@ -192,24 +191,24 @@ calastone-indirect-channels/
       salesforce-alert.html  screen 3
       sales-navigator.html   screen 4
       agent-network.html     screen 5
-      chat.html              screen 6
+      chat.html              redirects to mcp-assistant
       channel-map.html       kept off the front page; not linked from navigation
     shared/
       tokens.css             Calastone design tokens
       chrome.css             simulated tag, info panel, hotspots, tour, reset
       chrome.js              shared behaviour for the above
-      chat-module.css        full-screen client chat layout
+      chat-module.css        full-screen MCP assistant layout
       chat-module.js         brand switcher, scripted MCP chat, optional install dialog
     assets/
       brand/                 Calastone wordmark and brand assets
-      brands/                client logos for the chat module (private use only)
+      brands/                client logos for the MCP assistant (private use only)
       logos/                 client logos for the chatbot (private use only)
   data/
     ffi/raw/                 public FFI reports (PDF)
     ffi/extracted/ffi.json   extracted figures with sources
     network/illustrative-network.json  synthetic country and corridor flows
-    chatbot/scripts.json     screen 2 chatbot topics and answers
-    chatbot/chat-scripts.json  screen 6 brands and scenarios
+    chatbot/scripts.json     legacy topic scripts
+    chatbot/chat-scripts.json  MCP assistant brands and scenarios
   scripts/
     validate-ffi.mjs         checks ffi.json
     generate-illustrative-network.mjs  builds the illustrative network data

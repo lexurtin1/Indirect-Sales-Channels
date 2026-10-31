@@ -103,12 +103,19 @@
 
   function applyBrandTheme() {
     const b = brand();
+    const root = document.body;
     const app = document.querySelector(".cm-app");
-    if (app) {
-      app.style.setProperty("--b", b.accent);
-      app.style.setProperty("--bd", b.dark);
-      app.style.setProperty("--bs", b.soft);
-    }
+    const targets = [root, app].filter(Boolean);
+    targets.forEach((el) => {
+      el.style.setProperty("--b", b.accent);
+      el.style.setProperty("--bd", b.dark);
+      el.style.setProperty("--bs", b.soft);
+      el.style.setProperty("--cm-bg", b.soft);
+      el.style.setProperty("--cm-rail", b.soft);
+      el.style.setProperty("--cm-surface", "#ffffff");
+      el.style.setProperty("--cm-line", b.accent + "22");
+    });
+    document.documentElement.style.background = b.soft;
     setLogo($("cm-brand-logo"), $("cm-brand-fallback"), b.logo, b.wordmark);
     $("cm-greeting").textContent = greeting() + ", " + b.first;
     $("cm-user").innerHTML =
@@ -179,7 +186,7 @@
     $("cm-chips").innerHTML = state.data.scenarios
       .map(
         (sc) =>
-          '<button type="button" class="cm-chip hotspot" data-sc="' +
+          '<button type="button" class="cm-chip" data-sc="' +
           esc(sc.id) +
           '">' +
           esc(sc.chip) +
