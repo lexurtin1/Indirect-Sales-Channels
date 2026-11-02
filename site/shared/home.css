@@ -117,20 +117,21 @@ main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 14px 24px 16px; 
 
 .home-layout {
   display: grid;
-  grid-template-columns: 296px minmax(0, 1fr);
-  gap: 28px;
-  align-items: start;
+  grid-template-columns: minmax(360px, 0.38fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
 }
 .home-cards {
-  width: 296px;
-  max-width: 296px;
+  width: 100%;
+  max-width: 400px;
   min-width: 0;
+  justify-self: center;
   padding-right: 0;
   border-right: none;
   position: relative;
   z-index: 2;
 }
-.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .diagram-slot {
   position: relative;
   width: 100%;
@@ -156,8 +157,8 @@ main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 14px 24px 16px; 
   flex-direction: column;
   background: #fff;
   border: 1.5px solid var(--ink-200);
-  border-radius: 12px;
-  padding: 14px;
+  border-radius: 14px;
+  padding: 18px;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(34, 50, 61, 0.1), 0 1px 2px rgba(34, 50, 61, 0.05);
   transition: var(--transition-base);
@@ -172,26 +173,26 @@ article.tool-card:hover { transform: none; box-shadow: 0 4px 14px rgba(34, 50, 6
 .tool-card:focus { box-shadow: var(--focus-ring); border-color: var(--accent-500); outline: none; }
 .tool-card .card-num {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--ink-300);
 }
-.tool-card .card-icon { margin-bottom: 10px; color: var(--ink-500); }
-.tool-card .card-icon svg { width: 34px; height: 34px; }
+.tool-card .card-icon { margin-bottom: 12px; color: var(--ink-500); }
+.tool-card .card-icon svg { width: 40px; height: 40px; }
 .tool-card h2 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--ink-900);
   letter-spacing: -0.01em;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   line-height: 1.25;
 }
 .tool-card p {
-  font-size: 11.5px;
-  line-height: 1.35;
+  font-size: 12.5px;
+  line-height: 1.4;
   color: var(--ink-600);
   margin: 0;
   display: -webkit-box;
@@ -201,7 +202,7 @@ article.tool-card:hover { transform: none; box-shadow: 0 4px 14px rgba(34, 50, 6
 }
 .tool-card .card-later {
   margin-top: auto;
-  padding-top: 8px;
+  padding-top: 10px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -218,8 +219,8 @@ article.tool-card:hover { transform: none; box-shadow: 0 4px 14px rgba(34, 50, 6
 }
 
 @media (max-width: 1100px) {
-  .home-layout { grid-template-columns: 1fr; gap: 20px; }
-  .home-cards { width: 100%; max-width: 420px; padding-bottom: 16px; border-bottom: 1px solid var(--ink-200); }
+  .home-layout { grid-template-columns: 1fr; gap: 20px; align-items: start; }
+  .home-cards { width: 100%; max-width: 400px; justify-self: start; padding-bottom: 16px; border-bottom: 1px solid var(--ink-200); }
   main { padding-top: 28px; }
 }
 @media (max-width: 900px) {
