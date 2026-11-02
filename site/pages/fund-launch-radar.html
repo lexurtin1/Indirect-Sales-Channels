@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Fund Launch Radar</title>
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <link rel="stylesheet" href="/shared/fund-launch-radar.css">
+</head>
+<body class="flr-page">
+  <div id="app">
+    <div id="stage">
+      <div id="globe-container"></div>
+      <div id="globe-loading">Initialising radar…</div>
+      <div id="err" hidden>
+        <div class="box">
+          <h3>Network map could not load</h3>
+          <p>The country boundary data did not reach your browser. The live feed still works.</p>
+          <button type="button" id="retry-geo">Retry loading map</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-block">
+      <img src="/assets/brand/calastone-wordmark-black.png" alt="Calastone">
+      <div class="wm-rule"></div>
+      <div class="subbrand">Fund Launch Radar · 2026</div>
+    </div>
+
+    <div class="hero">
+      <div class="big"><span id="stat-alerts" data-count="0">0</span><span class="unit">alerts</span></div>
+      <div class="lead">live across <b id="stat-markets">0</b> markets. Regulatory shifts, competitor moves, and new identifiers, tracked in this simulation.</div>
+      <div class="mini">
+        <div><div class="v" id="stat-countries">0</div><div class="k">Countries monitored</div></div>
+        <div><div class="v" id="stat-comp">0</div><div class="k">Competitor events</div></div>
+        <div><div class="v alert" id="stat-high">0</div><div class="k">High priority</div></div>
+      </div>
+    </div>
+
+    <div class="legend" id="legend" aria-label="Alert categories">
+      <h4>Order intelligence</h4>
+      <button type="button" class="lg-item on" data-cat="regulatory"><span class="lg-dot cat-reg"></span>Regulatory<span class="lg-n" id="c-reg">0</span></button>
+      <button type="button" class="lg-item on" data-cat="competitor"><span class="lg-dot cat-comp"></span>Competitor<span class="lg-n" id="c-comp">0</span></button>
+      <button type="button" class="lg-item on" data-cat="market"><span class="lg-dot cat-mkt"></span>Market<span class="lg-n" id="c-mkt">0</span></button>
+      <button type="button" class="lg-item on" data-cat="call"><span class="lg-dot cat-call"></span>Call note<span class="lg-n" id="c-call">0</span></button>
+      <button type="button" class="lg-item on" data-cat="identifier"><span class="lg-dot cat-id"></span>Identifier<span class="lg-n" id="c-id">0</span></button>
+    </div>
+
+    <div class="pills" role="group" aria-label="Globe controls">
+      <button type="button" class="pill active" data-view="rotate">Auto-rotate</button>
+      <button type="button" class="pill" data-view="pause">Pause spin</button>
+      <button type="button" class="pill" data-view="reset">Reset view</button>
+    </div>
+
+    <aside id="feed-rail">
+      <button type="button" id="feed-toggle" aria-label="Toggle live feed" aria-expanded="true">
+        <span class="chev">›</span>
+        <span class="pip"></span>
+        <span class="vlabel">Live feed</span>
+      </button>
+      <div class="feed-head">
+        <div class="ttl"><span class="live"></span><span id="feed-title">Live alert feed</span></div>
+        <div class="sub" id="feed-sub"></div>
+        <div class="region-filters" id="regionFilters">
+          <button type="button" class="rf-btn active" data-region="all">All</button>
+          <button type="button" class="rf-btn" data-region="emea">EMEA</button>
+          <button type="button" class="rf-btn" data-region="americas">Americas</button>
+          <button type="button" class="rf-btn" data-region="asia">Asia</button>
+          <button type="button" class="rf-btn" data-region="australia">Australia</button>
+        </div>
+      </div>
+      <div class="feed scroll" id="feed"></div>
+    </aside>
+  </div>
+
+  <div id="isin-toast" class="isin-toast" hidden role="status" aria-live="polite">
+    <div class="toast-kicker">New identifier</div>
+    <div class="toast-title" id="toast-title">New ISIN created</div>
+    <p class="toast-body" id="toast-body"></p>
+    <button type="button" class="toast-cta" id="toast-open">Open in feed</button>
+  </div>
+
+  <script type="application/json" id="isc-meta">
+  {}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.27.1/dist/globe.gl.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="/shared/chrome.js"></script>
+  <script src="/shared/fund-launch-radar.js"></script>
+</body>
+</html>
