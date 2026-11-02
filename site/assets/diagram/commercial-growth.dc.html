@@ -84,13 +84,15 @@
         </div>
       </div>
 
-      <div style="position:absolute;left:130px;top:670px;width:500px;height:200px;box-sizing:border-box;background:#22323d;color:#fff;border-radius:16px;padding:18px 22px;display:flex;flex-direction:column;gap:12px;box-shadow:0 16px 40px rgba(34,50,61,.28);overflow:hidden;border:2px solid #0fb89c">
-        <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="position:absolute;left:120px;top:640px;width:520px;height:236px;box-sizing:border-box;background:#22323d;color:#fff;border-radius:16px;padding:18px 22px 56px;display:flex;flex-direction:column;gap:10px;box-shadow:0 16px 40px rgba(34,50,61,.28);overflow:hidden;border:2px solid #0fb89c">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
           <div style="display:flex;align-items:center;gap:8px"><i class="icon-inbox" style="font-size:18px;color:#0fb89c"></i><span style="font-size:14px;letter-spacing:.14em;font-weight:700">OPPORTUNITY BRIEF · {{ b.region }}</span></div>
           <span style="font-size:14px;color:rgba(255,255,255,.75)">from {{ b.src }}</span>
         </div>
-        {{ briefBody }}
-        <div style="display:flex;gap:8px;margin-top:auto">
+        <div style="flex:1;min-height:0;overflow:hidden">
+          {{ briefBody }}
+        </div>
+        <div style="position:absolute;left:22px;right:22px;bottom:16px;display:flex;gap:8px;flex-shrink:0">
           <span style="font-size:15px;font-weight:700;padding:8px 16px;border-radius:6px;background:#0fb89c;color:#0d1418">Approve</span>
           <span style="font-size:15px;font-weight:600;padding:8px 16px;border-radius:6px;border:1px solid rgba(255,255,255,.35)">Edit</span>
           <span style="font-size:15px;font-weight:600;padding:8px 16px;border-radius:6px;border:1px solid rgba(255,255,255,.35)">Dismiss</span>
@@ -147,7 +149,7 @@ class Component extends DCLogic {
       b,
       wires: this.wires(cur),
       pulse: this.reduce ? null : h('div', { style: { position: 'absolute', inset: 0, borderRadius: 999, background: '#0fb89c', animation: 'cgPulse 2s ease-out infinite' } }),
-      briefBody: h('div', { key: 'body' + cur, style: { display: 'flex', flexDirection: 'column', gap: 8, animation: this.reduce ? 'none' : 'cgFade 360ms ease-out' } }, row('w', 'WHO', b.who), row('y', 'WHY NOW', b.why), row('n', 'NEXT STEP', b.next)),
+      briefBody: h('div', { key: 'body' + cur, style: { display: 'flex', flexDirection: 'column', gap: 8, height: '100%', animation: this.reduce ? 'none' : 'cgFade 360ms ease-out' } }, row('w', 'WHO', b.who), row('y', 'WHY NOW', b.why), row('n', 'NEXT STEP', b.next)),
       timer: this.state.hover == null && !this.reduce ? h('div', { key: 't' + this.state.step, style: { position: 'absolute', left: 0, bottom: 0, height: 3, background: '#0fb89c', animation: `cgFill ${this.props.cycleSeconds ?? 8}s linear` } }) : null,
       leave: () => this.setState({ hover: null })
     };
