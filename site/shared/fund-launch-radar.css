@@ -102,43 +102,86 @@
 
 .brand-block {
   position: absolute;
-  top: 22px;
-  left: 28px;
+  top: 20px;
+  left: 24px;
   z-index: 7;
   pointer-events: none;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.97);
   border: 1px solid var(--ink-100);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 999px;
-  padding: 10px 18px 10px 16px;
+  padding: 12px 22px 12px 18px;
   box-shadow: var(--shadow);
+  overflow: visible;
+}
+
+.brand-inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .brand-block img {
-  height: 22px;
+  height: 34px;
   width: auto;
-  mix-blend-mode: multiply;
+  display: block;
 }
 
 .brand-divider {
   width: 1px;
-  height: 16px;
+  height: 22px;
   background: var(--ink-200);
   flex-shrink: 0;
 }
 
 .subbrand {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--ink-600);
+  color: var(--ink-700);
   text-transform: none;
   white-space: nowrap;
+}
+
+.brand-hex {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  z-index: 2;
+  fill: var(--teal-500);
+  stroke: var(--surface);
+  stroke-width: 1.25;
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 4px rgba(45, 154, 142, 0.4));
+  offset-path: border-box;
+  offset-anchor: center;
+  offset-rotate: 0deg;
+  offset-distance: 0%;
+  animation: brandHexOrbit 18s linear infinite, brandHexPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes brandHexOrbit {
+  to { offset-distance: 100%; }
+}
+
+@keyframes brandHexPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@supports not (offset-path: border-box) {
+  .brand-hex {
+    offset-path: none;
+    top: -6px;
+    left: 28%;
+    animation: brandHexPulse 2.6s ease-in-out infinite;
+  }
 }
 
 .activity-bell {
