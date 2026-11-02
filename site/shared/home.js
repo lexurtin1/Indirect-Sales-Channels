@@ -8,35 +8,6 @@
     dateline.textContent = part + " · " + date;
   }
 
-  const search = document.getElementById("search");
-  const cards = Array.from(document.querySelectorAll(".tool-card"));
-  const empty = document.getElementById("empty");
-  if (search && cards.length) {
-    const params = new URLSearchParams(location.search);
-    if (params.get("q")) search.value = params.get("q");
-    const filter = () => {
-      const q = search.value.trim().toLowerCase();
-      let shown = 0;
-      cards.forEach((card) => {
-        const match = !q || card.innerText.toLowerCase().includes(q);
-        card.hidden = !match;
-        if (match) shown += 1;
-      });
-      if (empty) empty.hidden = shown !== 0;
-    };
-    search.addEventListener("input", filter);
-    filter();
-  }
-
-  const navSearch = document.getElementById("nav-search");
-  if (navSearch) {
-    navSearch.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter") return;
-      const q = navSearch.value.trim();
-      location.href = q ? "/?q=" + encodeURIComponent(q) : "/";
-    });
-  }
-
   const slot = document.getElementById("diagram-slot");
   const growthFrame = document.getElementById("growth-frame");
   if (slot && growthFrame) {

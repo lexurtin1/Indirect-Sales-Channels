@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Indirect sales channels</title>
+  <title>Indirect Sales Channels</title>
   <link rel="stylesheet" href="/shared/tokens.css">
   <link rel="stylesheet" href="/shared/chrome.css">
   <link rel="stylesheet" href="/shared/home.css">
@@ -17,16 +17,6 @@
       <span class="pulse-label">Pulse</span>
       <canvas id="ph-ecg" width="52" height="13"></canvas>
     </div>
-    <nav class="ph-nav" aria-label="Pulse navigation">
-      <a href="/" class="ph-nav-link">System Architecture</a>
-    </nav>
-    <div class="ph-search">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle>
-        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-      </svg>
-      <input id="search" type="text" placeholder="Search workspaces, accounts, markets…" aria-label="Search options">
-    </div>
     <div class="ph-user" aria-hidden="true"></div>
   </header>
 
@@ -34,8 +24,7 @@
     <div class="page-head">
       <div>
         <div class="eyebrow" id="greeting-date"></div>
-        <h1>Indirect sales channels</h1>
-        <p class="lede">Fund Flow Explorer is a working simulation. The other three channels are not built yet. Volumes, conversion and revenue are not known.</p>
+        <h1>Indirect Sales Channels</h1>
       </div>
     </div>
 
@@ -72,10 +61,10 @@
             <span class="card-num">03</span>
             <div class="card-icon">
               <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="1.6"></circle>
-                <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="1.4"></circle>
-                <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.2"></circle>
-                <path d="M24 6v6M38 24h-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+                <circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="1.4"></circle>
+                <ellipse cx="24" cy="24" rx="6" ry="14" stroke="currentColor" stroke-width="1.2"></ellipse>
+                <line x1="10" y1="24" x2="38" y2="24" stroke="currentColor" stroke-width="1.2"></line>
+                <path d="M11 29 Q24 7 37 25" stroke="var(--accent-500)" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="1.5 5"></path>
               </svg>
             </div>
             <h2>Fund launch radar</h2>
@@ -96,7 +85,6 @@
             <span class="card-later">Later</span>
           </article>
         </div>
-        <p class="empty-note" id="empty" hidden>No option matches that search.</p>
       </div>
       <div class="diagram-slot" id="diagram-slot">
         <iframe id="growth-frame" title="Commercial growth diagram" src="/assets/diagram/commercial-growth.dc.html" scrolling="no"></iframe>

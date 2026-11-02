@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/lucide-static@0.544.0/font/lucide.css">
   <script src="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/_ds_bundle.js"></script>
   <style>
-    body { margin: 0; background: #f7fafc; }
+    html, body { margin: 0; background: transparent; }
     a { color: #2d9a8e; } a:hover { color: #0fb89c; }
     @keyframes cgPulse { 0% { transform: scale(1); opacity: .5 } 100% { transform: scale(1.9); opacity: 0 } }
     @keyframes cgFill { from { width: 0% } to { width: 100% } }
@@ -22,7 +22,7 @@
     }
   </style>
 </helmet>
-<div style="min-height:100vh;background:#f7fafc;font-family:'Gill Sans MT','Gill Sans',Calibri,sans-serif;color:#0d1418;display:flex;justify-content:center;padding:40px 24px;box-sizing:border-box;overflow:hidden">
+<div style="min-height:100vh;background:transparent;font-family:'Gill Sans MT','Gill Sans',Calibri,sans-serif;color:#0d1418;display:flex;justify-content:center;padding:40px 24px;box-sizing:border-box;overflow:hidden">
   <div style="position:relative;width:920px;height:1000px;flex-shrink:0">
 
     <div style="position:absolute;left:0;top:44px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">01</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">SIGNAL</span><span style="font-size:13px;color:#5a6b76">Where it starts</span></div>
@@ -45,7 +45,12 @@
         <span style="font-size:13px;color:#4a5b66">Introduction requests</span>
       </div>
       <div onMouseEnter="{{ enter2 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:392px;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb2 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss2 }};transition:all 300ms ease-out;cursor:pointer">
-        <i class="icon-radar" style="font-size:24px;color:#35b57e"></i>
+        <svg viewBox="0 0 48 48" width="24" height="24" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="14" stroke="#35b57e" stroke-width="1.4"></circle>
+          <ellipse cx="24" cy="24" rx="6" ry="14" stroke="#35b57e" stroke-width="1.2"></ellipse>
+          <line x1="10" y1="24" x2="38" y2="24" stroke="#35b57e" stroke-width="1.2"></line>
+          <path d="M11 29 Q24 7 37 25" stroke="#0fb89c" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="1.5 5"></path>
+        </svg>
         <span style="font-size:16px;font-weight:700">Fund Launch Radar</span>
         <span style="font-size:13px;color:#4a5b66">New ISIN detected</span>
       </div>
@@ -106,7 +111,7 @@
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1080},&quot;cycleSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:10,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1080},&quot;cycleSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:8,&quot;min&quot;:2,&quot;max&quot;:10,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
 class Component extends DCLogic {
   state = { step: 0, hover: null };
   reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -119,7 +124,7 @@ class Component extends DCLogic {
   ];
   componentDidMount() {
     if (this.reduce) return;
-    this.tick = setInterval(() => { if (this.state.hover == null) this.setState(s => ({ step: (s.step + 1) % 4 })); }, this.props.cycleSeconds ? this.props.cycleSeconds * 1000 : 4000);
+    this.tick = setInterval(() => { if (this.state.hover == null) this.setState(s => ({ step: (s.step + 1) % 4 })); }, this.props.cycleSeconds ? this.props.cycleSeconds * 1000 : 8000);
   }
   componentWillUnmount() { clearInterval(this.tick); }
   wires(cur) {
@@ -128,11 +133,11 @@ class Component extends DCLogic {
     this.cx.forEach((x, i) => {
       const d = `M ${x} 124 C ${x} 200, 380 180, 380 250`, on = i === cur;
       kids.push(h('path', { key: 'p' + i, d, fill: 'none', stroke: on ? '#2d9a8e' : '#d3dee5', strokeWidth: on ? 2 : 1.25, style: { transition: 'all 300ms' } }));
-      if (!this.reduce) [0, .8, 1.6].forEach((b, j) => kids.push(dot(`d${i}${j}`, d, 2.4, b + i * .3, on ? 4 : 2.5, on ? '#0fb89c' : '#b5c6d0')));
+      if (!this.reduce) [0, 1.4, 2.8].forEach((b, j) => kids.push(dot(`d${i}${j}`, d, 4.5, b + i * .5, on ? 4 : 2.5, on ? '#0fb89c' : '#b5c6d0')));
     });
     const spine = 'M 380 440 L 380 910';
     kids.push(h('path', { key: 'spine', d: spine, fill: 'none', stroke: '#2d9a8e', strokeWidth: 2, strokeDasharray: '2 6', strokeLinecap: 'round' }));
-    if (!this.reduce) [0, 1, 2].forEach(j => kids.push(dot('s' + j, spine, 3, j, 4, '#0fb89c')));
+    if (!this.reduce) [0, 1.7, 3.4].forEach(j => kids.push(dot('s' + j, spine, 5, j, 4, '#0fb89c')));
     kids.push(h('path', { key: 'side', d: 'M 660 345 L 668 345', stroke: '#9aabb5', strokeDasharray: '3 3' }));
     return h('svg', { width: 760, height: 1000, style: { position: 'absolute', inset: 0, overflow: 'visible' } }, kids);
   }
@@ -146,7 +151,7 @@ class Component extends DCLogic {
       wires: this.wires(cur),
       pulse: this.reduce ? null : h('div', { style: { position: 'absolute', inset: 0, borderRadius: 999, background: '#0fb89c', animation: 'cgPulse 2s ease-out infinite' } }),
       briefBody: h('div', { key: 'body' + cur, style: { display: 'flex', flexDirection: 'column', gap: 8, animation: this.reduce ? 'none' : 'cgFade 360ms ease-out' } }, row('w', 'WHO', b.who), row('y', 'WHY NOW', b.why), row('n', 'NEXT STEP', b.next)),
-      timer: this.state.hover == null && !this.reduce ? h('div', { key: 't' + this.state.step, style: { position: 'absolute', left: 0, bottom: 0, height: 3, background: '#0fb89c', animation: `cgFill ${this.props.cycleSeconds ?? 4}s linear` } }) : null,
+      timer: this.state.hover == null && !this.reduce ? h('div', { key: 't' + this.state.step, style: { position: 'absolute', left: 0, bottom: 0, height: 3, background: '#0fb89c', animation: `cgFill ${this.props.cycleSeconds ?? 8}s linear` } }) : null,
       leave: () => this.setState({ hover: null })
     };
     for (let i = 0; i < 4; i++) {
