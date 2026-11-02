@@ -16,13 +16,26 @@
     const fit = () => {
       const width = slot.clientWidth;
       if (!width) return;
-      const scale = width / artW;
+      const header = document.querySelector("header.pulse-header");
+      const pageHead = document.querySelector(".page-head");
+      const main = document.querySelector("main");
+      const mainStyles = main ? getComputedStyle(main) : null;
+      const padTop = mainStyles ? parseFloat(mainStyles.paddingTop) || 0 : 0;
+      const padBottom = mainStyles ? parseFloat(mainStyles.paddingBottom) || 0 : 0;
+      const used =
+        (header ? header.offsetHeight : 0) +
+        (pageHead ? pageHead.offsetHeight : 0) +
+        (pageHead ? parseFloat(getComputedStyle(pageHead).marginBottom) || 0 : 0) +
+        padTop +
+        padBottom;
+      const availHeight = Math.max(280, window.innerHeight - used);
+      const scale = Math.min(width / artW, availHeight / artH);
       growthFrame.style.transform = "scale(" + scale + ")";
       slot.style.height = Math.round(artH * scale) + "px";
     };
     fit();
     if (typeof ResizeObserver === "function") new ResizeObserver(fit).observe(slot);
-    else window.addEventListener("resize", fit);
+    window.addEventListener("resize", fit);
   }
 
   const canvas = document.getElementById("ph-ecg");

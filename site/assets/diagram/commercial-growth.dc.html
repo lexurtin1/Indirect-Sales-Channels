@@ -25,37 +25,37 @@
 <div style="min-height:100vh;background:transparent;font-family:'Gill Sans MT','Gill Sans',Calibri,sans-serif;color:#0d1418;display:flex;justify-content:center;padding:40px 24px;box-sizing:border-box;overflow:hidden">
   <div style="position:relative;width:920px;height:1000px;flex-shrink:0">
 
-    <div style="position:absolute;left:0;top:44px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">01</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">SIGNAL</span><span style="font-size:13px;color:#5a6b76">Where it starts</span></div>
-    <div style="position:absolute;left:0;top:314px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">02</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">INTENT</span><span style="font-size:13px;color:#5a6b76">What they need</span></div>
-    <div style="position:absolute;left:0;top:526px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">03</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">ROUTING</span><span style="font-size:13px;color:#5a6b76">Who should act</span></div>
-    <div style="position:absolute;left:0;top:730px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">04</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">SALES</span><span style="font-size:13px;color:#5a6b76">Reviewed by a person</span></div>
-    <div style="position:absolute;left:0;top:922px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">05</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">OUTCOME</span></div>
+    <div style="position:absolute;left:0;top:44px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e;font-weight:600">01</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em;color:#0d1418">SIGNAL</span><span style="font-size:13px;color:#3d4f5a">Where it starts</span></div>
+    <div style="position:absolute;left:0;top:314px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e;font-weight:600">02</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em;color:#0d1418">INTENT</span><span style="font-size:13px;color:#3d4f5a">What they need</span></div>
+    <div style="position:absolute;left:0;top:526px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e;font-weight:600">03</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em;color:#0d1418">ROUTING</span><span style="font-size:13px;color:#3d4f5a">Who should act</span></div>
+    <div style="position:absolute;left:0;top:730px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e;font-weight:600">04</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em;color:#0d1418">SALES</span><span style="font-size:13px;color:#3d4f5a">Reviewed by a person</span></div>
+    <div style="position:absolute;left:0;top:922px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e;font-weight:600">05</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em;color:#0d1418">OUTCOME</span></div>
 
     <div style="position:absolute;left:160px;top:0;width:760px;height:1000px">
       {{ wires }}
 
-      <div onMouseEnter="{{ enter0 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:0;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb0 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss0 }};transition:all 300ms ease-out;cursor:pointer">
-        <i class="icon-globe" style="font-size:24px;color:#2d9a8e"></i>
-        <span style="font-size:16px;font-weight:700">Fund Flow Explorer</span>
-        <span style="font-size:13px;color:#4a5b66">Market questions</span>
+      <div onMouseEnter="{{ enter0 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:0;top:0;width:172px;height:148px;box-sizing:border-box;background:#fff;border:1.5px solid {{ sb0 }};border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:{{ ss0 }};transition:all 300ms ease-out;cursor:pointer;overflow:hidden">
+        <i class="icon-globe" style="font-size:22px;color:#2d9a8e;flex-shrink:0"></i>
+        <span style="font-size:14px;font-weight:700;line-height:1.25;color:#0d1418">Fund Flow Explorer</span>
+        <span style="font-size:12px;line-height:1.3;color:#4a5b66">Market questions</span>
       </div>
-      <div onMouseEnter="{{ enter1 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:196px;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb1 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss1 }};transition:all 300ms ease-out;cursor:pointer">
-        <i class="icon-presentation" style="font-size:24px;color:#3d8dbc"></i>
-        <span style="font-size:16px;font-weight:700">Consultant Channel</span>
-        <span style="font-size:13px;color:#4a5b66">Introduction requests</span>
+      <div onMouseEnter="{{ enter1 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:196px;top:0;width:172px;height:148px;box-sizing:border-box;background:#fff;border:1.5px solid {{ sb1 }};border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:{{ ss1 }};transition:all 300ms ease-out;cursor:pointer;overflow:hidden">
+        <i class="icon-presentation" style="font-size:22px;color:#3d8dbc;flex-shrink:0"></i>
+        <span style="font-size:14px;font-weight:700;line-height:1.25;color:#0d1418">Consultant Channel</span>
+        <span style="font-size:12px;line-height:1.3;color:#4a5b66">Introduction requests</span>
       </div>
-      <div onMouseEnter="{{ enter2 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:392px;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb2 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss2 }};transition:all 300ms ease-out;cursor:pointer">
-        <i class="icon-radar" style="font-size:24px;color:#35b57e"></i>
-        <span style="font-size:16px;font-weight:700">Fund Launch Radar</span>
-        <span style="font-size:13px;color:#4a5b66">New ISIN detected</span>
+      <div onMouseEnter="{{ enter2 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:392px;top:0;width:172px;height:148px;box-sizing:border-box;background:#fff;border:1.5px solid {{ sb2 }};border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:{{ ss2 }};transition:all 300ms ease-out;cursor:pointer;overflow:hidden">
+        <i class="icon-radar" style="font-size:22px;color:#35b57e;flex-shrink:0"></i>
+        <span style="font-size:14px;font-weight:700;line-height:1.25;color:#0d1418">Fund Launch Radar</span>
+        <span style="font-size:12px;line-height:1.3;color:#4a5b66">New ISIN detected</span>
       </div>
-      <div onMouseEnter="{{ enter3 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:588px;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb3 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss3 }};transition:all 300ms ease-out;cursor:pointer">
-        <i class="icon-message-circle" style="font-size:24px;color:#1c4d6a"></i>
-        <span style="font-size:16px;font-weight:700">Regional AI Assistant</span>
-        <span style="font-size:13px;color:#4a5b66">Website conversations</span>
+      <div onMouseEnter="{{ enter3 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:588px;top:0;width:172px;height:148px;box-sizing:border-box;background:#fff;border:1.5px solid {{ sb3 }};border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:{{ ss3 }};transition:all 300ms ease-out;cursor:pointer;overflow:hidden">
+        <i class="icon-message-circle" style="font-size:22px;color:#1c4d6a;flex-shrink:0"></i>
+        <span style="font-size:14px;font-weight:700;line-height:1.25;color:#0d1418">Regional AI Assistant</span>
+        <span style="font-size:12px;line-height:1.3;color:#4a5b66">Website conversations</span>
       </div>
 
-      <div style="position:absolute;left:100px;top:250px;width:560px;height:190px;box-sizing:border-box;background:#fff;border:1px solid #cfe3e0;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 10px 32px rgba(45,154,142,.12)">
+      <div style="position:absolute;left:100px;top:250px;width:560px;height:190px;box-sizing:border-box;background:#fff;border:1.5px solid #b7c9d2;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 36px rgba(34,50,61,.14)">
         <div style="display:flex;align-items:center;gap:14px">
           <div style="position:relative;width:40px;height:40px;flex-shrink:0">
             {{ pulse }}
@@ -75,7 +75,7 @@
         <span>Anonymous signals become market insight, not leads</span>
       </div>
 
-      <div style="position:absolute;left:170px;top:500px;width:420px;height:110px;box-sizing:border-box;background:#fff;border:1px solid #e3ebf0;border-radius:14px;padding:16px 20px;display:flex;flex-direction:column;gap:12px;align-items:center">
+      <div style="position:absolute;left:170px;top:500px;width:420px;height:110px;box-sizing:border-box;background:#fff;border:1.5px solid #b7c9d2;border-radius:14px;padding:16px 20px;display:flex;flex-direction:column;gap:12px;align-items:center;box-shadow:0 8px 24px rgba(34,50,61,.1)">
         <span style="font-size:18px;font-weight:700">Routed to the regional owner</span>
         <div style="display:flex;gap:8px">
           <span style="font-size:14px;font-weight:600;padding:6px 16px;border-radius:999px;background:{{ rb0 }};color:{{ rc0 }};transition:all 300ms ease-out">EMEA</span>
@@ -126,7 +126,7 @@ class Component extends DCLogic {
     const h = React.createElement, kids = [];
     const dot = (key, path, dur, begin, r, fill) => h('circle', { key, r, fill }, h('animateMotion', { dur: dur + 's', begin: begin + 's', repeatCount: 'indefinite', path }));
     this.cx.forEach((x, i) => {
-      const d = `M ${x} 124 C ${x} 200, 380 180, 380 250`, on = i === cur;
+      const d = `M ${x} 148 C ${x} 210, 380 190, 380 250`, on = i === cur;
       kids.push(h('path', { key: 'p' + i, d, fill: 'none', stroke: on ? '#2d9a8e' : '#d3dee5', strokeWidth: on ? 2 : 1.25, style: { transition: 'all 300ms' } }));
       if (!this.reduce) [0, 1.4, 2.8].forEach((b, j) => kids.push(dot(`d${i}${j}`, d, 4.5, b + i * .5, on ? 4 : 2.5, on ? '#0fb89c' : '#b5c6d0')));
     });
@@ -151,8 +151,8 @@ class Component extends DCLogic {
     };
     for (let i = 0; i < 4; i++) {
       const on = i === cur;
-      v['sb' + i] = on ? '#2d9a8e' : '#e3ebf0';
-      v['ss' + i] = on ? '0 10px 28px rgba(45,154,142,.2)' : '0 2px 8px rgba(34,50,61,.05)';
+      v['sb' + i] = on ? '#2d9a8e' : '#b7c9d2';
+      v['ss' + i] = on ? '0 12px 30px rgba(45,154,142,.24)' : '0 6px 18px rgba(34,50,61,.1)';
       v['enter' + i] = () => this.setState({ hover: i, step: i });
     }
     for (let r = 0; r < 3; r++) {

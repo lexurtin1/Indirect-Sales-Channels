@@ -69,22 +69,22 @@ header.pulse-header {
 
 .ph-user { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex: 1; min-width: 0; }
 
-main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 38px 28px 80px; }
+main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 20px 28px 24px; }
 
 .page-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 .page-head h1 {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--ink-900);
   letter-spacing: -0.02em;
-  margin: 8px 0 0;
+  margin: 4px 0 0;
 }
 .eyebrow {
   font-size: 11px;
@@ -117,12 +117,16 @@ main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 38px 28px 80px; 
 
 .home-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.58fr) minmax(0, 1.42fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 36px;
   align-items: start;
 }
-.home-cards { min-width: 0; }
-.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.home-cards {
+  min-width: 0;
+  padding-right: 28px;
+  border-right: 1px solid var(--ink-200);
+}
+.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .diagram-slot {
   position: relative;
   width: 100%;
@@ -144,41 +148,41 @@ main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 38px 28px 80px; 
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 1px solid var(--ink-100);
+  border: 1px solid var(--ink-200);
   border-radius: var(--radius-lg);
-  padding: 30px;
+  padding: 22px;
   text-decoration: none;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(34, 50, 61, 0.1), 0 1px 3px rgba(34, 50, 61, 0.06);
   transition: var(--transition-base);
-  min-height: 222px;
+  aspect-ratio: 1 / 1;
   color: inherit;
 }
 a.tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--teal-200); }
 article.tool-card { cursor: default; }
-article.tool-card:hover { transform: none; box-shadow: var(--shadow-sm); border-color: var(--ink-100); }
+article.tool-card:hover { transform: none; box-shadow: 0 4px 16px rgba(34, 50, 61, 0.1), 0 1px 3px rgba(34, 50, 61, 0.06); border-color: var(--ink-200); }
 .tool-card:focus { box-shadow: var(--focus-ring); border-color: var(--accent-500); outline: none; }
 .tool-card .card-num {
   position: absolute;
-  top: 24px;
-  right: 26px;
+  top: 18px;
+  right: 18px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--ink-300);
 }
-.tool-card .card-icon { margin-bottom: 22px; color: var(--ink-400); }
-.tool-card .card-icon svg { width: 54px; height: 54px; }
+.tool-card .card-icon { margin-bottom: 14px; color: var(--ink-500); }
+.tool-card .card-icon svg { width: 44px; height: 44px; }
 .tool-card h2 {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--ink-900);
   letter-spacing: -0.01em;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
-.tool-card p { font-size: 14px; line-height: 1.55; color: var(--ink-600); margin: 0; }
+.tool-card p { font-size: 13px; line-height: 1.45; color: var(--ink-600); margin: 0; }
 .tool-card .card-later {
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 10px;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -195,16 +199,18 @@ article.tool-card:hover { transform: none; box-shadow: var(--shadow-sm); border-
 }
 
 @media (max-width: 1100px) {
-  .home-layout { grid-template-columns: 1fr; }
-  main { padding-top: 52px; }
+  .home-layout { grid-template-columns: 1fr; gap: 24px; }
+  .home-cards { padding-right: 0; border-right: 0; padding-bottom: 20px; border-bottom: 1px solid var(--ink-200); }
+  main { padding-top: 28px; }
 }
 @media (max-width: 900px) {
   header.pulse-header { gap: 12px; padding: 0 16px; }
 }
 @media (max-width: 720px) {
-  .page-head h1 { font-size: 26px; }
-  main { padding: 52px 16px 88px; }
+  .page-head h1 { font-size: 24px; }
+  main { padding: 28px 16px 40px; }
   .tool-grid { grid-template-columns: 1fr; }
+  .tool-card { aspect-ratio: auto; min-height: 180px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
