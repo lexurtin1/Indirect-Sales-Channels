@@ -43,6 +43,16 @@
   --site-header: 96px;
   --todo: #8a5a12;
   --todo-bg: #fbf3e4;
+  --radar-reg: #c0504d;
+  --radar-comp: #e08a2b;
+  --radar-mkt: #2d9a8e;
+  --radar-call: #7d9097;
+  --radar-id: #007db7;
+  --radar-land: #ffffff;
+  --radar-land-line: rgba(108, 123, 131, 0.5);
+  --radar-active: #bcd6dc;
+  --radar-globe: #f4f8fa;
+  --radar-atmosphere: #9fc6d4;
   color-scheme: light;
 }
 

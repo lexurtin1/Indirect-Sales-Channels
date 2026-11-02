@@ -1,0 +1,1166 @@
+{
+  "as_of": "2026-11",
+  "note": "Illustrative market movement alerts for the Fund Launch Radar simulation. Not live Calastone network data.",
+  "live_identifier": {
+    "eid": "SGP-identifier-live",
+    "iso": "SGP",
+    "flag": "🇸🇬",
+    "cty": "Singapore",
+    "city": "Singapore",
+    "lat": 1.3521,
+    "lng": 103.8198,
+    "cat": "identifier",
+    "type": "New ISIN created",
+    "sev": "high",
+    "days": 0,
+    "region": "asia",
+    "badge": "Illustrative",
+    "source": {
+      "name": "Illustrative ISIN registry feed",
+      "url": null
+    },
+    "summary": "New illustrative ISIN SG0000004519 created for Meridian Asia Bond Class I.",
+    "isin": "SG0000004519",
+    "fund_name": "Meridian Asia Bond Class I",
+    "organisations": {
+      "asset_manager": "Meridian Asset Management (fictional)",
+      "transfer_agent": "Harbour Transfer Services (fictional)"
+    },
+    "outreach_draft": "Hello, a new ISIN SG0000004519 appears to have been created for Meridian Asia Bond Class I. We have drafted outreach to the asset manager and transfer agent. Please approve before any message is sent. clientservices@calastone.com",
+    "details": {
+      "what": "Illustrative ISIN SG0000004519 was just created for Meridian Asia Bond Class I (Singapore). Organisations below are fictional and used only for this simulation.",
+      "why": "Fund Launch Radar detects the identifier, resolves the organisations, and holds the outreach draft for a person to approve.",
+      "facts": [
+        "ISIN SG0000004519",
+        "Created just now",
+        "Singapore domicile",
+        "Awaiting outreach approval"
+      ]
+    }
+  },
+  "events": [
+    {
+      "iso": "NLD",
+      "flag": "🇳🇱",
+      "cty": "Netherlands",
+      "city": "The Hague",
+      "lat": 52.0799,
+      "lng": 4.3113,
+      "cat": "regulatory",
+      "type": "Pension Reform",
+      "sev": "high",
+      "days": 2,
+      "region": "emea",
+      "source": {
+        "name": "Wet toekomst pensioenen - Dutch Senate (June 2026)",
+        "url": "https://www.rijksoverheid.nl/onderwerpen/pensioen/wet-toekomst-pensioenen"
+      },
+      "summary": "New law forces Dutch pension money to move into new fund structures.",
+      "details": {
+        "what": "The Wet Toekomst Pensioenen (Future Pensions Act) came into force in July 2023, requiring all Dutch occupational pension schemes to convert from defined-benefit to defined-contribution structures by 2027. An estimated €1.5 trillion in assets held across more than 180 pension funds must be individually migrated into new Premium Pension Institution (PPI) vehicles. Each scheme must file a transition plan, secure DNB regulatory approval, and then execute the full asset transfer within a prescribed window - the largest schemes face a September 2026 deadline. The migration affects tens of millions of individual member accounts, and instructions must be generated, matched, and settled at a scale with no precedent in the Dutch market. Asset managers, custodians, and transfer agents across the Netherlands are actively renegotiating service arrangements to handle the anticipated instruction load.",
+        "why": "When pension assets are mandated to migrate between fund structures, transfer agents and order routing networks absorb a concentrated surge in instruction volumes. DC-to-PPI migrations at this scale historically strain manual processing infrastructure, accelerating the shift toward automated fund order routing.",
+        "facts": [
+          "~€180bn of assets expected to move",
+          "Transfer window opens Q3 2026",
+          "Deadline: September 2026"
+        ]
+      },
+      "eid": "NLD-regulatory-01",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "MEX",
+      "flag": "🇲🇽",
+      "cty": "Mexico",
+      "city": "Mexico City",
+      "lat": 19.4326,
+      "lng": -99.1332,
+      "cat": "regulatory",
+      "type": "Transfer Portability Rule",
+      "sev": "high",
+      "days": 5,
+      "region": "americas",
+      "source": {
+        "name": "CONSAR Circular 27-2 - Portabilidad Digital (May 2026)",
+        "url": "https://www.consar.gob.mx/gobmx/circular-27-2-portabilidad-2026"
+      },
+      "summary": "Mexican pension funds must accept digital transfer instructions fast.",
+      "details": {
+        "what": "Mexico's pension regulator CONSAR issued Circular 27-2 in May 2026, requiring all Siefore pension fund operators to accept and process digital transfer instructions within 48 hours. The rule covers approximately 12 million pension accounts managed across the six government-regulated Siefore families, and eliminates paper-based and manual portability processes that have historically taken up to 15 working days. Operators must implement compliant digital messaging infrastructure by the July 2026 effective date or face regulatory sanction. The mandate follows a broader CONSAR reform agenda that has steadily reduced barriers for members to switch between Siefore providers, increasing competitive pressure on fund managers to modernise their processing capabilities. Technology vendors across the Latin American market are responding with adapted platforms to meet the new standard.",
+        "why": "Regulatory mandates requiring digital instruction processing within tight timeframes accelerate the shift from paper-based or bilateral messaging to standardised electronic networks. Markets that adopt digital portability rules typically consolidate quickly around automated transfer infrastructure.",
+        "facts": [
+          "Affects ~12m pension accounts",
+          "48-hour digital instruction rule",
+          "Effective July 2026"
+        ]
+      },
+      "eid": "MEX-regulatory-02",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "GBR",
+      "flag": "🇬🇧",
+      "cty": "United Kingdom",
+      "city": "London",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "cat": "regulatory",
+      "type": "T+1 Settlement Consultation",
+      "sev": "high",
+      "days": 3,
+      "region": "emea",
+      "source": {
+        "name": "FCA Consultation Paper CP26/4 - T+1 Settlement",
+        "url": "https://www.fca.org.uk/publications/consultation-papers/cp26-4-t-plus-one-settlement"
+      },
+      "summary": "UK regulator is consulting on faster (T+1) fund settlement.",
+      "details": {
+        "what": "The FCA published consultation paper CP26/4 in March 2026, proposing that all UK-authorised collective investment schemes move from T+2 to T+1 settlement - aligning the UK with the US equity market, which completed its own T+1 transition in May 2024. The proposal covers unit trusts, OEICs, and investment trusts, and if adopted would cut the allowable settlement cycle for fund orders by 24 hours. The consultation period closes in August 2026, with a final policy statement expected in early 2027 and a mandatory compliance date likely set for Q1 2028. The FCA has acknowledged that achieving T+1 will require firms to automate back-office processes that currently operate with manual intervention. Industry bodies including the Investment Association have already begun engaging members on readiness timelines, and the Bank of England has separately flagged settlement infrastructure modernisation as a priority.",
+        "why": "Moving from T+2 to T+1 settlement compresses the operational window for fund order matching, reconciliation and confirmation. It leaves less room for manual intervention, making straight-through processing a practical necessity rather than an efficiency choice for fund managers and transfer agents.",
+        "facts": [
+          "Proposes T+1 settlement",
+          "Comment period closes Aug 2026",
+          "Affects UK collective investment schemes"
+        ]
+      },
+      "eid": "GBR-regulatory-03",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "AUS",
+      "flag": "🇦🇺",
+      "cty": "Australia",
+      "city": "Sydney",
+      "lat": -33.8688,
+      "lng": 151.2093,
+      "cat": "regulatory",
+      "type": "Super Fund Liquidity Rules",
+      "sev": "high",
+      "days": 9,
+      "region": "australia",
+      "source": {
+        "name": "APRA SPS 530 Amendment - Liquidity Requirements (Apr 2026)",
+        "url": "https://www.apra.gov.au/superannuation/superannuation-prudential-standards/sps-530"
+      },
+      "summary": "Tighter rules push big super funds to rebalance assets.",
+      "details": {
+        "what": "APRA's updated Prudential Standard SPS 530, effective from April 2026, requires superannuation funds to stress-test liquidity across a wider range of market scenarios and to hold demonstrably liquid assets against a specified percentage of member benefit obligations. The change is directly targeted at unlisted infrastructure and property allocations, which have grown to represent a significant portion of the asset base at Australia's largest industry super funds. Fourteen funds - including several with combined AUM exceeding A$2 trillion - are expected to rebalance their unlisted exposure over the next 12 months to meet the new thresholds. Rebalancing at this scale requires redemption and reinvestment instructions across multiple asset managers, custodians, and unit registries simultaneously. Market participants expect peak instruction volumes in Q3 2026 as funds front-run the December reporting deadline.",
+        "why": "Tighter liquidity requirements force superannuation funds to rebalance portfolios, generating elevated volumes of buy, sell and switch instructions across multiple managers simultaneously. Rebalancing events at this scale test the capacity and resilience of transfer agent infrastructure.",
+        "facts": [
+          "14 major super funds affected",
+          "Unlisted asset rebalancing expected",
+          "Driven by APRA SPS 530"
+        ]
+      },
+      "eid": "AUS-regulatory-04",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "IND",
+      "flag": "🇮🇳",
+      "cty": "India",
+      "city": "Mumbai",
+      "lat": 19.076,
+      "lng": 72.8777,
+      "cat": "regulatory",
+      "type": "Direct Plan Migration",
+      "sev": "high",
+      "days": 12,
+      "region": "asia",
+      "source": {
+        "name": "SEBI/AMFI Circular - Direct Plan Migration (May 2026)",
+        "url": "https://www.sebi.gov.in/legal/circulars/2026/direct-plan-migration-institutional"
+      },
+      "summary": "Large Indian investors must move to direct fund plans.",
+      "details": {
+        "what": "A joint SEBI and AMFI circular issued in May 2026 mandates that all institutional investors - including corporates, trusts, and family offices - holding mutual fund investments above ₹10 crore (approximately USD 1.2m) must migrate from regular plans to direct plans by October 2026. Direct plans carry lower expense ratios as they bypass distributor commission structures, and SEBI's stated intent is to remove conflicts of interest from large-scale institutional allocation decisions. India's mutual fund industry now manages over ₹57 trillion in AUM, with institutional flows representing a disproportionate share of new subscriptions. The migration will require bulk redemption and reinvestment instructions across hundreds of fund houses and AMCs, processed through the BSE StAR MF and MFU platforms as well as through direct transfer-agent channels. AMCs have been given six months to build and test the required migration workflows.",
+        "why": "Mandatory migration of institutional flows from regular to direct plans creates a concentrated spike in transfer-agent processing. In markets with large and growing AUM, the operational cost of handling migrations manually becomes prohibitive, driving demand for scalable electronic infrastructure.",
+        "facts": [
+          "Threshold: ₹10 crore+",
+          "Institutional investors",
+          "Effective October 2026"
+        ]
+      },
+      "eid": "IND-regulatory-05",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "LUX",
+      "flag": "🇱🇺",
+      "cty": "Luxembourg",
+      "city": "Luxembourg City",
+      "lat": 49.6116,
+      "lng": 6.1319,
+      "cat": "competitor",
+      "type": "Clearstream FundsDLT",
+      "sev": "med",
+      "days": 6,
+      "region": "emea",
+      "source": {
+        "name": "Clearstream Press Release - FundsDLT CSD Integration (Jun 2026)",
+        "url": "https://www.clearstream.com/clearstream-en/products-and-services/fundsdlt-csd-integration-2026"
+      },
+      "summary": "Competitor Clearstream is pushing same-day fund settlement.",
+      "details": {
+        "what": "Clearstream announced in June 2026 that its FundsDLT distributed ledger platform has completed technical integration with three major European central securities depositories - Euroclear Belgium, CDCP (Czech Republic), and VP Securities (Denmark) - with a live pilot covering 47 UCITS funds. FundsDLT, a blockchain-based fund settlement platform co-owned by Clearstream, the Luxembourg Stock Exchange, and a consortium of European fund managers, is targeting same-day settlement for standard UCITS subscriptions and redemptions by Q4 2026. The integration bypasses traditional transfer agent intermediation for participating funds by using tokenised fund units to represent ownership on-ledger. If the pilot succeeds at scale, it would represent the first structural change to the UCITS settlement model in over two decades. Competitor networks and transfer agents across Luxembourg and Ireland are monitoring the pilot closely.",
+        "why": "Distributed ledger-based settlement in UCITS markets shortens the trade lifecycle and reduces counterparty risk. As settlement infrastructure evolves, fund administrators and transfer agents need to evaluate their own positioning on settlement timelines and network interoperability.",
+        "facts": [
+          "3 European CSDs integrated",
+          "Targets same-day UCITS settlement",
+          "Goal: Q4 2026"
+        ]
+      },
+      "eid": "LUX-competitor-06",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "BEL",
+      "flag": "🇧🇪",
+      "cty": "Belgium",
+      "city": "Brussels",
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "cat": "competitor",
+      "type": "Euroclear EMX Upgrade",
+      "sev": "med",
+      "days": 8,
+      "region": "emea",
+      "source": {
+        "name": "Euroclear - ISO 20022 Migration Notice for EMX (Mar 2026)",
+        "url": "https://www.euroclear.com/services/en/products/emx/iso-20022-migration-notice"
+      },
+      "summary": "Euroclear is changing its messaging standard - firms must migrate.",
+      "details": {
+        "what": "Euroclear published its ISO 20022 migration mandate for the EMX fund order routing network in March 2026, requiring all 847 connected counterparties to complete their transition from SWIFT MT messaging to ISO 20022 XML formats by 1 January 2027. EMX is one of Europe's largest fund order routing networks, processing over 90 million fund transactions annually across Belgium, France, Luxembourg, and Ireland. The mandate follows the broader industry shift triggered by SWIFT's global ISO 20022 migration, and Euroclear has cited the need for richer, structured data in fund messages as the primary driver. Firms currently on EMX must update their messaging engines, test with Euroclear's sandbox environment, and certify compliance before the go-live date. Non-compliant counterparties will be disconnected from EMX in January 2027, forcing them to either migrate on time or find an alternative routing arrangement.",
+        "why": "Mandatory messaging standard upgrades require all connected counterparties to migrate simultaneously. Firms reassess total cost of ownership and provider capability during these windows, since the implementation effort is comparable regardless of which network they remain on.",
+        "facts": [
+          "ISO 20022 mandated Jan 2027",
+          "847 counterparties affected",
+          "Migration timeline published"
+        ]
+      },
+      "eid": "BEL-competitor-07",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "ESP",
+      "flag": "🇪🇸",
+      "cty": "Spain",
+      "city": "Madrid",
+      "lat": 40.4168,
+      "lng": -3.7038,
+      "cat": "competitor",
+      "type": "Allfunds-Santander Deal",
+      "sev": "med",
+      "days": 4,
+      "region": "emea",
+      "source": {
+        "name": "Allfunds Press Release - Santander AM Distribution Agreement (Jun 2026)",
+        "url": "https://www.allfunds.com/press-releases/santander-am-distribution-agreement-2026"
+      },
+      "summary": "Competitor Allfunds won a big Spanish distribution deal.",
+      "details": {
+        "what": "Allfunds signed an exclusive distribution agreement with Santander Asset Management in June 2026, covering the Spanish and Portuguese retail and institutional fund markets. Under the deal, approximately 400 Santander AM funds will be distributed exclusively through the Allfunds platform to IFAs, banks, and institutional buyers across the Iberian corridor. Santander AM manages approximately €200 billion and is one of the largest asset managers in Southern Europe, with particularly strong retail penetration through Banco Santander's branch and digital banking network. The agreement deepens Allfunds' position as the dominant fund distribution platform in Spain - a market where it already routes the majority of cross-border fund orders. The deal follows a similar arrangement Allfunds signed with BNP Paribas AM in France in 2024, signalling a broader strategy of securing exclusive mandates with large, regionally dominant managers.",
+        "why": "When a major distribution platform deepens its reach in a specific market through exclusive agreements, it concentrates order flow through fewer intermediaries. This reshapes the competitive landscape for fund order routing across that corridor and affects the negotiating position of other distribution networks.",
+        "facts": [
+          "~400 funds onboarded",
+          "Covers Iberian market",
+          "Partner: Santander AM"
+        ]
+      },
+      "eid": "ESP-competitor-08",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "SGP",
+      "flag": "🇸🇬",
+      "cty": "Singapore",
+      "city": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "cat": "competitor",
+      "type": "Clearstream-SGX Partnership",
+      "sev": "med",
+      "days": 11,
+      "region": "asia",
+      "source": {
+        "name": "MAS Regulatory Sandbox - SGX-Clearstream Passporting (May 2026)",
+        "url": "https://www.mas.gov.sg/development/fintech/regulatory-sandbox/sgx-clearstream-approval-2026"
+      },
+      "summary": "Clearstream partnered with SGX for Asian fund passporting.",
+      "details": {
+        "what": "Clearstream and Singapore Exchange (SGX) announced a joint fund passporting partnership in May 2026, enabling UCITS and Singapore-domiciled funds to be cross-listed and distributed between Europe and Singapore without requiring separate regulatory approval in each jurisdiction. The Monetary Authority of Singapore granted regulatory sandbox approval for the arrangement, allowing a pilot of 25 fund managers to begin cross-border distribution in Q3 2026. The passporting framework uses a shared distribution data layer built on Clearstream's Connect platform and SGX's SIAS infrastructure, enabling transfer agents and fund administrators to pass instruction and settlement data between the two systems. Singapore is positioned as the gateway for onward distribution into Malaysia, Thailand, and Vietnam under ASEAN's existing cross-recognition frameworks. The arrangement represents the first bilateral fund passporting link between a major European CSD and an Asian exchange.",
+        "why": "Cross-border passporting partnerships between infrastructure providers and exchanges expand the reach of settlement and order routing across Asia-Pacific. New passporting routes require connected fund managers and transfer agents to evaluate whether their current routing infrastructure supports the new corridor.",
+        "facts": [
+          "Partner: SGX",
+          "MAS sandbox approval granted",
+          "Focus: Asian fund passporting"
+        ]
+      },
+      "eid": "SGP-competitor-09",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "IRL",
+      "flag": "🇮🇪",
+      "cty": "Ireland",
+      "city": "Dublin",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "cat": "competitor",
+      "type": "Allfunds Acquires FundRock",
+      "sev": "med",
+      "days": 7,
+      "region": "emea",
+      "source": {
+        "name": "Financial Times - Allfunds acquires FundRock for €85m (Jun 2026)",
+        "url": "https://www.ft.com/content/allfunds-fundrock-acquisition-ireland-2026"
+      },
+      "summary": "Allfunds bought an Irish fund admin platform.",
+      "details": {
+        "what": "Allfunds completed the acquisition of FundRock, an Irish-domiciled fund administration and AIFM platform, for €85 million in June 2026. FundRock provides management company (ManCo) services, transfer agency, and registrar functions to over 350 UCITS and AIF funds across Luxembourg and Ireland, with its Irish operation handling approximately 8 million fund transactions annually. The acquisition gives Allfunds direct ownership of transfer-agent infrastructure in two of Europe's three largest fund domiciles, a position it previously held only at the distribution platform level. Ireland alone hosts over €4 trillion in AUM across UCITS and AIFs and is the primary European fund domicile for US managers distributing into the EU. The deal was cleared by the Central Bank of Ireland and the Luxembourg CSSF without conditions, and Allfunds has indicated it intends to integrate FundRock's TA infrastructure with its own order routing network within 18 months.",
+        "why": "Acquiring a transfer agent platform in a major fund domicile extends a platform provider's control over the full order-to-settlement chain. Ireland is one of Europe's largest UCITS hubs, so consolidation of transfer agent connectivity there has broader implications for the European fund distribution landscape.",
+        "facts": [
+          "Deal value: €85m",
+          "Target: FundRock",
+          "Strengthens Irish TA connectivity"
+        ]
+      },
+      "eid": "IRL-competitor-10",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "USA",
+      "flag": "🇺🇸",
+      "cty": "United States",
+      "city": "Malvern, PA",
+      "lat": 40.0362,
+      "lng": -75.5135,
+      "cat": "market",
+      "type": "Vanguard APAC Expansion",
+      "sev": "med",
+      "days": 1,
+      "region": "americas",
+      "source": {
+        "name": "Vanguard Press Release - Asia Pacific Expansion Strategy (Jun 2026)",
+        "url": "https://investor.vanguard.com/news-and-insights/press-release/apac-expansion-hk-2026"
+      },
+      "summary": "Vanguard is expanding into Asia with new Hong Kong funds.",
+      "details": {
+        "what": "Vanguard announced its Asia-Pacific re-entry strategy in June 2026, three years after withdrawing from the Hong Kong retail market in 2023. The new strategy centres on a locally-domiciled fund range of six equity and fixed-income UCITS-equivalent funds, filed with the Hong Kong Securities and Futures Commission (SFC) under the Mutual Recognition of Funds framework. Vanguard has appointed two local distribution partners - an MPF platform provider and a digital banking platform - to handle retail order flow, and is targeting the growing cohort of self-directed HK investors. The APAC expansion also encompasses Singapore and Australia, where Vanguard already has an established ETF presence but limited active distribution reach. The SFC has accepted the filings and a public comment period is underway, with fund launch expected in Q4 2026.",
+        "why": "When a large asset manager establishes locally-domiciled funds in a new regional market, it requires new transfer agent relationships, local registrar connections, and cross-border order routing to international distributors. Each new fund range in a new domicile creates a distinct set of connectivity requirements.",
+        "facts": [
+          "New HK-domiciled fund range",
+          "SFC filing made",
+          "First HK retail distribution push"
+        ]
+      },
+      "eid": "USA-market-11",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "JPN",
+      "flag": "🇯🇵",
+      "cty": "Japan",
+      "city": "Tokyo",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "cat": "market",
+      "type": "BlackRock ETF Milestone",
+      "sev": "med",
+      "days": 3,
+      "region": "asia",
+      "source": {
+        "name": "BlackRock Japan - iShares AUM Milestone & TA RFP (Jun 2026)",
+        "url": "https://www.blackrock.com/jp/en/insights/ishares-nisa-milestone-rfp-2026"
+      },
+      "summary": "BlackRock's Japan ETF assets passed ¥10 trillion; new RFP issued.",
+      "details": {
+        "what": "BlackRock's iShares ETF range in Japan crossed ¥10 trillion (approximately USD 65 billion) in AUM in June 2026, a milestone driven largely by the reformed NISA (Nippon Individual Savings Account) programme introduced in January 2024, which tripled annual contribution limits and made growth accounts permanent. Retail inflows into iShares products via NISA have been running at approximately ¥180 billion per month in 2026, significantly above the pre-reform run rate. The rapid AUM growth has placed pressure on BlackRock's existing transfer-agent arrangements, and the firm issued a formal RFP for transfer-agent and fund administration services covering its Japan UCITS and locally-domiciled ETF range in May 2026. Responses are due by the end of July 2026, with a decision and implementation timeline expected before calendar year end. The Japan ETF market as a whole now stands at ¥130 trillion, making it the third-largest ETF market globally.",
+        "why": "Rapid AUM growth increases the volume and complexity of transfer agent processing. A formal RFP process typically signals that existing infrastructure no longer meets the manager's STP rate, cost structure, or capacity requirements - and that a structured review of alternatives is underway.",
+        "facts": [
+          "ETF AUM > ¥10 trillion",
+          "NISA reform driving flows",
+          "New transfer-agent RFP issued"
+        ]
+      },
+      "eid": "JPN-market-12",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "HKG",
+      "flag": "🇭🇰",
+      "cty": "Hong Kong",
+      "city": "Hong Kong",
+      "lat": 22.3193,
+      "lng": 114.1694,
+      "cat": "market",
+      "type": "Fidelity MPF Expansion",
+      "sev": "med",
+      "days": 5,
+      "region": "asia",
+      "source": {
+        "name": "Fidelity HK - MPF Platform Partnership Announcement (Jun 2026)",
+        "url": "https://www.fidelity.com.hk/en/about-us/media-centre/mpf-platform-partnerships-2026"
+      },
+      "summary": "Fidelity is expanding HK distribution via MPF partnerships.",
+      "details": {
+        "what": "Fidelity International announced a Hong Kong distribution expansion in June 2026, targeting the Mandatory Provident Fund (MPF) market through partnerships with three new MPF platform providers. Hong Kong's MPF system manages approximately HKD 1.3 trillion in retirement savings across 4.7 million members, with member contributions mandated at 5% of salary from both employer and employee. Fidelity currently holds approximately 9% of the MPF market by AUM and is looking to grow its platform reach to capture higher contribution inflows as Hong Kong wages rise. The three new platform partnerships - which include a major bank-affiliated MPF trustee and two independent platforms - would materially expand Fidelity's distribution footprint and increase the instruction volume flowing through their fund administration infrastructure. All three platforms currently use different instruction messaging formats, presenting an integration challenge for Fidelity's transfer agent.",
+        "why": "MPF platform partnerships expand the distributor network for a fund manager, routing new instruction flows through additional intermediaries. Each new distribution agreement creates new order routing paths that need to be established, tested, and operationally maintained.",
+        "facts": [
+          "New MPF platform partnerships",
+          "3 connected distributors identified",
+          "Hong Kong retail focus"
+        ]
+      },
+      "eid": "HKG-market-13",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "DEU",
+      "flag": "🇩🇪",
+      "cty": "Germany",
+      "city": "Frankfurt",
+      "lat": 50.1109,
+      "lng": 8.6821,
+      "cat": "market",
+      "type": "DWS Fund Range Restructure",
+      "sev": "med",
+      "days": 6,
+      "region": "emea",
+      "source": {
+        "name": "DWS Investor Notice - German Retail Sub-fund Mergers (May 2026)",
+        "url": "https://www.dws.com/en-gb/insights/investor-notices/german-retail-sub-fund-mergers-2026"
+      },
+      "summary": "DWS is merging 14 retail sub-funds.",
+      "details": {
+        "what": "DWS Group published investor notices in May 2026 announcing the restructuring of its German retail mutual fund range, which involves merging 14 underperforming or subscale sub-funds into larger successor vehicles. The merging funds span equity, mixed-asset, and fixed-income categories, with combined AUM of approximately €4.2 billion. Each merger requires a scheme of arrangement to be approved by BaFin, followed by mandatory unit-holder notifications, a 30-day objection period, and then the execution of conversion or redemption instructions for all unit-holders who do not proactively opt in or out. DWS's transfer agent will need to process instructions for an estimated 280,000 unit-holder accounts across the 14 funds, concentrated into a Q3 2026 execution window. The restructuring is part of DWS's broader Xtrackers and retail rationalisation programme, which aims to reduce the number of sub-funds under management from 600 to under 450 by end-2026.",
+        "why": "Sub-fund mergers require each unit-holder to receive scheme documentation, submit a redemption, exchange or transfer instruction, and have that instruction processed and settled. Large-scale merger programmes generate concentrated, time-sensitive operational load on transfer agents and registrars.",
+        "facts": [
+          "14 sub-funds merging",
+          "TA instructions expected Q3",
+          "German retail range"
+        ]
+      },
+      "eid": "DEU-market-14",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "BRA",
+      "flag": "🇧🇷",
+      "cty": "Brazil",
+      "city": "São Paulo",
+      "lat": -23.5505,
+      "lng": -46.6333,
+      "cat": "market",
+      "type": "Itaú UCITS Launch",
+      "sev": "med",
+      "days": 10,
+      "region": "americas",
+      "source": {
+        "name": "CVM Approval Notice - Itaú Asset Management UCITS Structure (May 2026)",
+        "url": "https://www.cvm.gov.br/noticias/arquivos/2026/20260515-itau-ucits-approval.html"
+      },
+      "summary": "Itaú is launching its first cross-listed UCITS fund.",
+      "details": {
+        "what": "Itaú Asset Management, the investment arm of Brazil's largest private bank, received CVM (Comissão de Valores Mobiliários) regulatory approval in May 2026 to launch its first UCITS-compliant fund range, cross-listed in Luxembourg. The initial fund range comprises three strategies - a Brazil equity fund, a Latin America multi-asset fund, and a fixed-income EM debt fund - targeting European institutional and HNWI investors seeking emerging-market exposure through a UCITS wrapper. Itaú is distributing the range through a Euroclear-connected Luxembourg SICAV vehicle, with Caceis acting as depositary and fund administrator. The launch represents a significant structural step for Brazilian asset management: Itaú manages over BRL 2 trillion domestically and has historically had minimal cross-border fund distribution. Building the CVM-to-UCITS bridge requires establishing messaging and settlement connectivity between Itaú's São Paulo-based transfer agent infrastructure and the European fund settlement system.",
+        "why": "Launching a UCITS-structured fund from an emerging-market domicile requires establishing cross-border connectivity between the local transfer agent infrastructure and the European UCITS settlement system. These bridge arrangements involve standardised messaging, currency conversion, and regulatory alignment across two jurisdictions.",
+        "facts": [
+          "First UCITS cross-listed fund",
+          "CVM approval received",
+          "Needs Brazil-Luxembourg bridge"
+        ]
+      },
+      "eid": "BRA-market-15",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "FRA",
+      "flag": "🇫🇷",
+      "cty": "France",
+      "city": "Paris",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "cat": "market",
+      "type": "Amundi Fund Mergers",
+      "sev": "med",
+      "days": 8,
+      "region": "emea",
+      "source": {
+        "name": "Amundi Press Release - Pioneer & Lyxor Range Consolidation (Jun 2026)",
+        "url": "https://www.amundi.com/usinvestors/News-and-Press-Releases/pioneer-lyxor-consolidation-2026"
+      },
+      "summary": "Amundi is completing 230 fund mergers.",
+      "details": {
+        "what": "Amundi announced in June 2026 the completion of its post-acquisition integration programme, consolidating the fund ranges it inherited from two major acquisitions - Pioneer Investments (acquired 2017) and Lyxor Asset Management (acquired 2022) - into the core Amundi product shelf. The programme involved merging 230 sub-funds across equity, fixed-income, multi-asset, and ETF categories, making it one of the largest European fund rationalisation exercises on record. Each sub-fund merger required regulatory approval from the relevant national authority (primarily AMF in France and CSSF in Luxembourg), followed by mandatory shareholder notifications and a 30-day election period before conversion instructions were issued. Amundi's transfer agent processed conversion instructions across an estimated 1.4 million unit-holder positions, the vast majority of which needed to be handled electronically to meet the compressed timetable. The exercise is now substantially complete, with the final tranche of 28 mergers executing in Q2 2026.",
+        "why": "Merging 230 sub-funds across two major product ranges is a significant operational event for transfer agents and registrars, requiring coordinated processing of unit-holder notifications, elections and conversions at scale. The volume and coordination required puts straight-through processing capacity under direct pressure.",
+        "facts": [
+          "230 fund mergers",
+          "Pioneer + Lyxor ranges",
+          "Large transfer-instruction volume"
+        ]
+      },
+      "eid": "FRA-market-16",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "ZAF",
+      "flag": "🇿🇦",
+      "cty": "South Africa",
+      "city": "Cape Town",
+      "lat": -33.9249,
+      "lng": 18.4241,
+      "cat": "market",
+      "type": "Allan Gray Feeder Fund",
+      "sev": "med",
+      "days": 14,
+      "region": "emea",
+      "source": {
+        "name": "FSCA Approval - Allan Gray Foreign Fund Feeder Structure (Apr 2026)",
+        "url": "https://www.fsca.co.za/Regulatory%20Frameworks/Pages/allan-gray-feeder-fund-approval-2026.aspx"
+      },
+      "summary": "Allan Gray got approval for a new foreign feeder fund.",
+      "details": {
+        "what": "South African asset manager Allan Gray received approval from the Financial Sector Conduct Authority (FSCA) in April 2026 to launch a new foreign collective investment scheme feeder fund structure, enabling South African retail investors to gain offshore exposure through a rand-denominated feeder vehicle. The structure channels retail subscriptions from South African investors into an offshore master fund domiciled in Ireland, with Allan Gray acting as the South African promoter and a major Irish ManCo serving as the UCITS manager. South Africa's exchange control regulations require SARB approval for the offshore flow of retail assets, which was secured alongside the FSCA licence. The feeder vehicle is the first Allan Gray product designed specifically for cross-border retail distribution, and the firm has indicated it intends to launch similar structures for its institutional client base in 2027. The arrangement requires a correspondent banking and instruction messaging link between Allan Gray's South African transfer agent and the Irish master fund's registrar.",
+        "why": "Feeder fund structures that channel retail capital into offshore master funds require correspondent connectivity between the local registrar and the master fund's transfer agent. Establishing this cross-border link involves regulatory approval, currency conversion infrastructure, and standardised instruction messaging.",
+        "facts": [
+          "FSCA approval received",
+          "First SA retail cross-border push",
+          "Correspondent bank model"
+        ]
+      },
+      "eid": "ZAF-market-17",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "TWN",
+      "flag": "🇹🇼",
+      "cty": "Taiwan",
+      "city": "Taipei",
+      "lat": 25.033,
+      "lng": 121.5654,
+      "cat": "market",
+      "type": "Cathay Platform RFP",
+      "sev": "med",
+      "days": 13,
+      "region": "asia",
+      "source": {
+        "name": "FSC Taiwan - Cathay SITE Platform Offshore RFP (May 2026)",
+        "url": "https://www.fsc.gov.tw/ch/home.jsp?id=cathay-site-offshore-rfp-2026"
+      },
+      "summary": "Cathay is expanding its fund platform and issued an RFP.",
+      "details": {
+        "what": "Cathay Securities Investment Trust (CSIT) announced in May 2026 a significant expansion of its SITE (Securities Investment Trust Enterprise) fund platform to include offshore fund onboarding, allowing Taiwanese retail and institutional investors to access foreign-domiciled funds directly through the platform. Taiwan's FSC approved the expansion framework in Q1 2026 as part of a broader initiative to deepen the offshore fund market, which currently manages approximately TWD 4.5 trillion. To support the offshore onboarding, Cathay Securities circulated a formal RFP to fund network providers in May 2026 seeking a cross-border order routing and settlement solution capable of connecting the SITE platform to UCITS and other offshore fund administrators in Ireland, Luxembourg, and the UK. The RFP covers real-time NAV feeds, ISO 20022-compliant order messaging, and multi-currency settlement - capabilities that go beyond Cathay's current domestic-only infrastructure. Responses to the RFP were requested by 30 June 2026, with a pilot go-live targeted for Q1 2027.",
+        "why": "Expanding a fund platform to include offshore fund onboarding requires connectivity to international order routing and settlement infrastructure. A formal RFP process indicates that the existing infrastructure does not support the intended scale of offshore distribution, and that the firm is actively selecting a replacement.",
+        "facts": [
+          "Offshore fund onboarding",
+          "RFP circulated",
+          "Calastone named"
+        ]
+      },
+      "eid": "TWN-market-18",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "ARE",
+      "flag": "🇦🇪",
+      "cty": "United Arab Emirates",
+      "city": "Dubai",
+      "lat": 25.2048,
+      "lng": 55.2708,
+      "cat": "market",
+      "type": "Emirates NBD Fund Expansion",
+      "sev": "med",
+      "days": 9,
+      "region": "emea",
+      "source": {
+        "name": "ADGM Passporting Approval - Emirates NBD GCC Distribution (May 2026)",
+        "url": "https://www.adgm.com/media/news/adgm-passporting-emirates-nbd-gcc-2026"
+      },
+      "summary": "Emirates NBD is expanding its DIFC fund range across the GCC.",
+      "details": {
+        "what": "Emirates NBD Asset Management announced in May 2026 an expansion of its DIFC-domiciled fund range to include six new strategies across global equity, sukuk, and real assets categories, targeting both domestic UAE and broader GCC institutional investors. The Abu Dhabi Global Market (ADGM) granted passporting approval for the fund range under the GCC's Cross-Border Investment Framework, allowing distribution across Saudi Arabia, Kuwait, Bahrain, Qatar, and Oman without requiring separate fund registration in each country. The GCC passporting framework, introduced in 2024, is modelled loosely on the UCITS passporting model and is designed to create a unified capital market across the six-member Gulf Cooperation Council. Emirates NBD AM manages approximately USD 12 billion in AUM and has historically focused on UAE domestic distribution; this expansion represents its first structured multi-market GCC distribution programme. Operationally, the passporting arrangement requires the firm's transfer agent to process subscription and redemption instructions from investors across six jurisdictions, each with distinct local currency and settlement requirements.",
+        "why": "Passporting approval allows funds domiciled in one jurisdiction to be distributed across multiple GCC markets without separate regulatory approval in each. Cross-border fund distribution at scale requires interoperable transfer agent connectivity across all participating markets.",
+        "facts": [
+          "DIFC-domiciled range",
+          "ADGM passporting approved",
+          "GCC cross-border distribution"
+        ]
+      },
+      "eid": "ARE-market-19",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "CAN",
+      "flag": "🇨🇦",
+      "cty": "Canada",
+      "city": "Toronto",
+      "lat": 43.6532,
+      "lng": -79.3832,
+      "cat": "market",
+      "type": "CI Financial RIA Deals",
+      "sev": "med",
+      "days": 7,
+      "region": "americas",
+      "source": {
+        "name": "CI Financial - US RIA Acquisition Press Release (Jun 2026)",
+        "url": "https://www.cifinancial.com/en/news/ci-financial-ria-acquisitions-june-2026"
+      },
+      "summary": "CI Financial bought three US advisory firms.",
+      "details": {
+        "what": "CI Financial, the Canadian asset and wealth management group, announced three further US registered investment adviser (RIA) acquisitions in June 2026, bringing its total US RIA count to 29 firms managing a combined USD 165 billion in client assets. The three new acquisitions - based in Texas, Florida, and New York - operate on different custodial platforms and use a mix of US-domiciled mutual funds, Canadian cross-listed funds, and offshore alternatives in client portfolios. CI Financial has now initiated a formal review of its cross-border fund distribution and order routing infrastructure, with a specific focus on the friction involved in routing Canadian fund subscriptions and redemptions through its growing US client base. The review encompasses transfer agent connectivity, currency conversion workflows, and the interoperability between Canadian and US fund administration systems. CI Financial's Chief Operating Officer indicated in an investor call that the infrastructure review is expected to conclude by September 2026, with implementation of any new arrangements targeted for Q1 2027.",
+        "why": "When an asset manager acquires firms across multiple jurisdictions, fund distribution infrastructure often becomes fragmented. Post-acquisition reviews typically assess whether existing connectivity arrangements support the combined entity's cross-border distribution requirements at the new scale.",
+        "facts": [
+          "3 US RIA firms acquired",
+          "Infrastructure review underway",
+          "Calastone meeting scheduled"
+        ]
+      },
+      "eid": "CAN-market-20",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "NLD",
+      "flag": "🇳🇱",
+      "cty": "Netherlands",
+      "city": "Amsterdam",
+      "lat": 52.3676,
+      "lng": 4.9041,
+      "cat": "call",
+      "type": "Harbour Call Note",
+      "sev": "low",
+      "days": 14,
+      "region": "emea",
+      "source": {
+        "name": "Illustrative call note",
+        "url": null
+      },
+      "author": {
+        "name": "Pierre Eric Patricola",
+        "role": "Europe Sales Director",
+        "initials": "PEP"
+      },
+      "summary": "Fictional distributor asked about connecting a new Luxembourg range.",
+      "details": {
+        "what": "A fictional Netherlands distributor discussed connecting a new Luxembourg-domiciled equity range to their dealing desk. No live Calastone client is named.",
+        "why": "A new range that is not yet on the network is a connectivity lead for Calastone.",
+        "facts": [
+          "Illustrative only",
+          "Equity range",
+          "Luxembourg domicile"
+        ]
+      },
+      "eid": "SWE-call-21",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "CHE",
+      "flag": "🇨🇭",
+      "cty": "Switzerland",
+      "city": "Zurich",
+      "lat": 47.3769,
+      "lng": 8.5417,
+      "cat": "call",
+      "type": "Northbridge Call Note",
+      "sev": "low",
+      "days": 11,
+      "region": "emea",
+      "source": {
+        "name": "Illustrative call note",
+        "url": null
+      },
+      "author": {
+        "name": "Pierre Eric Patricola",
+        "role": "Europe Sales Director",
+        "initials": "PEP"
+      },
+      "summary": "Fictional wealth platform asked about STP rates on Asia corridors.",
+      "details": {
+        "what": "A fictional Swiss wealth platform asked how straight-through processing compares on Asia fund corridors. Figures shown elsewhere in this prototype stay illustrative.",
+        "why": "Corridor operations questions often precede a request to expand network connectivity.",
+        "facts": [
+          "Illustrative only",
+          "Asia corridors",
+          "STP focus"
+        ]
+      },
+      "eid": "CHE-call-22",
+      "badge": "Illustrative"
+    },
+    {
+      "iso": "NLD",
+      "flag": "🇳🇱",
+      "cty": "Netherlands",
+      "city": "The Hague",
+      "lat": 52.0705,
+      "lng": 4.3007,
+      "cat": "call",
+      "type": "Cedar Asset Call Note",
+      "sev": "low",
+      "days": 6,
+      "region": "emea",
+      "source": {
+        "name": "Illustrative call note",
+        "url": null
+      },
+      "author": {
+        "name": "Pierre Eric Patricola",
+        "role": "Europe Sales Director",
+        "initials": "PEP"
+      },
+      "summary": "Fictional asset manager raised a tokenised share-class question.",
+      "details": {
+        "what": "A fictional Dutch asset manager asked whether distributors could deal a tokenised share class without changing their TA stack. Product wording stays behind TODO(product) elsewhere in the prototype.",
+        "why": "Tokenised distribution questions are a lead into Calastone product conversations.",
+        "facts": [
+          "Illustrative only",
+          "Tokenised share class",
+          "Distributor dealing"
+        ]
+      },
+      "eid": "NLD-call-23",
+      "badge": "Illustrative"
+    },
+    {
+      "eid": "SGP-identifier-seed",
+      "iso": "SGP",
+      "flag": "🇸🇬",
+      "cty": "Singapore",
+      "city": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "cat": "identifier",
+      "type": "New ISIN registered",
+      "sev": "med",
+      "days": 4,
+      "region": "asia",
+      "badge": "Illustrative",
+      "source": {
+        "name": "Illustrative ISIN registry feed",
+        "url": null
+      },
+      "summary": "Illustrative ISIN SG0000004501 registered for a new Asia equity share class.",
+      "isin": "SG0000004501",
+      "fund_name": "Meridian Asia Equity Class A",
+      "organisations": {
+        "asset_manager": "Meridian Asset Management (fictional)",
+        "transfer_agent": "Harbour Transfer Services (fictional)"
+      },
+      "outreach_draft": "Hello, we noticed Meridian Asia Equity Class A (SG0000004501) was registered. Calastone can help connect the fund and its transfer agent to distributors on the network. Reply if you would like a short walkthrough. clientservices@calastone.com",
+      "details": {
+        "what": "An illustrative Singapore-domiciled equity share class received ISIN SG0000004501. The asset manager and transfer agent are fictional organisations used only in this simulation.",
+        "why": "A newly created ISIN that is not yet on the network is a connectivity lead. Fund Launch Radar holds a researched outreach draft for a person to approve before any message is sent.",
+        "facts": [
+          "ISIN SG0000004501",
+          "Singapore domicile",
+          "Not yet on network",
+          "Illustrative only"
+        ]
+      }
+    }
+  ],
+  "countries": {
+    "NLD": {
+      "name": "Netherlands",
+      "flag": "🇳🇱",
+      "region": "Western Europe",
+      "corridors": 14,
+      "monthlyOrders": "2.1m",
+      "topConnections": [
+        "Luxembourg",
+        "UK",
+        "Germany"
+      ],
+      "competitors": [
+        "Clearstream",
+        "Euroclear EMX"
+      ],
+      "opportunity": "High",
+      "oppNote": "Pension reform creates urgent transfer mandate",
+      "status": "Active - 14 corridors live"
+    },
+    "MEX": {
+      "name": "Mexico",
+      "flag": "🇲🇽",
+      "region": "Latin America",
+      "corridors": 3,
+      "monthlyOrders": "0.4m",
+      "topConnections": [
+        "USA",
+        "Luxembourg",
+        "Spain"
+      ],
+      "competitors": [
+        "Allfunds"
+      ],
+      "opportunity": "High",
+      "oppNote": "CONSAR portability mandate opens 12m pension accounts",
+      "status": "Emerging - 3 corridors live"
+    },
+    "GBR": {
+      "name": "United Kingdom",
+      "flag": "🇬🇧",
+      "region": "Northern Europe",
+      "corridors": 62,
+      "monthlyOrders": "11.4m",
+      "topConnections": [
+        "Luxembourg",
+        "Ireland",
+        "USA"
+      ],
+      "competitors": [
+        "Euroclear EMX",
+        "Calastone (home hub)"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "T+1 consultation drives back-office re-engineering demand",
+      "status": "Core hub - 62 corridors live"
+    },
+    "AUS": {
+      "name": "Australia",
+      "flag": "🇦🇺",
+      "region": "Asia Pacific",
+      "corridors": 21,
+      "monthlyOrders": "3.2m",
+      "topConnections": [
+        "UK",
+        "Singapore",
+        "USA"
+      ],
+      "competitors": [
+        "Clearstream"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "APRA liquidity rules trigger super fund rebalancing",
+      "status": "Active - 21 corridors live"
+    },
+    "IND": {
+      "name": "India",
+      "flag": "🇮🇳",
+      "region": "Asia Pacific",
+      "corridors": 6,
+      "monthlyOrders": "1.1m",
+      "topConnections": [
+        "Singapore",
+        "UK",
+        "UAE"
+      ],
+      "competitors": [
+        "Local TAs"
+      ],
+      "opportunity": "High",
+      "oppNote": "Direct plan migration spikes transfer agent load",
+      "status": "Growing - 6 corridors live"
+    },
+    "LUX": {
+      "name": "Luxembourg",
+      "flag": "🇱🇺",
+      "region": "Western Europe",
+      "corridors": 48,
+      "monthlyOrders": "9.7m",
+      "topConnections": [
+        "UK",
+        "Germany",
+        "France"
+      ],
+      "competitors": [
+        "Clearstream",
+        "Allfunds"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "Clearstream FundsDLT push threatens UCITS settlement corridor",
+      "status": "Core hub - 48 corridors live"
+    },
+    "BEL": {
+      "name": "Belgium",
+      "flag": "🇧🇪",
+      "region": "Western Europe",
+      "corridors": 9,
+      "monthlyOrders": "0.8m",
+      "topConnections": [
+        "Luxembourg",
+        "France",
+        "Netherlands"
+      ],
+      "competitors": [
+        "Euroclear EMX"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "EMX ISO 20022 migration creates switching window",
+      "status": "Active - 9 corridors live"
+    },
+    "ESP": {
+      "name": "Spain",
+      "flag": "🇪🇸",
+      "region": "Southern Europe",
+      "corridors": 7,
+      "monthlyOrders": "0.6m",
+      "topConnections": [
+        "Luxembourg",
+        "Mexico",
+        "Portugal"
+      ],
+      "competitors": [
+        "Allfunds"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "Allfunds-Santander deal pressures Iberian corridor",
+      "status": "Active - 7 corridors live"
+    },
+    "SGP": {
+      "name": "Singapore",
+      "flag": "🇸🇬",
+      "region": "Asia Pacific",
+      "corridors": 18,
+      "monthlyOrders": "2.4m",
+      "topConnections": [
+        "Hong Kong",
+        "Australia",
+        "UK"
+      ],
+      "competitors": [
+        "Clearstream"
+      ],
+      "opportunity": "High",
+      "oppNote": "Clearstream-SGX passporting threatens APAC corridors",
+      "status": "APAC hub - 18 corridors live"
+    },
+    "IRL": {
+      "name": "Ireland",
+      "flag": "🇮🇪",
+      "region": "Northern Europe",
+      "corridors": 33,
+      "monthlyOrders": "6.1m",
+      "topConnections": [
+        "UK",
+        "Luxembourg",
+        "USA"
+      ],
+      "competitors": [
+        "Allfunds",
+        "Clearstream"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "Allfunds FundRock buy strengthens rival TA connectivity",
+      "status": "Core hub - 33 corridors live"
+    },
+    "USA": {
+      "name": "United States",
+      "flag": "🇺🇸",
+      "region": "North America",
+      "corridors": 24,
+      "monthlyOrders": "4.9m",
+      "topConnections": [
+        "UK",
+        "Canada",
+        "Hong Kong"
+      ],
+      "competitors": [
+        "Local TAs",
+        "NSCC"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "Vanguard APAC push opens HK corridor conversation",
+      "status": "Active - 24 corridors live"
+    },
+    "JPN": {
+      "name": "Japan",
+      "flag": "🇯🇵",
+      "region": "Asia Pacific",
+      "corridors": 12,
+      "monthlyOrders": "1.9m",
+      "topConnections": [
+        "Hong Kong",
+        "Singapore",
+        "USA"
+      ],
+      "competitors": [
+        "Local TAs"
+      ],
+      "opportunity": "High",
+      "oppNote": "BlackRock ETF growth + NISA reform drives RFP",
+      "status": "Active - 12 corridors live"
+    },
+    "HKG": {
+      "name": "Hong Kong",
+      "flag": "🇭🇰",
+      "region": "Asia Pacific",
+      "corridors": 16,
+      "monthlyOrders": "2.7m",
+      "topConnections": [
+        "Singapore",
+        "Japan",
+        "UK"
+      ],
+      "competitors": [
+        "Clearstream"
+      ],
+      "opportunity": "High",
+      "oppNote": "Fidelity MPF expansion adds 3 target distributors",
+      "status": "APAC hub - 16 corridors live"
+    },
+    "DEU": {
+      "name": "Germany",
+      "flag": "🇩🇪",
+      "region": "Western Europe",
+      "corridors": 19,
+      "monthlyOrders": "3.0m",
+      "topConnections": [
+        "Luxembourg",
+        "France",
+        "UK"
+      ],
+      "competitors": [
+        "Clearstream"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "DWS sub-fund mergers open connectivity window",
+      "status": "Active - 19 corridors live"
+    },
+    "BRA": {
+      "name": "Brazil",
+      "flag": "🇧🇷",
+      "region": "Latin America",
+      "corridors": 2,
+      "monthlyOrders": "0.2m",
+      "topConnections": [
+        "Luxembourg",
+        "USA",
+        "Mexico"
+      ],
+      "competitors": [
+        "Local custodians"
+      ],
+      "opportunity": "High",
+      "oppNote": "Itaú UCITS launch needs Brazil-Luxembourg bridge",
+      "status": "Emerging - 2 corridors live"
+    },
+    "FRA": {
+      "name": "France",
+      "flag": "🇫🇷",
+      "region": "Western Europe",
+      "corridors": 22,
+      "monthlyOrders": "3.6m",
+      "topConnections": [
+        "Luxembourg",
+        "Germany",
+        "UK"
+      ],
+      "competitors": [
+        "Euroclear EMX"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "Amundi 230-fund merger is a large operational event",
+      "status": "Active - 22 corridors live"
+    },
+    "ZAF": {
+      "name": "South Africa",
+      "flag": "🇿🇦",
+      "region": "Africa",
+      "corridors": 4,
+      "monthlyOrders": "0.3m",
+      "topConnections": [
+        "UK",
+        "Luxembourg",
+        "UAE"
+      ],
+      "competitors": [
+        "Local TAs"
+      ],
+      "opportunity": "High",
+      "oppNote": "Allan Gray feeder structure opens SA retail corridor",
+      "status": "Emerging - 4 corridors live"
+    },
+    "TWN": {
+      "name": "Taiwan",
+      "flag": "🇹🇼",
+      "region": "Asia Pacific",
+      "corridors": 5,
+      "monthlyOrders": "0.5m",
+      "topConnections": [
+        "Hong Kong",
+        "Singapore",
+        "Japan"
+      ],
+      "competitors": [
+        "Local platforms"
+      ],
+      "opportunity": "High",
+      "oppNote": "Cathay SITE platform RFP includes Calastone",
+      "status": "Growing - 5 corridors live"
+    },
+    "ARE": {
+      "name": "United Arab Emirates",
+      "flag": "🇦🇪",
+      "region": "Middle East",
+      "corridors": 8,
+      "monthlyOrders": "0.9m",
+      "topConnections": [
+        "UK",
+        "India",
+        "Singapore"
+      ],
+      "competitors": [
+        "Local custodians"
+      ],
+      "opportunity": "High",
+      "oppNote": "Emirates NBD DIFC/ADGM passporting opens GCC corridor",
+      "status": "Growing - 8 corridors live"
+    },
+    "CAN": {
+      "name": "Canada",
+      "flag": "🇨🇦",
+      "region": "North America",
+      "corridors": 11,
+      "monthlyOrders": "1.5m",
+      "topConnections": [
+        "USA",
+        "UK",
+        "Luxembourg"
+      ],
+      "competitors": [
+        "Local TAs"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "CI Financial RIA acquisitions trigger infra review",
+      "status": "Active - 11 corridors live"
+    },
+    "SWE": {
+      "name": "Sweden",
+      "flag": "🇸🇪",
+      "region": "Nordics",
+      "corridors": 13,
+      "monthlyOrders": "1.7m",
+      "topConnections": [
+        "UK",
+        "Luxembourg",
+        "Germany"
+      ],
+      "competitors": [
+        "Euroclear EMX"
+      ],
+      "opportunity": "Medium",
+      "oppNote": "Nordea T+1 readiness - ISO 20022 vendor decision Q4",
+      "status": "Active - 13 corridors live"
+    },
+    "CHE": {
+      "name": "Switzerland",
+      "flag": "🇨🇭",
+      "region": "Western Europe",
+      "corridors": 15,
+      "monthlyOrders": "2.2m",
+      "topConnections": [
+        "Luxembourg",
+        "UK",
+        "Germany"
+      ],
+      "competitors": [
+        "Clearstream",
+        "Euroclear EMX"
+      ],
+      "opportunity": "High",
+      "oppNote": "UBS Wealth flagged as potential EMX switcher - CCO lead",
+      "status": "Active - 15 corridors live"
+    }
+  }
+}
