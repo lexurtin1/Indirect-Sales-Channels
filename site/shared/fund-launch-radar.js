@@ -41,6 +41,7 @@
   let autoResumeTimer = null;
   let wantAutoRotate = true;
   let toastTimer = null;
+  let unreadActivity = 0;
 
   function getCss(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#007db7";
@@ -235,19 +236,12 @@
     items.forEach((e) => {
       const c = CAT[e.cat];
       const row = document.createElement("div");
-      row.className = "row" + (e.eid === selectedEid ? " sel" : "");
+      row.className = "row cat-" + e.cat + (e.eid === selectedEid ? " sel" : "");
       row.dataset.eid = e.eid;
       const factsHtml = (e.details && e.details.facts ? e.details.facts : [])
         .map((f) => "<li>" + escapeHtml(f) + "</li>")
         .join("");
       row.innerHTML =
-        '<span class="row-dot ' +
-        (e.sev === "high" ? "high" : "") +
-        '" style="background:' +
-        c.css +
-        ";color:" +
-        c.css +
-        '"></span>' +
         '<div class="row-body">' +
         '<div class="row-top">' +
         '<span class="flag">' +
@@ -424,15 +418,40 @@
     set("c-call", by("call"));
     set("c-id", by("identifier"));
 
-    const markets = new Set(ALERT_EVENTS.map((e) => e.iso)).size;
     const high = ALERT_EVENTS.filter((e) => e.sev === "high").length;
     set("stat-alerts", ALERT_EVENTS.length);
-    set("stat-markets", markets);
-    set("stat-countries", markets);
-    set("stat-comp", by("competitor"));
     set("stat-high", high);
     const alertEl = $("stat-alerts");
     if (alertEl) alertEl.dataset.count = String(ALERT_EVENTS.length);
+    updateActivityBadge();
+  }
+
+  function updateActivityBadge() {
+    const badge = $("activity-badge");
+    const bell = $("activity-bell");
+    if (!badge || !bell) return;
+    if (unreadActivity > 0) {
+      badge.hidden = false;
+      badge.textContent = unreadActivity > 99 ? "99+" : String(unreadActivity);
+      bell.classList.add("has-activity");
+      bell.setAttribute("aria-label", "Activity notifications, " + unreadActivity + " new");
+    } else {
+      badge.hidden = true;
+      badge.textContent = "0";
+      bell.classList.remove("has-activity");
+      bell.setAttribute("aria-label", "Activity notifications");
+    }
+  }
+
+  function clearActivityBadge() {
+    unreadActivity = 0;
+    updateActivityBadge();
+  }
+
+  function openFeedRail() {
+    $("feed-rail").classList.remove("collapsed");
+    $("app").classList.remove("feed-closed");
+    $("feed-toggle").setAttribute("aria-expanded", "true");
   }
 
   function applyFilter() {
@@ -630,40 +649,14 @@
     errEl.hidden = false;
   }
 
-  function showToast(event) {
-    const toast = $("isin-toast");
-    $("toast-title").textContent = "New ISIN created";
-    $("toast-body").textContent =
-      (event.isin || "") +
-      " · " +
-      (event.fund_name || "") +
-      " · " +
-      (event.cty || "") +
-      ". Illustrative only.";
-    toast.hidden = false;
-    requestAnimationFrame(() => toast.classList.add("is-in"));
-  }
-
-  function hideToast() {
-    const toast = $("isin-toast");
-    toast.classList.remove("is-in");
-    if (motionOk) {
-      setTimeout(() => {
-        toast.hidden = true;
-      }, 350);
-    } else {
-      toast.hidden = true;
-    }
-  }
-
   function injectLiveIdentifier() {
     if (!LIVE_IDENTIFIER || liveInjected) return;
     liveInjected = true;
     ALERT_EVENTS = [LIVE_IDENTIFIER].concat(ALERT_EVENTS.filter((e) => e.eid !== LIVE_IDENTIFIER.eid));
     rebuildIndexes();
+    unreadActivity += 1;
     updateCounts();
     applyFilter();
-    showToast(LIVE_IDENTIFIER);
     if (globe) {
       const marker = document.querySelector('.flash-marker[data-eid="' + LIVE_IDENTIFIER.eid + '"]');
       if (marker) {
@@ -744,10 +737,19 @@
       }, motionOk ? 440 : 0);
     });
 
-    $("toast-open").addEventListener("click", () => {
-      hideToast();
-      if (LIVE_IDENTIFIER) selectEvent(LIVE_IDENTIFIER.eid);
-    });
+    const bell = $("activity-bell");
+    if (bell) {
+      bell.addEventListener("click", () => {
+        openFeedRail();
+        clearActivityBadge();
+        if (LIVE_IDENTIFIER && EVENT_BY_ID[LIVE_IDENTIFIER.eid]) {
+          selectEvent(LIVE_IDENTIFIER.eid);
+        } else {
+          const first = visibleFeedEvents()[0];
+          if (first) selectEvent(first.eid);
+        }
+      });
+    }
 
     $("retry-geo").addEventListener("click", loadGeo);
   }
@@ -756,7 +758,8 @@
     approved = {};
     liveInjected = false;
     selectedEid = null;
-    hideToast();
+    unreadActivity = 0;
+    updateActivityBadge();
     if (LIVE_IDENTIFIER) {
       ALERT_EVENTS = ALERT_EVENTS.filter((e) => e.eid !== LIVE_IDENTIFIER.eid);
     }

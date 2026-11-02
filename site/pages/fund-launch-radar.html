@@ -29,23 +29,21 @@
       <div class="subbrand">Fund Launch Radar · 2026</div>
     </div>
 
-    <div class="hero">
-      <div class="big"><span id="stat-alerts" data-count="0">0</span><span class="unit">alerts</span></div>
-      <div class="lead">live across <b id="stat-markets">0</b> markets. Regulatory shifts, competitor moves, and new identifiers, tracked in this simulation.</div>
-      <div class="mini">
-        <div><div class="v" id="stat-countries">0</div><div class="k">Countries monitored</div></div>
-        <div><div class="v" id="stat-comp">0</div><div class="k">Competitor events</div></div>
-        <div><div class="v alert" id="stat-high">0</div><div class="k">High priority</div></div>
-      </div>
-    </div>
+    <button type="button" id="activity-bell" class="activity-bell" aria-label="Activity notifications" title="Activity">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+        <path d="M10 19a2 2 0 0 0 4 0"></path>
+      </svg>
+      <span id="activity-badge" class="activity-badge" hidden>0</span>
+    </button>
 
     <div class="legend" id="legend" aria-label="Alert categories">
       <h4>Order intelligence</h4>
-      <button type="button" class="lg-item on" data-cat="regulatory"><span class="lg-dot cat-reg"></span>Regulatory<span class="lg-n" id="c-reg">0</span></button>
-      <button type="button" class="lg-item on" data-cat="competitor"><span class="lg-dot cat-comp"></span>Competitor<span class="lg-n" id="c-comp">0</span></button>
-      <button type="button" class="lg-item on" data-cat="market"><span class="lg-dot cat-mkt"></span>Market<span class="lg-n" id="c-mkt">0</span></button>
-      <button type="button" class="lg-item on" data-cat="call"><span class="lg-dot cat-call"></span>Call note<span class="lg-n" id="c-call">0</span></button>
-      <button type="button" class="lg-item on" data-cat="identifier"><span class="lg-dot cat-id"></span>Identifier<span class="lg-n" id="c-id">0</span></button>
+      <button type="button" class="lg-item on" data-cat="regulatory" title="Filter Regulatory"><span class="lg-swatch cat-reg" aria-hidden="true"></span><span class="lg-label">Regulatory</span><span class="lg-n" id="c-reg">0</span></button>
+      <button type="button" class="lg-item on" data-cat="competitor" title="Filter Competitor"><span class="lg-swatch cat-comp" aria-hidden="true"></span><span class="lg-label">Competitor</span><span class="lg-n" id="c-comp">0</span></button>
+      <button type="button" class="lg-item on" data-cat="market" title="Filter Market"><span class="lg-swatch cat-mkt" aria-hidden="true"></span><span class="lg-label">Market</span><span class="lg-n" id="c-mkt">0</span></button>
+      <button type="button" class="lg-item on" data-cat="call" title="Filter Call note"><span class="lg-swatch cat-call" aria-hidden="true"></span><span class="lg-label">Call note</span><span class="lg-n" id="c-call">0</span></button>
+      <button type="button" class="lg-item on" data-cat="identifier" title="Filter Identifier"><span class="lg-swatch cat-id" aria-hidden="true"></span><span class="lg-label">Identifier</span><span class="lg-n" id="c-id">0</span></button>
     </div>
 
     <div class="pills" role="group" aria-label="Globe controls">
@@ -60,6 +58,16 @@
         <span class="pip"></span>
         <span class="vlabel">Live feed</span>
       </button>
+      <div class="feed-kpis" aria-label="Alert summary">
+        <div class="kpi">
+          <span class="kpi-v" id="stat-alerts" data-count="0">0</span>
+          <span class="kpi-k">Alerts</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-v alert" id="stat-high">0</span>
+          <span class="kpi-k">High priority</span>
+        </div>
+      </div>
       <div class="feed-head">
         <div class="ttl"><span class="live"></span><span id="feed-title">Live alert feed</span></div>
         <div class="sub" id="feed-sub"></div>
@@ -73,13 +81,6 @@
       </div>
       <div class="feed scroll" id="feed"></div>
     </aside>
-  </div>
-
-  <div id="isin-toast" class="isin-toast" hidden role="status" aria-live="polite">
-    <div class="toast-kicker">New identifier</div>
-    <div class="toast-title" id="toast-title">New ISIN created</div>
-    <p class="toast-body" id="toast-body"></p>
-    <button type="button" class="toast-cta" id="toast-open">Open in feed</button>
   </div>
 
   <script type="application/json" id="isc-meta">
