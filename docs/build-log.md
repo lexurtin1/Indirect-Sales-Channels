@@ -4,6 +4,7 @@ One entry per build step. Newest first.
 
 | Date | Step | Files changed | Open items |
 | --- | --- | --- | --- |
+| 2026-11-02 | Homepage layout: compact square nav rail, diagram centred in remaining width | site/shared/home.css, site/shared/home.js, docs/build-log.md | Consultant channel is not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. Freeform Ask Calastone replies use the offline fallback outside Design Canvas. |
 | 2026-11-02 | Regional website assistant: integrate Ask Calastone Design Canvas demo | site/assets/ask-calastone/, site/pages/regional-assistant.html, site/index.html, README.md, docs/build-log.md | Consultant channel is not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. Freeform Ask Calastone replies use the offline fallback outside Design Canvas. |
 | 2026-11-02 | Keep Approve/Edit/Dismiss visible on every brief; widen diagram column further | site/shared/home.css, site/assets/diagram/commercial-growth.dc.html, docs/build-log.md | Consultant channel and regional website assistant are not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-11-02 | Fund Launch Radar: real company names, drop illustrative wording, larger type | data/fund-launch-radar/alerts.json, site/shared/fund-launch-radar.css, site/shared/fund-launch-radar.js, docs/build-log.md | Consultant channel and regional website assistant are not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. |
