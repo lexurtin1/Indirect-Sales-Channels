@@ -1,0 +1,49 @@
+/* ============================================================
+   CALASTONE · BASE / RESET
+   Minimal, opinionated base so specimens & kits share a baseline.
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--lh-normal);
+  font-weight: var(--fw-regular);
+  color: var(--text-primary);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semibold);
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--accent-500); }
+
+strong, b { font-weight: var(--fw-bold); }
+
+::selection { background: var(--accent-300); color: var(--ink-900); }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }

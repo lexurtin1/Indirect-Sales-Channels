@@ -4,6 +4,7 @@ One entry per build step. Newest first.
 
 | Date | Step | Files changed | Open items |
 | --- | --- | --- | --- |
+| 2026-11-02 | Homepage: four channel cards and the commercial growth diagram | site/index.html, site/shared/home.css, site/shared/home.js, site/pages/website-globe.html, site/pages/mcp-assistant.html, site/shared/globe-app.js, site/shared/chat.css, site/assets/diagram/, README.md | Consultant channel, fund launch radar, and regional website assistant are not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-10-31 | Download MCP goes straight to MCP assistant; remove email gate | site/shared/mcp-funnel.js, site/shared/chat-module.js | Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-10-31 | Chrome tools: drop about and tour; reset and home become icons | site/shared/chrome.js, site/shared/chrome.css, site/shared/chat-module.css, site/shared/home.css, site/pages/*.html, site/index.html, README.md | Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-10-31 | Remove Simulated view tag; move chrome tools to top right; show firm mark beside chat user | site/shared/chrome.js, site/shared/chrome.css, site/shared/home.css, site/shared/chat-module.js, site/shared/chat-module.css, site/assets/brands/*-mark.svg, data/chatbot/chat-scripts.json, site/index.html, AGENTS.md, README.md | Product copy still TODO. Report URLs still null. Live assistant mode not built. |

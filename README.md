@@ -18,11 +18,11 @@ The screens compare options. They do not make a business case. Volumes, conversi
 
 ## 2. Screens
 
-The front page is the navigation. Each card opens one screen.
+The front page is the navigation. Four cards sit on the left. Fund Flow Explorer opens the globe. The other three are marked Later. The commercial growth diagram sits on the right. Screens 3 to 6 stay in the repo and are not linked from the front page. The MCP assistant is reached from the globe, not from its own card.
 
 | # | Screen | What it simulates | Channel it proves | Build approach |
 | --- | --- | --- | --- | --- |
-| 0 | Front page | Pulse-style card navigation and a one-paragraph intro | n/a | Reuse the front navigation from `calastone-network-vis` |
+| 0 | Front page | Four channel cards and the commercial growth diagram | n/a | Pulse header, with Commercial Growth Diagram v3 embedded |
 | 1 | Calastone website with flow globe | The calastone.com homepage with an interactive globe: click any country to see fund flows in both directions, with deeper data offered through the Calastone MCP | Data as a hook; AI-led discovery | Recreate the homepage from screenshots; globe from published FFI data |
 | 2 | MCP assistant | A fund manager's assistant (HSBC, BlackRock or Vanguard) calls Calastone MCP tools; colours follow the selected firm | AI-led discovery | Full-screen chat; scripted answers in `data/chatbot/chat-scripts.json` |
 | 3 | Salesforce trend alert | A fund manager's Salesforce account page with a Calastone flow alert sliding in | Data product inside client CRMs | Recreate from screenshots using the Salesforce Lightning Design System |

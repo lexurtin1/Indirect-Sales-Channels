@@ -1,0 +1,37 @@
+/* ============================================================
+   CALASTONE · EFFECTS  -  shadows, borders, blur, motion
+   Light fintech: soft, cool-tinted shadows; subtle elevation;
+   calm fades (no bounce).
+   ============================================================ */
+:root {
+  /* ---- Elevation (cool blue-grey shadows, never pure black) ---- */
+  --shadow-xs: 0 1px 2px rgba(34, 50, 61, 0.06);
+  --shadow-sm: 0 1px 3px rgba(34, 50, 61, 0.08), 0 1px 2px rgba(34, 50, 61, 0.04);
+  --shadow-md: 0 4px 12px rgba(34, 50, 61, 0.08), 0 2px 4px rgba(34, 50, 61, 0.05);
+  --shadow-lg: 0 12px 28px rgba(34, 50, 61, 0.12), 0 4px 8px rgba(34, 50, 61, 0.06);
+  --shadow-xl: 0 24px 56px rgba(34, 50, 61, 0.16);
+
+  /* Coloured glow used on active brand elements (the hub "lights up") */
+  --glow-brand: 0 0 0 1px rgba(45,154,142,0.25), 0 8px 28px rgba(45,154,142,0.28);
+  --glow-accent: 0 0 24px rgba(15,184,156,0.35);
+
+  /* ---- Borders ---- */
+  --border-width: 1px;  /* @kind spacing */
+  --border-hairline: 1px solid var(--border-subtle); /* @kind other */
+  --border-card: 1px solid var(--ink-100); /* @kind other */
+
+  /* ---- Focus ---- */
+  --focus-ring-width: 3px; /* @kind spacing */
+  --focus-ring: 0 0 0 3px rgba(15, 184, 156, 0.35); /* @kind shadow */
+
+  /* ---- Blur (glassy panels over the network / globe) ---- */
+  --blur-panel: blur(14px); /* @kind other */
+
+  /* ---- Motion ---- (calm, professional  -  ease-out, no overshoot) */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast: 120ms;  /* @kind other */
+  --dur-base: 200ms;  /* @kind other */
+  --dur-slow: 360ms;  /* @kind other */
+  --transition-base: all var(--dur-base) var(--ease-out); /* @kind other */
+}

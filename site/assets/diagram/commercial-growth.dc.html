@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@0.544.0/font/lucide.css">
+  <script src="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: #f7fafc; }
+    a { color: #2d9a8e; } a:hover { color: #0fb89c; }
+    @keyframes cgPulse { 0% { transform: scale(1); opacity: .5 } 100% { transform: scale(1.9); opacity: 0 } }
+    @keyframes cgFill { from { width: 0% } to { width: 100% } }
+    @keyframes cgFade { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+<div style="min-height:100vh;background:#f7fafc;font-family:'Gill Sans MT','Gill Sans',Calibri,sans-serif;color:#0d1418;display:flex;justify-content:center;padding:40px 24px;box-sizing:border-box;overflow:hidden">
+  <div style="position:relative;width:920px;height:1000px;flex-shrink:0">
+
+    <div style="position:absolute;left:0;top:44px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">01</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">SIGNAL</span><span style="font-size:13px;color:#5a6b76">Where it starts</span></div>
+    <div style="position:absolute;left:0;top:314px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">02</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">INTENT</span><span style="font-size:13px;color:#5a6b76">What they need</span></div>
+    <div style="position:absolute;left:0;top:526px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">03</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">ROUTING</span><span style="font-size:13px;color:#5a6b76">Who should act</span></div>
+    <div style="position:absolute;left:0;top:730px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">04</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">SALES</span><span style="font-size:13px;color:#5a6b76">Reviewed by a person</span></div>
+    <div style="position:absolute;left:0;top:922px;width:130px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#2d9a8e">05</span><span style="font-size:15px;font-weight:700;letter-spacing:.14em">OUTCOME</span></div>
+
+    <div style="position:absolute;left:160px;top:0;width:760px;height:1000px">
+      {{ wires }}
+
+      <div onMouseEnter="{{ enter0 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:0;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb0 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss0 }};transition:all 300ms ease-out;cursor:pointer">
+        <i class="icon-globe" style="font-size:24px;color:#2d9a8e"></i>
+        <span style="font-size:16px;font-weight:700">Fund Flow Explorer</span>
+        <span style="font-size:13px;color:#4a5b66">Market questions</span>
+      </div>
+      <div onMouseEnter="{{ enter1 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:196px;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb1 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss1 }};transition:all 300ms ease-out;cursor:pointer">
+        <i class="icon-presentation" style="font-size:24px;color:#3d8dbc"></i>
+        <span style="font-size:16px;font-weight:700">Consultant Channel</span>
+        <span style="font-size:13px;color:#4a5b66">Introduction requests</span>
+      </div>
+      <div onMouseEnter="{{ enter2 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:392px;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb2 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss2 }};transition:all 300ms ease-out;cursor:pointer">
+        <i class="icon-radar" style="font-size:24px;color:#35b57e"></i>
+        <span style="font-size:16px;font-weight:700">Fund Launch Radar</span>
+        <span style="font-size:13px;color:#4a5b66">New ISIN detected</span>
+      </div>
+      <div onMouseEnter="{{ enter3 }}" onMouseLeave="{{ leave }}" style="position:absolute;left:588px;top:0;width:172px;height:124px;box-sizing:border-box;background:#fff;border:1px solid {{ sb3 }};border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ ss3 }};transition:all 300ms ease-out;cursor:pointer">
+        <i class="icon-message-circle" style="font-size:24px;color:#1c4d6a"></i>
+        <span style="font-size:16px;font-weight:700">Regional AI Assistant</span>
+        <span style="font-size:13px;color:#4a5b66">Website conversations</span>
+      </div>
+
+      <div style="position:absolute;left:100px;top:250px;width:560px;height:190px;box-sizing:border-box;background:#fff;border:1px solid #cfe3e0;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 10px 32px rgba(45,154,142,.12)">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="position:relative;width:40px;height:40px;flex-shrink:0">
+            {{ pulse }}
+            <div style="position:absolute;inset:0;border-radius:999px;background:linear-gradient(135deg,#2d9a8e,#35b57e);display:flex;align-items:center;justify-content:center;color:#fff"><i class="icon-sparkles" style="font-size:20px"></i></div>
+          </div>
+          <div style="display:flex;flex-direction:column"><span style="font-size:20px;font-weight:700">AI understands intent</span><span style="font-size:14px;color:#4a5b66">Reads the signal, works out the need</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+          <div style="background:#f1f6f9;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;letter-spacing:.16em;color:#5a6b76;font-weight:600">NEED</span><span style="font-size:15px;font-weight:700;color:#22323d">{{ b.need }}</span></div>
+          <div style="background:#f1f6f9;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;letter-spacing:.16em;color:#5a6b76;font-weight:600">MARKET</span><span style="font-size:15px;font-weight:700;color:#22323d">{{ b.market }}</span></div>
+          <div style="background:#f1f6f9;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;letter-spacing:.16em;color:#5a6b76;font-weight:600">RELATIONSHIP</span><span style="font-size:15px;font-weight:700;color:#22323d">{{ b.rel }}</span></div>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:672px;top:322px;width:150px;display:flex;flex-direction:column;gap:4px;font-size:13px;color:#5a6b76">
+        <i class="icon-refresh-ccw" style="font-size:15px;color:#9aabb5"></i>
+        <span>Anonymous signals become market insight, not leads</span>
+      </div>
+
+      <div style="position:absolute;left:170px;top:500px;width:420px;height:110px;box-sizing:border-box;background:#fff;border:1px solid #e3ebf0;border-radius:14px;padding:16px 20px;display:flex;flex-direction:column;gap:12px;align-items:center">
+        <span style="font-size:18px;font-weight:700">Routed to the regional owner</span>
+        <div style="display:flex;gap:8px">
+          <span style="font-size:14px;font-weight:600;padding:6px 16px;border-radius:999px;background:{{ rb0 }};color:{{ rc0 }};transition:all 300ms ease-out">EMEA</span>
+          <span style="font-size:14px;font-weight:600;padding:6px 16px;border-radius:999px;background:{{ rb1 }};color:{{ rc1 }};transition:all 300ms ease-out">Americas</span>
+          <span style="font-size:14px;font-weight:600;padding:6px 16px;border-radius:999px;background:{{ rb2 }};color:{{ rc2 }};transition:all 300ms ease-out">APAC</span>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:140px;top:670px;width:480px;height:200px;box-sizing:border-box;background:#22323d;color:#fff;border-radius:16px;padding:18px 22px;display:flex;flex-direction:column;gap:12px;box-shadow:0 16px 40px rgba(34,50,61,.22);overflow:hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:8px"><i class="icon-inbox" style="font-size:16px;color:#0fb89c"></i><span style="font-size:12px;letter-spacing:.16em;font-weight:600">OPPORTUNITY BRIEF · {{ b.region }}</span></div>
+          <span style="font-size:12px;color:rgba(255,255,255,.7)">from {{ b.src }}</span>
+        </div>
+        {{ briefBody }}
+        <div style="display:flex;gap:8px;margin-top:auto">
+          <span style="font-size:13px;font-weight:700;padding:6px 14px;border-radius:6px;background:#0fb89c;color:#0d1418">Approve</span>
+          <span style="font-size:13px;font-weight:600;padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.3)">Edit</span>
+          <span style="font-size:13px;font-weight:600;padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.3)">Dismiss</span>
+        </div>
+        {{ timer }}
+      </div>
+
+      <div style="position:absolute;left:220px;top:910px;width:320px;height:68px;box-sizing:border-box;background:linear-gradient(135deg,#2d9a8e,#35b57e);color:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 10px 30px rgba(45,154,142,.32)">
+        <i class="icon-badge-check" style="font-size:22px"></i>
+        <span style="font-size:20px;font-weight:700">Qualified opportunity</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1080},&quot;cycleSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:10,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  state = { step: 0, hover: null };
+  reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  cx = [86, 282, 478, 674];
+  briefs = [
+    { src: 'Fund Flow Explorer', region: 'EMEA', r: 0, need: 'Flow data', market: 'Luxembourg', rel: 'Existing client', who: 'Distributor, connected via MCP', why: 'Investigating cross-border flows', next: 'Offer an account-team introduction' },
+    { src: 'Consultant Channel', region: 'AMERICAS', r: 1, need: 'Introduction', market: 'United States', rel: 'New', who: 'Investment consultant', why: 'Asked to introduce a client', next: 'Book an introductory call' },
+    { src: 'Fund Launch Radar', region: 'APAC', r: 2, need: 'Connectivity', market: 'Singapore', rel: 'No link yet', who: 'Asset manager and transfer agent', why: 'New ISIN detected and verified', next: 'Approve the researched outreach draft' },
+    { src: 'Regional AI Assistant', region: 'EMEA', r: 0, need: 'Settlement', market: 'Germany', rel: 'Prospect', who: 'Fund manager, details supplied', why: 'Asked about settlement, in German', next: 'Follow up in German' }
+  ];
+  componentDidMount() {
+    if (this.reduce) return;
+    this.tick = setInterval(() => { if (this.state.hover == null) this.setState(s => ({ step: (s.step + 1) % 4 })); }, this.props.cycleSeconds ? this.props.cycleSeconds * 1000 : 4000);
+  }
+  componentWillUnmount() { clearInterval(this.tick); }
+  wires(cur) {
+    const h = React.createElement, kids = [];
+    const dot = (key, path, dur, begin, r, fill) => h('circle', { key, r, fill }, h('animateMotion', { dur: dur + 's', begin: begin + 's', repeatCount: 'indefinite', path }));
+    this.cx.forEach((x, i) => {
+      const d = `M ${x} 124 C ${x} 200, 380 180, 380 250`, on = i === cur;
+      kids.push(h('path', { key: 'p' + i, d, fill: 'none', stroke: on ? '#2d9a8e' : '#d3dee5', strokeWidth: on ? 2 : 1.25, style: { transition: 'all 300ms' } }));
+      if (!this.reduce) [0, .8, 1.6].forEach((b, j) => kids.push(dot(`d${i}${j}`, d, 2.4, b + i * .3, on ? 4 : 2.5, on ? '#0fb89c' : '#b5c6d0')));
+    });
+    const spine = 'M 380 440 L 380 910';
+    kids.push(h('path', { key: 'spine', d: spine, fill: 'none', stroke: '#2d9a8e', strokeWidth: 2, strokeDasharray: '2 6', strokeLinecap: 'round' }));
+    if (!this.reduce) [0, 1, 2].forEach(j => kids.push(dot('s' + j, spine, 3, j, 4, '#0fb89c')));
+    kids.push(h('path', { key: 'side', d: 'M 660 345 L 668 345', stroke: '#9aabb5', strokeDasharray: '3 3' }));
+    return h('svg', { width: 760, height: 1000, style: { position: 'absolute', inset: 0, overflow: 'visible' } }, kids);
+  }
+  renderVals() {
+    const cur = this.state.hover ?? this.state.step, b = this.briefs[cur], h = React.createElement;
+    const row = (k, l, t) => h('div', { key: k, style: { display: 'flex', gap: 12, fontSize: 15, lineHeight: 1.3 } },
+      h('span', { style: { width: 76, flexShrink: 0, fontSize: 11, letterSpacing: '.16em', fontWeight: 600, color: 'rgba(255,255,255,.7)', paddingTop: 3 } }, l),
+      h('span', { style: { fontWeight: k === 'n' ? 700 : 400, color: k === 'n' ? '#0fb89c' : '#fff' } }, t));
+    const v = {
+      b,
+      wires: this.wires(cur),
+      pulse: this.reduce ? null : h('div', { style: { position: 'absolute', inset: 0, borderRadius: 999, background: '#0fb89c', animation: 'cgPulse 2s ease-out infinite' } }),
+      briefBody: h('div', { key: 'body' + cur, style: { display: 'flex', flexDirection: 'column', gap: 8, animation: this.reduce ? 'none' : 'cgFade 360ms ease-out' } }, row('w', 'WHO', b.who), row('y', 'WHY NOW', b.why), row('n', 'NEXT STEP', b.next)),
+      timer: this.state.hover == null && !this.reduce ? h('div', { key: 't' + this.state.step, style: { position: 'absolute', left: 0, bottom: 0, height: 3, background: '#0fb89c', animation: `cgFill ${this.props.cycleSeconds ?? 4}s linear` } }) : null,
+      leave: () => this.setState({ hover: null })
+    };
+    for (let i = 0; i < 4; i++) {
+      const on = i === cur;
+      v['sb' + i] = on ? '#2d9a8e' : '#e3ebf0';
+      v['ss' + i] = on ? '0 10px 28px rgba(45,154,142,.2)' : '0 2px 8px rgba(34,50,61,.05)';
+      v['enter' + i] = () => this.setState({ hover: i, step: i });
+    }
+    for (let r = 0; r < 3; r++) {
+      v['rb' + r] = r === b.r ? '#2d9a8e' : '#f1f6f9';
+      v['rc' + r] = r === b.r ? '#fff' : '#5a6b76';
+    }
+    return v;
+  }
+}
+</script>
+</body>
+</html>

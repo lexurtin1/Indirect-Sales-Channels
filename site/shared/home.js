@@ -37,6 +37,23 @@
     });
   }
 
+  const slot = document.getElementById("diagram-slot");
+  const growthFrame = document.getElementById("growth-frame");
+  if (slot && growthFrame) {
+    const artW = 1100;
+    const artH = 1080;
+    const fit = () => {
+      const width = slot.clientWidth;
+      if (!width) return;
+      const scale = width / artW;
+      growthFrame.style.transform = "scale(" + scale + ")";
+      slot.style.height = Math.round(artH * scale) + "px";
+    };
+    fit();
+    if (typeof ResizeObserver === "function") new ResizeObserver(fit).observe(slot);
+    else window.addEventListener("resize", fit);
+  }
+
   const canvas = document.getElementById("ph-ecg");
   if (!canvas) return;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
