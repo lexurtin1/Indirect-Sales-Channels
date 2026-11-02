@@ -4,6 +4,7 @@ One entry per build step. Newest first.
 
 | Date | Step | Files changed | Open items |
 | --- | --- | --- | --- |
+| 2026-11-02 | Fund Launch Radar: clearer Calastone wordmark and subtle hex orbiting the logo pill | site/pages/fund-launch-radar.html, site/shared/fund-launch-radar.css, site/assets/brand/calastone-wordmark-black-clear.png, docs/build-log.md | Consultant channel and regional website assistant are not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-11-02 | Keep Approve/Edit/Dismiss visible on every brief; widen diagram column further | site/shared/home.css, site/assets/diagram/commercial-growth.dc.html, docs/build-log.md | Consultant channel and regional website assistant are not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-11-02 | Fund Launch Radar: real company names, drop illustrative wording, larger type | data/fund-launch-radar/alerts.json, site/shared/fund-launch-radar.css, site/shared/fund-launch-radar.js, docs/build-log.md | Consultant channel and regional website assistant are not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. |
 | 2026-11-02 | Fund Launch Radar polish: small dots, logo pill, quieter type | site/pages/fund-launch-radar.html, site/shared/fund-launch-radar.css, site/shared/fund-launch-radar.js, docs/build-log.md | Consultant channel and regional website assistant are not built. Product copy still TODO. Report URLs still null. Live assistant mode not built. |
