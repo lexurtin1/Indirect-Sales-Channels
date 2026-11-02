@@ -1,0 +1,93 @@
+/* ============================================================
+   CALASTONE · COLOR TOKENS
+   Light + teal + black. The signature is a teal→green gradient
+   and a six-colour participant palette (the network nodes).
+   ============================================================ */
+:root {
+  /* ---- Ink / neutrals (text is dark slate, not pure black) ---- */
+  --ink-900: #0d1418;   /* near-black, logo & strongest headings */
+  --ink-800: #22323d;   /* primary text — dark slate navy */
+  --ink-700: #3a4a55;
+  --ink-600: #566571;   /* secondary text */
+  --ink-500: #7a8893;   /* muted / captions */
+  --ink-400: #9aa6b0;   /* disabled, placeholder */
+  --ink-300: #c3cdd5;   /* borders (strong) */
+  --ink-200: #dde4ea;   /* borders / dividers */
+  --ink-100: #eef2f6;   /* hairlines, track fills */
+  --ink-050: #f5f8fb;   /* tint background */
+  --white:   #ffffff;
+
+  /* ---- Brand teal (primary) ---- */
+  --teal-700: #1f7a72;
+  --teal-600: #26867d;
+  --teal-500: #2d9a8e;  /* PRIMARY brand teal */
+  --teal-400: #43a89c;
+  --teal-300: #7cc4bb;
+  --teal-200: #b3ddd7;
+  --teal-100: #dcefec;
+  --teal-050: #eef8f6;
+
+  /* ---- Bright teal (interactive accent / links / focus) ---- */
+  --accent-600: #0c9d86;
+  --accent-500: #0fb89c;  /* bright network teal — links, active */
+  --accent-400: #2ecbb1;
+  --accent-300: #73d6c5;
+
+  /* ---- Green (secondary brand — pairs with teal in the gradient) ---- */
+  --green-700: #2c8f5f;
+  --green-600: #2fa06b;
+  --green-500: #35b57e;   /* hub green */
+  --green-400: #56a773;
+  --green-300: #8fce9f;
+  --green-100: #e0f3e7;
+
+  /* ---- Signature brand gradient (teal → green, the Calastone hub) ---- */
+  --grad-brand: linear-gradient(135deg, #2d9a8e 0%, #35b57e 100%); /* @kind color */
+  --grad-brand-soft: linear-gradient(135deg, #43a89c 0%, #5fc08c 100%); /* @kind color */
+  --grad-accent-rule: linear-gradient(90deg, #2d9a8e 0%, #35b57e 100%); /* @kind color */
+
+  /* ---- Participant palette (the six network roles) ---- */
+  --role-investor:   #3d8dbc;  /* Investors / Distributors (blue) */
+  --role-distributor:#3d8dbc;
+  --role-fundmanager:#2ea39b;  /* Fund Managers (teal) */
+  --role-transferagent:#1c4d6a;/* Transfer Agents (deep navy) */
+  --role-custodian:  #56a773;  /* Custodians (green) */
+  --role-calastone:  #2d9a8e;  /* the hub */
+
+  /* ---- Semantic status ---- */
+  --status-success: #35b57e;
+  --status-success-bg: #e0f3e7;
+  --status-warning: #e0a325;
+  --status-warning-bg: #fbf1d8;
+  --status-danger:  #d05454;
+  --status-danger-bg: #fbe4e4;
+  --status-info:    #3d8dbc;
+  --status-info-bg: #e4eff6;
+
+  /* ============================================================
+     SEMANTIC ALIASES — prefer these in components
+     ============================================================ */
+  --color-bg:            var(--white);
+  --color-bg-subtle:     var(--ink-050);
+  --color-bg-muted:      var(--ink-100);
+  --color-surface:       var(--white);
+  --color-surface-tint:  var(--teal-050);
+
+  --text-strong:   var(--ink-900);
+  --text-primary:  var(--ink-800);
+  --text-secondary:var(--ink-600);
+  --text-muted:    var(--ink-500);
+  --text-inverse:  var(--white);
+  --text-link:     var(--accent-600);
+  --text-brand:    var(--teal-600);
+
+  --border-subtle: var(--ink-200);
+  --border-default:var(--ink-300);
+  --border-strong: var(--ink-600);
+
+  --brand-primary: var(--teal-500);
+  --brand-accent:  var(--accent-500);
+  --brand-ink:     var(--ink-900);
+
+  --focus-ring: var(--accent-500);
+}

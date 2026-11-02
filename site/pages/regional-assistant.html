@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Regional website assistant</title>
+  <link rel="stylesheet" href="/shared/tokens.css">
+  <link rel="stylesheet" href="/shared/chrome.css">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: var(--ink-900, #0d1418);
+    }
+    .ra-frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #0d1418;
+    }
+    /* Sit below the in-demo presenter bar so reset/home stay usable. */
+    .isc-tools {
+      top: 64px;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    id="ask-frame"
+    class="ra-frame"
+    title="Ask Calastone regional website assistant"
+    src="/assets/ask-calastone/ask-calastone.dc.html"
+  ></iframe>
+
+  <script type="application/json" id="isc-meta">
+  {}
+  </script>
+  <script src="/shared/chrome.js"></script>
+  <script>
+    (function () {
+      var frame = document.getElementById("ask-frame");
+      window.iscReset = function () {
+        if (!frame) return;
+        frame.src = frame.src;
+      };
+    })();
+  </script>
+</body>
+</html>

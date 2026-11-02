@@ -18,7 +18,7 @@ The screens compare options. They do not make a business case. Volumes, conversi
 
 ## 2. Screens
 
-The front page is the navigation. Four cards sit on the left. Fund Flow Explorer opens the globe. The other three are marked Later. The commercial growth diagram sits on the right. Screens 3 to 6 stay in the repo and are not linked from the front page. The MCP assistant is reached from the globe, not from its own card.
+The front page is the navigation. Four cards sit on the left. Fund Flow Explorer opens the globe. Regional website assistant opens Ask Calastone. The other two are marked Later. The commercial growth diagram sits on the right. Screens 3 to 6 stay in the repo and are not linked from the front page. The MCP assistant is reached from the globe, not from its own card.
 
 | # | Screen | What it simulates | Channel it proves | Build approach |
 | --- | --- | --- | --- | --- |
@@ -28,6 +28,7 @@ The front page is the navigation. Four cards sit on the left. Fund Flow Explorer
 | 3 | Salesforce trend alert | A fund manager's Salesforce account page with a Calastone flow alert sliding in | Data product inside client CRMs | Recreate from screenshots using the Salesforce Lightning Design System |
 | 4 | Sales Navigator inside Salesforce | A consultancy record with a Sales Navigator panel showing which asset managers it advises and the warm path to them | Consultant relationships | Panel inside the Salesforce recreation |
 | 5 | Agent-to-agent network | Animated diagram of firms' AI agents messaging through Calastone, which verifies identity and permissions | Calastone as the trusted router for AI agents | Original animated diagram |
+| 6 | Regional website assistant | A visitor asks Calastone on the public website; presenter controls step through market flows and show commercial insight | Website chatbot as an inbound channel | Design Canvas prototype in `site/assets/ask-calastone/`; full-page iframe from card 04 |
 
 Screen 1's Download MCP buttons also open screen 2 (MCP assistant), with an optional install dialog.
 
@@ -187,6 +188,7 @@ calastone-indirect-channels/
       salesforce-alert.html  screen 3
       sales-navigator.html   screen 4
       agent-network.html     screen 5
+      regional-assistant.html front-page card 04; Ask Calastone website chatbot
       chat.html              redirects to mcp-assistant
       channel-map.html       kept off the front page; not linked from navigation
     shared/
@@ -199,6 +201,8 @@ calastone-indirect-channels/
       brand/                 Calastone wordmark and brand assets
       brands/                client logos for the MCP assistant (private use only)
       logos/                 client logos for the chatbot (private use only)
+      ask-calastone/         Regional website assistant Design Canvas prototype
+      diagram/               Commercial growth diagram Design Canvas embed
   data/
     ffi/raw/                 public FFI reports (PDF)
     ffi/extracted/ffi.json   extracted figures with sources
