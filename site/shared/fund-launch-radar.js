@@ -755,6 +755,37 @@
     }
 
     $("retry-geo").addEventListener("click", loadGeo);
+    syncBrandHexOrbit();
+    window.addEventListener("resize", syncBrandHexOrbit);
+  }
+
+  function syncBrandHexOrbit() {
+    const block = document.querySelector(".brand-block");
+    const hex = document.querySelector(".brand-hex");
+    if (!block || !hex) return;
+
+    if (!motionOk || typeof CSS === "undefined" || !CSS.supports("offset-path", "path('M0 0 H1')")) {
+      hex.classList.add("is-static");
+      hex.style.offsetPath = "";
+      return;
+    }
+
+    const w = block.offsetWidth;
+    const h = block.offsetHeight;
+    if (w < 8 || h < 8) return;
+
+    const r = h / 2;
+    // Stadium path around the pill border, clockwise from the top-left curve.
+    const d = [
+      "M " + r + " 0",
+      "H " + (w - r),
+      "A " + r + " " + r + " 0 0 1 " + (w - r) + " " + h,
+      "H " + r,
+      "A " + r + " " + r + " 0 0 1 " + r + " 0",
+    ].join(" ");
+
+    hex.classList.remove("is-static");
+    hex.style.offsetPath = "path('" + d + "')";
   }
 
   function resetDemo() {
