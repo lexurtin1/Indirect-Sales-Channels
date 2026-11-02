@@ -102,43 +102,91 @@
 
 .brand-block {
   position: absolute;
-  top: 22px;
-  left: 28px;
+  top: 18px;
+  left: 22px;
   z-index: 7;
   pointer-events: none;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--surface);
   border: 1px solid var(--ink-100);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 999px;
-  padding: 10px 18px 10px 16px;
+  padding: 10px 20px 10px 16px;
   box-shadow: var(--shadow);
+  overflow: visible;
 }
 
-.brand-block img {
-  height: 22px;
+.brand-inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  height: 28px;
   width: auto;
-  mix-blend-mode: multiply;
+  max-width: none;
+  display: block;
+  flex-shrink: 0;
 }
 
 .brand-divider {
   width: 1px;
-  height: 16px;
+  height: 20px;
   background: var(--ink-200);
   flex-shrink: 0;
 }
 
 .subbrand {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--ink-600);
+  color: var(--ink-700);
   text-transform: none;
   white-space: nowrap;
+}
+
+.brand-hex {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  z-index: 2;
+  fill: var(--teal-500);
+  stroke: var(--surface);
+  stroke-width: 1.5;
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--teal-500) 40%, transparent));
+  offset-path: border-box;
+  offset-anchor: center;
+  offset-rotate: 0deg;
+  offset-distance: 0%;
+  opacity: 0.55;
+  animation: brandHexOrbit 16s linear infinite, brandHexPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes brandHexOrbit {
+  to { offset-distance: 100%; }
+}
+
+@keyframes brandHexPulse {
+  0%, 100% { opacity: 0.35; scale: 0.86; }
+  50% { opacity: 0.95; scale: 1.12; }
+}
+
+@supports not (offset-path: border-box) {
+  .brand-hex {
+    offset-path: none;
+    top: -5px;
+    left: 30%;
+    animation: brandHexPulse 2.4s ease-in-out infinite;
+  }
 }
 
 .activity-bell {
@@ -804,5 +852,10 @@
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  .brand-hex {
+    offset-distance: 12%;
+    opacity: 0.7;
   }
 }
