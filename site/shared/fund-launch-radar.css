@@ -5,6 +5,7 @@
   overflow: hidden;
   background: linear-gradient(170deg, var(--ink-050) 0%, var(--surface) 100%);
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +54,7 @@
   align-items: center;
   justify-content: center;
   z-index: 3;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--ink-500);
   pointer-events: none;
@@ -132,9 +133,9 @@
 
 .subbrand {
   margin: 0;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--ink-600);
   text-transform: none;
   white-space: nowrap;
@@ -205,9 +206,9 @@
 
 .legend h4 {
   margin: 0 8px 0 4px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-400);
   white-space: nowrap;
@@ -224,7 +225,7 @@
   background: var(--surface);
   color: var(--ink-500);
   font-family: inherit;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   opacity: 0.45;
@@ -256,7 +257,7 @@
 .lg-n {
   margin-left: 2px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--ink-400);
 }
@@ -271,13 +272,13 @@
 }
 
 .pill {
-  height: 34px;
+  height: 36px;
   padding: 0 14px;
   border: 1px solid var(--ink-200);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   color: var(--ink-600);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   box-shadow: var(--shadow);
@@ -294,7 +295,7 @@
   top: 18px;
   right: 18px;
   bottom: 18px;
-  width: min(380px, 34vw);
+  width: min(420px, 36vw);
   z-index: 8;
   display: flex;
   flex-direction: column;
@@ -382,7 +383,7 @@
 
 .feed-kpis .kpi-v {
   font-family: inherit;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--ink-900);
   line-height: 1;
@@ -393,7 +394,7 @@
 }
 
 .feed-kpis .kpi-k {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -409,7 +410,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--ink-900);
 }
@@ -425,7 +426,7 @@
 
 .feed-head .sub {
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-500);
 }
 
@@ -437,13 +438,13 @@
 }
 
 .rf-btn {
-  height: 28px;
-  padding: 0 10px;
+  height: 30px;
+  padding: 0 11px;
   border: 1px solid var(--ink-200);
   border-radius: 999px;
   background: var(--ink-050);
   color: var(--ink-600);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -500,7 +501,7 @@
   display: flex;
   align-items: baseline;
   gap: 6px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .row-top .cty {
@@ -518,13 +519,13 @@
   margin-left: auto;
   flex-shrink: 0;
   color: var(--ink-400);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .headline {
-  margin-top: 4px;
-  font-size: 12.5px;
-  line-height: 1.4;
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 1.45;
   color: var(--ink-600);
 }
 
@@ -539,12 +540,12 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  height: 20px;
-  padding: 0 8px;
+  height: 22px;
+  padding: 0 9px;
   border-radius: 999px;
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
@@ -558,7 +559,7 @@
   border: none;
   background: none;
   color: var(--nav-link);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -590,29 +591,29 @@
 }
 
 .exp-loc {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink-400);
   margin-bottom: 8px;
 }
 
 .exp-inner h6 {
   margin: 10px 0 4px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-400);
 }
 
 .exp-inner p {
-  font-size: 12.5px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-700);
 }
 
 .exp-inner .facts {
   margin: 0;
   padding-left: 16px;
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--ink-700);
 }
 
@@ -627,15 +628,15 @@
 .exp-source-lbl,
 .exp-orgs-lbl,
 .exp-draft-lbl {
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-400);
   margin-bottom: 4px;
 }
 
 .exp-source a {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--nav-link);
   text-decoration: none;
 }
@@ -643,7 +644,7 @@
 .exp-source .muted,
 .exp-orgs .org-line,
 .isin-code {
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--ink-700);
 }
 
@@ -654,14 +655,14 @@
   background: var(--ink-050);
   border: 1px solid var(--ink-100);
   border-radius: 6px;
-  padding: 4px 8px;
+  padding: 5px 9px;
   display: inline-block;
   margin: 4px 0 8px;
 }
 
 .draft-text {
-  font-size: 12.5px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-700);
   background: var(--ink-050);
   border-radius: 8px;

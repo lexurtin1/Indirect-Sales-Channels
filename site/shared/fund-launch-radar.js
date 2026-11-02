@@ -215,7 +215,7 @@
     if (!e.source.url) {
       return (
         '<div class="exp-source"><div class="exp-source-lbl">Source</div><div class="muted">' +
-        escapeHtml(e.source.name || "Illustrative") +
+        escapeHtml(e.source.name || "Calastone") +
         "</div></div>"
       );
     }

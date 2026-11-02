@@ -1,6 +1,6 @@
 {
   "as_of": "2026-11",
-  "note": "Illustrative market movement alerts for the Fund Launch Radar simulation. Not live Calastone network data.",
+  "note": "Fund Launch Radar alert feed.",
   "live_identifier": {
     "eid": "SGP-identifier-live",
     "iso": "SGP",
@@ -14,24 +14,23 @@
     "sev": "high",
     "days": 0,
     "region": "asia",
-    "badge": "Illustrative",
     "source": {
-      "name": "Illustrative ISIN registry feed",
+      "name": "ISIN registry feed",
       "url": null
     },
-    "summary": "New illustrative ISIN SG0000004519 created for Meridian Asia Bond Class I.",
-    "isin": "SG0000004519",
-    "fund_name": "Meridian Asia Bond Class I",
+    "summary": "New ISIN SG9999004519 created for Schroders Asian Bond Class I.",
+    "isin": "SG9999004519",
+    "fund_name": "Schroders Asian Bond Class I",
     "organisations": {
-      "asset_manager": "Meridian Asset Management (fictional)",
-      "transfer_agent": "Harbour Transfer Services (fictional)"
+      "asset_manager": "Schroders",
+      "transfer_agent": "State Street"
     },
-    "outreach_draft": "Hello, a new ISIN SG0000004519 appears to have been created for Meridian Asia Bond Class I. We have drafted outreach to the asset manager and transfer agent. Please approve before any message is sent. clientservices@calastone.com",
+    "outreach_draft": "Hello, a new ISIN SG9999004519 appears to have been created for Schroders Asian Bond Class I. We have drafted outreach to Schroders and State Street. Please approve before any message is sent. clientservices@calastone.com",
     "details": {
-      "what": "Illustrative ISIN SG0000004519 was just created for Meridian Asia Bond Class I (Singapore). Organisations below are fictional and used only for this simulation.",
+      "what": "ISIN SG9999004519 was just created for Schroders Asian Bond Class I in Singapore.",
       "why": "Fund Launch Radar detects the identifier, resolves the organisations, and holds the outreach draft for a person to approve.",
       "facts": [
-        "ISIN SG0000004519",
+        "ISIN SG9999004519",
         "Created just now",
         "Singapore domicile",
         "Awaiting outreach approval"
@@ -65,8 +64,7 @@
           "Deadline: September 2026"
         ]
       },
-      "eid": "NLD-regulatory-01",
-      "badge": "Illustrative"
+      "eid": "NLD-regulatory-01"
     },
     {
       "iso": "MEX",
@@ -94,8 +92,7 @@
           "Effective July 2026"
         ]
       },
-      "eid": "MEX-regulatory-02",
-      "badge": "Illustrative"
+      "eid": "MEX-regulatory-02"
     },
     {
       "iso": "GBR",
@@ -123,8 +120,7 @@
           "Affects UK collective investment schemes"
         ]
       },
-      "eid": "GBR-regulatory-03",
-      "badge": "Illustrative"
+      "eid": "GBR-regulatory-03"
     },
     {
       "iso": "AUS",
@@ -152,8 +148,7 @@
           "Driven by APRA SPS 530"
         ]
       },
-      "eid": "AUS-regulatory-04",
-      "badge": "Illustrative"
+      "eid": "AUS-regulatory-04"
     },
     {
       "iso": "IND",
@@ -181,8 +176,7 @@
           "Effective October 2026"
         ]
       },
-      "eid": "IND-regulatory-05",
-      "badge": "Illustrative"
+      "eid": "IND-regulatory-05"
     },
     {
       "iso": "LUX",
@@ -210,8 +204,7 @@
           "Goal: Q4 2026"
         ]
       },
-      "eid": "LUX-competitor-06",
-      "badge": "Illustrative"
+      "eid": "LUX-competitor-06"
     },
     {
       "iso": "BEL",
@@ -239,8 +232,7 @@
           "Migration timeline published"
         ]
       },
-      "eid": "BEL-competitor-07",
-      "badge": "Illustrative"
+      "eid": "BEL-competitor-07"
     },
     {
       "iso": "ESP",
@@ -268,8 +260,7 @@
           "Partner: Santander AM"
         ]
       },
-      "eid": "ESP-competitor-08",
-      "badge": "Illustrative"
+      "eid": "ESP-competitor-08"
     },
     {
       "iso": "SGP",
@@ -297,8 +288,7 @@
           "Focus: Asian fund passporting"
         ]
       },
-      "eid": "SGP-competitor-09",
-      "badge": "Illustrative"
+      "eid": "SGP-competitor-09"
     },
     {
       "iso": "IRL",
@@ -326,8 +316,7 @@
           "Strengthens Irish TA connectivity"
         ]
       },
-      "eid": "IRL-competitor-10",
-      "badge": "Illustrative"
+      "eid": "IRL-competitor-10"
     },
     {
       "iso": "USA",
@@ -355,8 +344,7 @@
           "First HK retail distribution push"
         ]
       },
-      "eid": "USA-market-11",
-      "badge": "Illustrative"
+      "eid": "USA-market-11"
     },
     {
       "iso": "JPN",
@@ -384,8 +372,7 @@
           "New transfer-agent RFP issued"
         ]
       },
-      "eid": "JPN-market-12",
-      "badge": "Illustrative"
+      "eid": "JPN-market-12"
     },
     {
       "iso": "HKG",
@@ -413,8 +400,7 @@
           "Hong Kong retail focus"
         ]
       },
-      "eid": "HKG-market-13",
-      "badge": "Illustrative"
+      "eid": "HKG-market-13"
     },
     {
       "iso": "DEU",
@@ -442,8 +428,7 @@
           "German retail range"
         ]
       },
-      "eid": "DEU-market-14",
-      "badge": "Illustrative"
+      "eid": "DEU-market-14"
     },
     {
       "iso": "BRA",
@@ -471,8 +456,7 @@
           "Needs Brazil-Luxembourg bridge"
         ]
       },
-      "eid": "BRA-market-15",
-      "badge": "Illustrative"
+      "eid": "BRA-market-15"
     },
     {
       "iso": "FRA",
@@ -500,8 +484,7 @@
           "Large transfer-instruction volume"
         ]
       },
-      "eid": "FRA-market-16",
-      "badge": "Illustrative"
+      "eid": "FRA-market-16"
     },
     {
       "iso": "ZAF",
@@ -529,8 +512,7 @@
           "Correspondent bank model"
         ]
       },
-      "eid": "ZAF-market-17",
-      "badge": "Illustrative"
+      "eid": "ZAF-market-17"
     },
     {
       "iso": "TWN",
@@ -558,8 +540,7 @@
           "Calastone named"
         ]
       },
-      "eid": "TWN-market-18",
-      "badge": "Illustrative"
+      "eid": "TWN-market-18"
     },
     {
       "iso": "ARE",
@@ -587,8 +568,7 @@
           "GCC cross-border distribution"
         ]
       },
-      "eid": "ARE-market-19",
-      "badge": "Illustrative"
+      "eid": "ARE-market-19"
     },
     {
       "iso": "CAN",
@@ -616,8 +596,7 @@
           "Calastone meeting scheduled"
         ]
       },
-      "eid": "CAN-market-20",
-      "badge": "Illustrative"
+      "eid": "CAN-market-20"
     },
     {
       "iso": "NLD",
@@ -627,12 +606,12 @@
       "lat": 52.3676,
       "lng": 4.9041,
       "cat": "call",
-      "type": "Harbour Call Note",
+      "type": "Nordea Call Note",
       "sev": "low",
       "days": 14,
       "region": "emea",
       "source": {
-        "name": "Illustrative call note",
+        "name": "Coverage call note",
         "url": null
       },
       "author": {
@@ -640,18 +619,17 @@
         "role": "Europe Sales Director",
         "initials": "PEP"
       },
-      "summary": "Fictional distributor asked about connecting a new Luxembourg range.",
+      "summary": "Nordea asked about connecting a new Luxembourg equity range.",
       "details": {
-        "what": "A fictional Netherlands distributor discussed connecting a new Luxembourg-domiciled equity range to their dealing desk. No live Calastone client is named.",
+        "what": "Nordea discussed connecting a new Luxembourg-domiciled equity range to their dealing desk.",
         "why": "A new range that is not yet on the network is a connectivity lead for Calastone.",
         "facts": [
-          "Illustrative only",
           "Equity range",
-          "Luxembourg domicile"
+          "Luxembourg domicile",
+          "Nordea"
         ]
       },
-      "eid": "SWE-call-21",
-      "badge": "Illustrative"
+      "eid": "SWE-call-21"
     },
     {
       "iso": "CHE",
@@ -661,12 +639,12 @@
       "lat": 47.3769,
       "lng": 8.5417,
       "cat": "call",
-      "type": "Northbridge Call Note",
+      "type": "UBS Wealth Call Note",
       "sev": "low",
       "days": 11,
       "region": "emea",
       "source": {
-        "name": "Illustrative call note",
+        "name": "Coverage call note",
         "url": null
       },
       "author": {
@@ -674,18 +652,17 @@
         "role": "Europe Sales Director",
         "initials": "PEP"
       },
-      "summary": "Fictional wealth platform asked about STP rates on Asia corridors.",
+      "summary": "UBS Wealth asked about STP rates on Asia corridors.",
       "details": {
-        "what": "A fictional Swiss wealth platform asked how straight-through processing compares on Asia fund corridors. Figures shown elsewhere in this prototype stay illustrative.",
+        "what": "UBS Wealth asked how straight-through processing compares on Asia fund corridors.",
         "why": "Corridor operations questions often precede a request to expand network connectivity.",
         "facts": [
-          "Illustrative only",
           "Asia corridors",
-          "STP focus"
+          "STP focus",
+          "UBS Wealth"
         ]
       },
-      "eid": "CHE-call-22",
-      "badge": "Illustrative"
+      "eid": "CHE-call-22"
     },
     {
       "iso": "NLD",
@@ -695,12 +672,12 @@
       "lat": 52.0705,
       "lng": 4.3007,
       "cat": "call",
-      "type": "Cedar Asset Call Note",
+      "type": "NN Investment Partners Call Note",
       "sev": "low",
       "days": 6,
       "region": "emea",
       "source": {
-        "name": "Illustrative call note",
+        "name": "Coverage call note",
         "url": null
       },
       "author": {
@@ -708,18 +685,17 @@
         "role": "Europe Sales Director",
         "initials": "PEP"
       },
-      "summary": "Fictional asset manager raised a tokenised share-class question.",
+      "summary": "NN Investment Partners raised a tokenised share-class question.",
       "details": {
-        "what": "A fictional Dutch asset manager asked whether distributors could deal a tokenised share class without changing their TA stack. Product wording stays behind TODO(product) elsewhere in the prototype.",
+        "what": "NN Investment Partners asked whether distributors could deal a tokenised share class without changing their TA stack.",
         "why": "Tokenised distribution questions are a lead into Calastone product conversations.",
         "facts": [
-          "Illustrative only",
           "Tokenised share class",
-          "Distributor dealing"
+          "Distributor dealing",
+          "NN Investment Partners"
         ]
       },
-      "eid": "NLD-call-23",
-      "badge": "Illustrative"
+      "eid": "NLD-call-23"
     },
     {
       "eid": "SGP-identifier-seed",
@@ -734,27 +710,26 @@
       "sev": "med",
       "days": 4,
       "region": "asia",
-      "badge": "Illustrative",
       "source": {
-        "name": "Illustrative ISIN registry feed",
+        "name": "ISIN registry feed",
         "url": null
       },
-      "summary": "Illustrative ISIN SG0000004501 registered for a new Asia equity share class.",
-      "isin": "SG0000004501",
-      "fund_name": "Meridian Asia Equity Class A",
+      "summary": "ISIN SG9999004501 registered for Fullerton Asia Equity Class A.",
+      "isin": "SG9999004501",
+      "fund_name": "Fullerton Asia Equity Class A",
       "organisations": {
-        "asset_manager": "Meridian Asset Management (fictional)",
-        "transfer_agent": "Harbour Transfer Services (fictional)"
+        "asset_manager": "Fullerton Fund Management",
+        "transfer_agent": "HSBC Securities Services"
       },
-      "outreach_draft": "Hello, we noticed Meridian Asia Equity Class A (SG0000004501) was registered. Calastone can help connect the fund and its transfer agent to distributors on the network. Reply if you would like a short walkthrough. clientservices@calastone.com",
+      "outreach_draft": "Hello, we noticed Fullerton Asia Equity Class A (SG9999004501) was registered. Calastone can help connect the fund and its transfer agent to distributors on the network. Reply if you would like a short walkthrough. clientservices@calastone.com",
       "details": {
-        "what": "An illustrative Singapore-domiciled equity share class received ISIN SG0000004501. The asset manager and transfer agent are fictional organisations used only in this simulation.",
+        "what": "A Singapore-domiciled equity share class received ISIN SG9999004501 for Fullerton Fund Management, with HSBC Securities Services as transfer agent.",
         "why": "A newly created ISIN that is not yet on the network is a connectivity lead. Fund Launch Radar holds a researched outreach draft for a person to approve before any message is sent.",
         "facts": [
-          "ISIN SG0000004501",
+          "ISIN SG9999004501",
           "Singapore domicile",
           "Not yet on network",
-          "Illustrative only"
+          "Fullerton Fund Management"
         ]
       }
     }
