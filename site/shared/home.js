@@ -30,7 +30,9 @@
         padBottom;
       const availHeight = Math.max(280, window.innerHeight - used);
       const scale = Math.min(width / artW, availHeight / artH);
-      growthFrame.style.transform = "scale(" + scale + ")";
+      const renderedW = artW * scale;
+      const offsetX = Math.max(0, Math.round((width - renderedW) / 2));
+      growthFrame.style.transform = "translateX(" + offsetX + "px) scale(" + scale + ")";
       slot.style.height = Math.round(artH * scale) + "px";
     };
     fit();

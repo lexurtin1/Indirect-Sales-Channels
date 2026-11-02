@@ -117,20 +117,27 @@ main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 14px 24px 16px; 
 
 .home-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr);
-  gap: 24px;
+  grid-template-columns: 296px minmax(0, 1fr);
+  gap: 28px;
   align-items: start;
 }
 .home-cards {
+  width: 296px;
+  max-width: 296px;
   min-width: 0;
-  padding-right: 22px;
-  border-right: 1px solid var(--ink-200);
+  padding-right: 0;
+  border-right: none;
+  position: relative;
+  z-index: 2;
 }
-.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .diagram-slot {
   position: relative;
   width: 100%;
+  min-width: 0;
   overflow: hidden;
+  isolation: isolate;
+  z-index: 1;
   background: transparent;
 }
 .diagram-slot iframe {
@@ -148,44 +155,56 @@ main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 14px 24px 16px; 
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 1px solid var(--ink-200);
-  border-radius: var(--radius-lg);
-  padding: 22px;
+  border: 1.5px solid var(--ink-200);
+  border-radius: 12px;
+  padding: 14px;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(34, 50, 61, 0.1), 0 1px 3px rgba(34, 50, 61, 0.06);
+  box-shadow: 0 4px 14px rgba(34, 50, 61, 0.1), 0 1px 2px rgba(34, 50, 61, 0.05);
   transition: var(--transition-base);
   aspect-ratio: 1 / 1;
   color: inherit;
+  overflow: hidden;
 }
-a.tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--teal-200); }
-article.tool-card { cursor: default; }
-article.tool-card:hover { transform: none; box-shadow: 0 4px 16px rgba(34, 50, 61, 0.1), 0 1px 3px rgba(34, 50, 61, 0.06); border-color: var(--ink-200); }
+a.tool-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--teal-500); }
+a.tool-card:hover h2 { color: var(--teal-600); }
+article.tool-card { cursor: default; opacity: 0.92; }
+article.tool-card:hover { transform: none; box-shadow: 0 4px 14px rgba(34, 50, 61, 0.1), 0 1px 2px rgba(34, 50, 61, 0.05); border-color: var(--ink-200); }
 .tool-card:focus { box-shadow: var(--focus-ring); border-color: var(--accent-500); outline: none; }
 .tool-card .card-num {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 12px;
+  right: 12px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--ink-300);
 }
-.tool-card .card-icon { margin-bottom: 14px; color: var(--ink-500); }
-.tool-card .card-icon svg { width: 44px; height: 44px; }
+.tool-card .card-icon { margin-bottom: 10px; color: var(--ink-500); }
+.tool-card .card-icon svg { width: 34px; height: 34px; }
 .tool-card h2 {
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--ink-900);
   letter-spacing: -0.01em;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
+  line-height: 1.25;
 }
-.tool-card p { font-size: 13px; line-height: 1.45; color: var(--ink-600); margin: 0; }
+.tool-card p {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--ink-600);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 .tool-card .card-later {
   margin-top: auto;
-  padding-top: 10px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  padding-top: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-400);
 }
@@ -199,8 +218,8 @@ article.tool-card:hover { transform: none; box-shadow: 0 4px 16px rgba(34, 50, 6
 }
 
 @media (max-width: 1100px) {
-  .home-layout { grid-template-columns: 1fr; gap: 24px; }
-  .home-cards { padding-right: 0; border-right: 0; padding-bottom: 20px; border-bottom: 1px solid var(--ink-200); }
+  .home-layout { grid-template-columns: 1fr; gap: 20px; }
+  .home-cards { width: 100%; max-width: 420px; padding-bottom: 16px; border-bottom: 1px solid var(--ink-200); }
   main { padding-top: 28px; }
 }
 @media (max-width: 900px) {
@@ -209,8 +228,9 @@ article.tool-card:hover { transform: none; box-shadow: 0 4px 16px rgba(34, 50, 6
 @media (max-width: 720px) {
   .page-head h1 { font-size: 24px; }
   main { padding: 28px 16px 40px; }
-  .tool-grid { grid-template-columns: 1fr; }
-  .tool-card { aspect-ratio: auto; min-height: 180px; }
+  .home-cards { max-width: none; }
+  .tool-grid { grid-template-columns: 1fr 1fr; }
+  .tool-card { aspect-ratio: 1 / 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
