@@ -18,7 +18,7 @@ The screens compare options. They do not make a business case. Volumes, conversi
 
 ## 2. Screens
 
-The front page is the navigation. Four cards sit on the left. Fund Flow Explorer and Fund Launch Radar are live. Consultant channel and Regional website assistant are marked Later. The commercial growth diagram sits on the right. Salesforce alert, Sales Navigator and agent-network stay in the repo and are not linked from the front page. The MCP assistant is reached from Fund Flow Explorer, not from its own card.
+The front page is the navigation. Four cards sit on the left. Fund Flow Explorer, Fund Launch Radar and Regional website assistant are live. Consultant channel is marked Later. The commercial growth diagram sits on the right. Salesforce alert, Sales Navigator and agent-network stay in the repo and are not linked from the front page. The MCP assistant is reached from Fund Flow Explorer, not from its own card.
 
 | # | Screen | What it simulates | Channel it proves | Build approach |
 | --- | --- | --- | --- | --- |
@@ -26,9 +26,10 @@ The front page is the navigation. Four cards sit on the left. Fund Flow Explorer
 | 1 | Fund Flow Explorer | The calastone.com homepage with an interactive globe: click any country to see fund flows, with deeper data offered through the Calastone MCP | Data as a hook; AI-led discovery | Website recreation; network-overview globe; MCP funnel |
 | 2 | MCP assistant | A fund manager's assistant (HSBC, BlackRock or Vanguard) calls Calastone MCP tools; colours follow the selected firm | AI-led discovery | Full-screen chat; scripted answers in `data/chatbot/chat-scripts.json` |
 | 3 | Fund Launch Radar | Market Movement globe with live alerts; a new ISIN notification resolves organisations and holds an outreach draft for approval | New-fund detection into approved outreach | Port of Pulse Market Movement; illustrative alerts in `data/fund-launch-radar/alerts.json` |
-| 4 | Salesforce trend alert | A fund manager's Salesforce account page with a Calastone flow alert sliding in | Data product inside client CRMs | Kept off the front page |
-| 5 | Sales Navigator inside Salesforce | A consultancy record with a Sales Navigator panel showing which asset managers it advises and the warm path to them | Consultant relationships | Kept off the front page |
-| 6 | Agent-to-agent network | Animated diagram of firms' AI agents messaging through Calastone, which verifies identity and permissions | Calastone as the trusted router for AI agents | Kept off the front page |
+| 4 | Regional website assistant | A visitor asks Calastone on the public website; presenter controls step through market flows and show commercial insight | Website chatbot as an inbound channel | Design Canvas prototype in `site/assets/ask-calastone/`; full-page iframe from card 04 |
+| 5 | Salesforce trend alert | A fund manager's Salesforce account page with a Calastone flow alert sliding in | Data product inside client CRMs | Kept off the front page |
+| 6 | Sales Navigator inside Salesforce | A consultancy record with a Sales Navigator panel showing which asset managers it advises and the warm path to them | Consultant relationships | Kept off the front page |
+| 7 | Agent-to-agent network | Animated diagram of firms' AI agents messaging through Calastone, which verifies identity and permissions | Calastone as the trusted router for AI agents | Kept off the front page |
 
 Fund Flow Explorer's Download MCP buttons also open the MCP assistant, with an optional install dialog.
 
@@ -186,6 +187,7 @@ calastone-indirect-channels/
       website-globe.html     Fund Flow Explorer
       mcp-assistant.html     MCP assistant (from the explorer)
       fund-launch-radar.html Fund Launch Radar
+      regional-assistant.html Regional website assistant; Ask Calastone chatbot
       salesforce-alert.html  kept off the front page
       sales-navigator.html   kept off the front page
       agent-network.html     kept off the front page
@@ -203,6 +205,8 @@ calastone-indirect-channels/
       brand/                 Calastone wordmark and brand assets
       brands/                client logos for the MCP assistant (private use only)
       logos/                 client logos for the chatbot (private use only)
+      ask-calastone/         Regional website assistant Design Canvas prototype
+      diagram/               Commercial growth diagram Design Canvas embed
   data/
     ffi/raw/                 public FFI reports (PDF)
     ffi/extracted/ffi.json   extracted figures with sources

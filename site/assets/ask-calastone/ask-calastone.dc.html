@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Ask anything about Calastone · prototype</title>
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/tokens/base.css">
+  <link rel="stylesheet" href="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/styles.css">
+  <script src="_ds/calastone-design-system-d5328f46-9df1-4d2e-9f70-d1771e5ce0d6/_ds_bundle.js"></script>
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/gill-sans-mt-2">
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/gill-sans-2">
+  <style>
+    html:root { --font-sans: "Gill Sans MT", "Gill Sans", sans-serif; --font-display: var(--font-sans); --font-heading: var(--font-sans); }
+    html, body, button, input, textarea, select { font-family: var(--font-sans) !important; }
+    :root { color-scheme: light; }
+    input, textarea { background-color: #fff; color: var(--ink-900); }
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #0d1418; }
+    a { color: var(--accent-600); text-decoration: none; }
+    a:hover { color: var(--teal-700); text-decoration: underline; }
+    @keyframes dcDot { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+    @keyframes dcIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    textarea, input, select, button { font-family: var(--font-sans); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<div style="height: 100vh; display: flex; flex-direction: column; font-family: var(--font-sans); color: var(--ink-800);">
+
+  <div data-screen-label="Presenter bar" style="flex: 0 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 9px 18px; background: var(--ink-900); color: #fff; border-bottom: 1px solid #22323d;">
+    <div style="display: flex; flex-direction: column; gap: 2px; min-width: 150px;">
+      <span style="font-size: 10px; font-weight: 700; letter-spacing: .18em; color: var(--accent-400);">PRESENTER CONTROLS</span>
+      <span style="font-size: 11px; color: var(--ink-300);">Not visible to website visitors</span>
+    </div>
+    <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.SegmentedControl" options="{{ viewOptions }}" value="{{ view }}" on-change="{{ setView }}" size="sm" hint-size="520px,32px"></x-import>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--ink-300);">DEMO FLOW</span>
+      <select value="{{ flow }}" onChange="{{ onFlow }}" style="height: 30px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--accent-500); background: #fff; color: var(--ink-900); font-size: 12px; font-weight: 600;">
+        <sc-for list="{{ flowOptions }}" as="fo" hint-placeholder-count="4"><option value="{{ fo.id }}">{{ fo.label }}</option></sc-for>
+      </select>
+    </div>
+    <label style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ink-300); letter-spacing: .06em;">
+      <span style="font-weight: 700; letter-spacing: .14em;">VISITOR REGION (SIMULATED)</span>
+      <select value="{{ region }}" onChange="{{ onRegion }}" style="height: 30px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--ink-300); background: #fff; color: var(--ink-900); font-size: 12px;">
+        <option value="BG">Bulgaria</option>
+        <option value="DE">Germany</option>
+        <option value="FR">France</option>
+        <option value="ES">Spain</option>
+        <option value="IT">Italy</option>
+        <option value="GB">United Kingdom</option>
+        <option value="SA">Saudi Arabia</option>
+      </select>
+    </label>
+    <div style="flex: 1 1 220px; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 12px; min-width: 0;">
+      <div style="flex: 1 1 140px; display: flex; flex-direction: column; align-items: flex-end; min-width: 120px; overflow: hidden;">
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: .18em; color: var(--ink-400); white-space: nowrap;">STEP {{ stepNum }} / 8</span>
+        <span style="font-size: 12px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">{{ stepCaption }}</span>
+      </div>
+      <button onClick="{{ back }}" title="Back (←)" style="height: 32px; padding: 0 12px; border-radius: 6px; border: 1px solid #3a4a55; background: transparent; color: var(--ink-200); font-size: 12px; font-weight: 600; cursor: pointer;">Back</button>
+      <button onClick="{{ reset }}" title="Restart" style="height: 32px; padding: 0 12px; border-radius: 6px; border: 1px solid #3a4a55; background: transparent; color: var(--ink-200); font-size: 12px; font-weight: 600; cursor: pointer;">Restart</button>
+      <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Button" variant="accent" size="sm" on-click="{{ next }}" disabled="{{ nextDisabled }}" hint-size="150px,32px">{{ nextLabel }} →</x-import>
+    </div>
+  </div>
+
+  <div style="flex: 1 1 auto; min-height: 0; display: flex; background: var(--ink-050);">
+
+    <sc-if value="{{ showSite }}" hint-placeholder-val="{{ true }}">
+      <div data-screen-label="Visitor experience" style="position: relative; flex: 1 1 auto; min-width: 0; overflow: hidden; background: #fff;">
+        <div style="position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden;">
+          <header style="height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 6%; background: #fff; border-bottom: 1px solid var(--ink-100);">
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex: 0 0 auto;">
+              <img src="assets/calastone-wordmark-black.png" alt="Calastone" style="height: 24px; display: block;">
+              <span style="font-size: 10px; color: var(--ink-700); letter-spacing: .02em;">An <strong>SS&amp;C</strong> Company</span>
+            </div>
+            <nav style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: flex-end; font-size: 15px; font-weight: 500; color: #0b67c2; overflow: hidden; max-height: 40px;">
+              <span>About Calastone ⌄</span>
+              <span>Solutions ⌄</span>
+              <span>Clients ⌄</span>
+              <span>Insights &amp; Events ⌄</span>
+              <span>Contact Us</span>
+            </nav>
+          </header>
+
+          <section style="position: relative; height: 620px; background: #000; overflow: hidden;">
+            <div style="position: absolute; inset: 0;">{{ heroAnim }}</div>
+            <div style="position: absolute; left: 14px; top: 50%; width: 68px; height: 78px; margin-top: -39px; background: #8a8f93; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 30px;">←</div>
+            <div style="position: absolute; right: 14px; top: 50%; width: 68px; height: 78px; margin-top: -39px; background: #8a8f93; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 30px;">→</div>
+            <div style="position: absolute; left: 14%; top: 40%; display: flex; flex-direction: column; gap: 140px; padding-right: 16%;">
+              <h1 style="margin: 0; color: #fff; font-size: 30px; font-weight: 700; letter-spacing: .01em; text-wrap: pretty;">WHITE PAPER - THE FRICTIONLESS FUND</h1>
+              <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 24px 32px; background: #0b67c2; color: #fff; font-size: 16px; font-weight: 700;">Read more →</span>
+            </div>
+          </section>
+
+          <section style="padding: 72px 8% 96px; background: #fff; display: flex; flex-direction: column; gap: 32px;">
+            <div style="display: flex; flex-direction: column; gap: 10px; max-width: 720px;">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: .18em; color: var(--teal-600);">THE CALASTONE NETWORK</span>
+              <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 800; color: var(--ink-900); letter-spacing: -.01em;">The world's largest global funds network</h2>
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink-600);">One connection to Calastone reaches the whole market: any message type, in any format, translated and routed automatically.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+              <div style="padding: 24px; border: 1px solid var(--ink-200); border-radius: 14px; display: flex; flex-direction: column; gap: 8px;"><strong style="font-size: 17px; color: var(--ink-900);">Order routing</strong><span style="font-size: 14px; line-height: 1.55; color: var(--ink-600);">Seamless, automated order processing across distributors and transfer agents.</span></div>
+              <div style="padding: 24px; border: 1px solid var(--ink-200); border-radius: 14px; display: flex; flex-direction: column; gap: 8px;"><strong style="font-size: 17px; color: var(--ink-900);">Settlement &amp; payments</strong><span style="font-size: 14px; line-height: 1.55; color: var(--ink-600);">Cash and settlement messaging that matches the order flow.</span></div>
+              <div style="padding: 24px; border: 1px solid var(--ink-200); border-radius: 14px; display: flex; flex-direction: column; gap: 8px;"><strong style="font-size: 17px; color: var(--ink-900);">ETF servicing</strong><span style="font-size: 14px; line-height: 1.55; color: var(--ink-600);">Primary-market ETF dealing on the same network.</span></div>
+            </div>
+          </section>
+        </div>
+
+        <div style="position: absolute; left: 0; bottom: 0; padding: 4px 10px; background: #fff; font-size: 14px; color: var(--ink-900);">Cookie Preferences</div>
+
+        <sc-if value="{{ showLauncher }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ openPanel }}" style="position: absolute; right: 28px; bottom: 28px; display: flex; align-items: center; gap: 12px; padding: 6px 24px 6px 6px; border: 0; border-radius: 999px; background: #fff; color: var(--ink-900); font-size: 17px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow-lg); transition: var(--transition-base);" style-hover="transform: translateY(-2px); box-shadow: var(--shadow-xl);">
+            <span style="width: 54px; height: 62px; background: var(--grad-brand); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); display: flex; align-items: center; justify-content: center;">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"></path><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.6-3 4"></path><path d="M12 17h.01"></path></svg>
+            </span>
+            Ask anything about Calastone
+          </button>
+        </sc-if>
+
+        <aside style="position: absolute; top: 0; right: 0; bottom: 0; width: min(440px, 100%); display: flex; flex-direction: column; background: #fff; box-shadow: var(--shadow-xl); border-left: 1px solid var(--ink-200); transition: transform 360ms var(--ease-out); transform: {{ panelTransform }};">
+          <div style="flex: 0 0 auto; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--ink-100);">
+            <span style="width: 30px; height: 34px; background: var(--grad-brand); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); flex: 0 0 auto;"></span>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 1px;">
+              <strong style="font-size: 15px; color: var(--ink-900);">{{ chrome.title }}</strong>
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-500);">{{ chrome.ai }}</span>
+            </div>
+            <button onClick="{{ closePanel }}" aria-label="Close" style="width: 32px; height: 32px; border: 0; border-radius: 6px; background: transparent; color: var(--ink-500); cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="background: var(--ink-100);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+            </button>
+          </div>
+
+          <div ref="{{ chatRef }}" style="flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 20px 18px; display: flex; flex-direction: column; gap: 16px; background: var(--ink-050);">
+            <sc-for list="{{ messages }}" as="m" hint-placeholder-count="1">
+              <div style="display: flex; flex-direction: column; gap: 6px; animation: dcIn 320ms var(--ease-out);">
+                <sc-if value="{{ m.isV }}" hint-placeholder-val="{{ false }}">
+                  <div style="align-self: flex-end; max-width: 84%; padding: 10px 14px; border-radius: 14px 14px 4px 14px; background: var(--teal-100); border: 1px solid var(--teal-200); color: var(--ink-900); font-size: 14px; line-height: 1.5; text-wrap: pretty;">{{ m.text }}</div>
+                </sc-if>
+                <sc-if value="{{ m.isTyping }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="width: 22px; height: 25px; background: var(--grad-brand); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);"></span>
+                    <div style="padding: 10px 14px; background: #fff; border: 1px solid var(--ink-200); border-radius: 14px;">{{ dots }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ m.isA }}" hint-placeholder-val="{{ true }}">
+                  <div style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="flex: 0 0 auto; width: 22px; height: 25px; margin-top: 2px; background: var(--grad-brand); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);"></span>
+                    <div dir="{{ m.dir }}" style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.55; color: var(--ink-800); text-wrap: pretty;">
+                      <sc-for list="{{ m.paras }}" as="p" hint-placeholder-count="1">
+                        <p style="margin: 0;">{{ p }}</p>
+                      </sc-for>
+                      <sc-if value="{{ m.hasBullets }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                          <sc-for list="{{ m.bullets }}" as="b" hint-placeholder-count="2">
+                            <div style="display: flex; gap: 10px;">
+                              <span style="flex: 0 0 auto; width: 6px; height: 6px; margin-top: 8px; border-radius: 2px; background: var(--teal-500); transform: rotate(45deg);"></span>
+                              <span><strong style="color: var(--ink-900);">{{ b.lead }}</strong> {{ b.body }}</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ m.hasAfter }}" hint-placeholder-val="{{ false }}">
+                        <p style="margin: 0;">{{ m.after }}</p>
+                      </sc-if>
+                      <sc-if value="{{ m.hasNote }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 8px; background: #fff; border: 1px dashed var(--ink-300); font-size: 13px; color: var(--ink-600);">
+                          <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">{{ m.noteLabel }}</span>
+                          <span>{{ m.note }}</span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ m.hasResource }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; flex-direction: column; gap: 14px; padding: 16px 14px 14px; border-radius: 12px; background: #fff; border: 1px solid var(--ink-200); box-shadow: var(--shadow-xs);">
+                          <div style="display: flex; flex-direction: column; gap: 3px;">
+                            <span style="font-size: 10px; font-weight: 700; letter-spacing: .14em; color: var(--teal-600);">HOW THE CALASTONE NETWORK WORKS</span>
+                            <strong style="font-size: 13px; line-height: 1.35; color: var(--ink-900);">{{ m.resource.title }}</strong>
+                          </div>
+                          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 36px auto 36px minmax(0, 1fr); align-items: center; gap: 4px; padding: 12px 6px; border-radius: 10px; background: var(--ink-050);">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+                                <span style="width: 26px; height: 30px; background: var(--role-distributor); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);"></span>
+                                <span style="font-size: 11px; line-height: 1.2; font-weight: 600; color: var(--ink-800);">Distributors</span>
+                                <sc-if value="{{ m.resource.youLeft }}" hint-placeholder-val="{{ false }}"><span style="padding: 1px 7px; border-radius: 999px; background: var(--accent-500); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .08em;">YOU</span></sc-if>
+                              </div>
+                              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+                                <span style="width: 26px; height: 30px; background: var(--role-investor); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);"></span>
+                                <span style="font-size: 11px; line-height: 1.2; font-weight: 600; color: var(--ink-800);">Platforms</span>
+                                <sc-if value="{{ m.resource.youLeft2 }}" hint-placeholder-val="{{ false }}"><span style="padding: 1px 7px; border-radius: 999px; background: var(--accent-500); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .08em;">YOU</span></sc-if>
+                              </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 6px; justify-content: center; min-width: 0;">
+                              <div style="display: flex; align-items: center;"><span style="flex: 1; height: 2px; background: var(--teal-300);"></span><span style="width: 0; height: 0; border-left: 6px solid var(--teal-400); border-top: 4px solid transparent; border-bottom: 4px solid transparent;"></span></div>
+                              <div style="display: flex; align-items: center;"><span style="width: 0; height: 0; border-right: 6px solid var(--green-400); border-top: 4px solid transparent; border-bottom: 4px solid transparent;"></span><span style="flex: 1; height: 2px; background: var(--green-300);"></span></div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                              <span style="width: 58px; height: 66px; background: var(--grad-brand); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .1em;">CALASTONE</span>
+                              <span style="font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--teal-700); text-align: center;">ONE CONNECTION</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 6px; justify-content: center; min-width: 0;">
+                              <div style="display: flex; align-items: center;"><span style="flex: 1; height: 2px; background: var(--teal-300);"></span><span style="width: 0; height: 0; border-left: 6px solid var(--teal-400); border-top: 4px solid transparent; border-bottom: 4px solid transparent;"></span></div>
+                              <div style="display: flex; align-items: center;"><span style="width: 0; height: 0; border-right: 6px solid var(--green-400); border-top: 4px solid transparent; border-bottom: 4px solid transparent;"></span><span style="flex: 1; height: 2px; background: var(--green-300);"></span></div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+                                <span style="width: 26px; height: 30px; background: var(--role-fundmanager); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);"></span>
+                                <span style="font-size: 11px; line-height: 1.2; font-weight: 600; color: var(--ink-800);">Fund managers</span>
+                                <sc-if value="{{ m.resource.youRight }}" hint-placeholder-val="{{ false }}"><span style="padding: 1px 7px; border-radius: 999px; background: var(--accent-500); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .08em;">YOU</span></sc-if>
+                              </div>
+                              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+                                <span style="width: 26px; height: 30px; background: var(--role-transferagent); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);"></span>
+                                <span style="font-size: 11px; line-height: 1.2; font-weight: 600; color: var(--ink-800);">Transfer agents</span>
+                                <sc-if value="{{ m.resource.youRight2 }}" hint-placeholder-val="{{ false }}"><span style="padding: 1px 7px; border-radius: 999px; background: var(--accent-500); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .08em;">YOU</span></sc-if>
+                              </div>
+                            </div>
+                          </div>
+                          <div style="display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: var(--ink-600);">
+                            <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 2px; background: var(--teal-400);"></span>Orders, any format</span>
+                            <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 2px; background: var(--green-400);"></span>Confirmations &amp; settlement</span>
+                          </div>
+                          <span style="font-size: 12px; line-height: 1.5; color: var(--ink-700);">{{ m.resource.caption }}</span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ m.hasEstimate }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; flex-direction: column; gap: 6px; padding: 12px; border-radius: 10px; background: #fff; border: 1px solid var(--ink-200);">
+                          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                            <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">{{ m.estLabel }}</span>
+                            <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="warning" hint-size="90px,20px">{{ m.estBadge }}</x-import>
+                          </div>
+                          <strong style="font-size: 14px; color: var(--ink-900);">{{ m.estimate }}</strong>
+                          <span style="font-size: 12px; line-height: 1.5; color: var(--ink-600);">{{ m.estimateNote }}</span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ m.hasOffer }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; flex-direction: column; gap: 12px; padding: 14px; border-radius: 12px; background: var(--teal-050); border: 1px solid var(--teal-200);">
+                          <span style="font-weight: 600; color: var(--ink-900);">{{ m.offer }}</span>
+                          <sc-if value="{{ m.offerActive }}" hint-placeholder-val="{{ false }}">
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                              <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Button" variant="primary" size="sm" on-click="{{ acceptOffer }}" hint-size="100px,32px">{{ form.yes }}</x-import>
+                              <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Button" variant="secondary" size="sm" on-click="{{ declineOffer }}" hint-size="90px,32px">{{ form.no }}</x-import>
+                            </div>
+                          </sc-if>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ m.isForm }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 12px; background: #fff; border: 1px solid var(--ink-200); box-shadow: var(--shadow-sm);">
+                          <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">{{ form.head }}</span>
+                          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: var(--ink-700);">{{ form.name }}
+                            <input ref="{{ nameRef }}" value="{{ contact.name }}" onChange="{{ onName }}" style="height: 36px; padding: 0 10px; background: #fff; border: 1px solid {{ fx.name.b }}; box-shadow: {{ fx.name.s }}; transition: border-color 200ms, box-shadow 200ms; border-radius: 6px; font-size: 14px; color: var(--ink-900); outline: none;" style-focus="border-color: var(--accent-500); box-shadow: var(--focus-ring);">
+                          </label>
+                          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: var(--ink-700);">{{ form.email }}
+                            <input ref="{{ emailRef }}" value="{{ contact.email }}" onChange="{{ onEmail }}" style="height: 36px; padding: 0 10px; background: #fff; border: 1px solid {{ fx.email.b }}; box-shadow: {{ fx.email.s }}; transition: border-color 200ms, box-shadow 200ms; border-radius: 6px; font-size: 14px; color: var(--ink-900); outline: none;" style-focus="border-color: var(--accent-500); box-shadow: var(--focus-ring);">
+                          </label>
+                          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: var(--ink-700);">{{ form.org }} <span style="font-weight: 400; color: var(--ink-500);">{{ form.optional }}</span>
+                            <input ref="{{ orgRef }}" value="{{ contact.org }}" onChange="{{ onOrg }}" style="height: 36px; padding: 0 10px; background: #fff; border: 1px solid {{ fx.org.b }}; box-shadow: {{ fx.org.s }}; transition: border-color 200ms, box-shadow 200ms; border-radius: 6px; font-size: 14px; color: var(--ink-900); outline: none;" style-focus="border-color: var(--accent-500); box-shadow: var(--focus-ring);">
+                          </label>
+                          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: var(--ink-700);">{{ form.summary }} <span style="font-weight: 400; color: var(--ink-500);">{{ form.edit }}</span>
+                            <textarea value="{{ summary }}" onChange="{{ onSummary }}" rows="6" style="padding: 8px 10px; background: #fff; border: 1px solid var(--ink-300); border-radius: 6px; font-size: 13px; line-height: 1.5; color: var(--ink-800); resize: vertical; outline: none;" style-focus="border-color: var(--accent-500); box-shadow: var(--focus-ring);"></textarea>
+                          </label>
+                          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-600);">
+                            <span>{{ form.sharedWith }}</span><strong style="color: var(--ink-900);">{{ form.team }}</strong>
+                          </div>
+                          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Button" variant="primary" size="sm" on-click="{{ submit }}" disabled="{{ submitDisabled }}" hint-size="150px,32px">{{ form.share }}</x-import>
+                            <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Button" variant="ghost" size="sm" on-click="{{ back }}" hint-size="80px,32px">{{ form.cancel }}</x-import>
+                          </div>
+                          <span style="font-size: 11px; line-height: 1.5; color: var(--ink-500);">{{ form.foot }}</span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ m.isFormDone }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 10px; background: var(--status-success-bg); color: var(--green-700); font-size: 13px; font-weight: 600;">
+                          <span style="width: 20px; height: 20px; border-radius: 50%; background: var(--status-success); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px;">✓</span>
+                          {{ form.done }}
+                        </div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+
+            <sc-if value="{{ showStarters }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 8px; padding-left: 32px;">
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                  <span dir="{{ chrome.dir }}" style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500); text-transform: uppercase;">{{ chrome.sugg }}</span>
+                  <span dir="{{ chrome.dir }}" style="font-size: 12px; color: var(--ink-600);">{{ chrome.reassure }}</span>
+                </div>
+                <sc-for list="{{ starters }}" as="s" hint-placeholder-count="3">
+                  <button dir="{{ chrome.dir }}" onClick="{{ s.onClick }}" style="align-self: flex-start; text-align: left; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--teal-200); background: #fff; color: var(--teal-700); font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition-base);" style-hover="background: var(--teal-050); border-color: var(--teal-400);">{{ s.label }}</button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="flex: 0 0 auto; padding: 12px 16px 14px; border-top: 1px solid var(--ink-100); display: flex; flex-direction: column; gap: 10px; background: #fff; position: relative;">
+            <sc-if value="{{ showData }}" hint-placeholder-val="{{ false }}">
+              <div style="position: absolute; left: 12px; right: 12px; bottom: calc(100% + 8px); padding: 16px; border-radius: 12px; background: #fff; border: 1px solid var(--ink-200); box-shadow: var(--shadow-lg); display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.5; color: var(--ink-700);">
+                <div style="display: flex; justify-content: space-between; align-items: center;"><strong style="color: var(--ink-900);">{{ chrome.data }}</strong><button onClick="{{ toggleData }}" style="border: 0; background: transparent; cursor: pointer; color: var(--ink-500); font-size: 16px;">×</button></div>
+                <span>{{ chrome.data1 }}</span>
+                <span>{{ chrome.data2 }}</span>
+                <span>{{ chrome.data3 }}</span>
+              </div>
+            </sc-if>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 4px 4px 4px 14px; border: 1px solid {{ fx.draft.b }}; box-shadow: {{ fx.draft.s }}; transition: border-color 200ms, box-shadow 200ms; border-radius: 999px; background: #fff;">
+              <input dir="auto" ref="{{ draftRef }}" value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onKey }}" placeholder="{{ chrome.ph }}" style="flex: 1; min-width: 0; height: 36px; border: 0; outline: none; font-size: 14px; color: var(--ink-900); background: transparent;">
+              <button onClick="{{ send }}" aria-label="Send" style="flex: 0 0 auto; width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--teal-500); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="filter: brightness(.93);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 11px; line-height: 1.45; color: var(--ink-500);">
+              <span>{{ chrome.notice }}</span>
+              <a href="#" onClick="{{ toggleData }}" style="font-weight: 600;">{{ chrome.data }}</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSplit }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Live context rail" style="flex: 0 0 380px; min-width: 0; overflow-y: auto; background: var(--ink-050); border-left: 1px solid var(--ink-300); padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+          <span style="font-size: 10px; font-weight: 700; letter-spacing: .18em; color: var(--ink-600);">INTERNAL · CALASTONE ONLY</span>
+          <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="accent" hint-size="60px,20px">Live</x-import>
+        </div>
+        <div style="padding: 14px 16px; border-radius: 14px; background: var(--ink-900); color: #fff; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--accent-400);">WHAT IS THE VISITOR ASKING?</span>
+          <span style="font-size: 15px; font-weight: 600; line-height: 1.4; text-wrap: pretty;">{{ headline }}</span>
+        </div>
+        <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 6px; display: flex; flex-direction: column;">
+          <sc-for list="{{ ctx }}" as="f" hint-placeholder-count="8">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; border: 1px solid {{ f.border }}; background: {{ f.bg }}; transition: background 600ms var(--ease-out), border-color 600ms var(--ease-out);">
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                <span style="font-size: 9.5px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500); text-transform: uppercase;">{{ f.label }}</span>
+                <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: {{ f.color }};">
+                  <sc-if value="{{ f.hasFlag }}" hint-placeholder-val="{{ false }}"><span style="width: 18px; height: 12px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--ink-200); display: inline-block; flex: 0 0 auto; background-image: url({{ f.flagUrl }}); background-size: cover; background-position: center;"></span></sc-if>
+                  {{ f.value }}
+                </span>
+                <sc-if value="{{ f.hasSub }}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; color: var(--ink-500);">{{ f.sub }}</span></sc-if>
+              </div>
+              <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="{{ f.tone }}" hint-size="70px,20px">{{ f.tag }}</x-import>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">IS THERE AN APPROPRIATE NEXT ACTION?</span>
+          <span style="font-size: 14px; font-weight: 600; color: var(--ink-900);">{{ nextAction }}</span>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <sc-for list="{{ stages }}" as="st" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: {{ st.color }}; font-weight: {{ st.weight }}; transition: color 300ms;">
+                <span style="width: 14px; height: 14px; border-radius: 50%; background: {{ st.dot }}; border: 2px solid {{ st.ring }}; transition: all 300ms var(--ease-out);"></span>
+                {{ st.label }}
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isInsight }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Commercial insight" style="flex: 1; min-width: 0; overflow-y: auto; padding: 28px clamp(16px, 4vw, 48px) 48px;">
+        <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--teal-600);">COMMERCIAL INSIGHT · INTERNAL</span>
+              <h1 style="margin: 0; font-size: 28px; font-weight: 800; color: var(--ink-900); letter-spacing: -.01em;">Conversation DEMO-0412</h1>
+              <span style="font-size: 13px; color: var(--ink-500);">Started 14:02 · website homepage · {{ msgCount }} messages</span>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="warning" hint-size="200px,22px">Prototype · simulated region &amp; routing</x-import>
+            </div>
+          </div>
+
+          <div style="padding: 22px 24px; border-radius: 14px; background: var(--ink-900); color: #fff; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--accent-400);">WHAT IS THE VISITOR ASKING?</span>
+            <span style="font-size: 22px; font-weight: 600; line-height: 1.35; text-wrap: pretty; max-width: 900px;">{{ headline }}</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; align-items: start;">
+            <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">WHAT CONTEXT HAVE WE ESTABLISHED?</span>
+              <div style="display: flex; flex-direction: column;">
+                <sc-for list="{{ ctx }}" as="f" hint-placeholder-count="8">
+                  <div style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; border: 1px solid {{ f.border }}; background: {{ f.bg }}; transition: background 600ms var(--ease-out), border-color 600ms var(--ease-out);">
+                    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-size: 9.5px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500); text-transform: uppercase;">{{ f.label }}</span>
+                      <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: {{ f.color }};">
+                        <sc-if value="{{ f.hasFlag }}" hint-placeholder-val="{{ false }}"><span style="width: 18px; height: 12px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--ink-200); display: inline-block; flex: 0 0 auto; background-image: url({{ f.flagUrl }}); background-size: cover; background-position: center;"></span></sc-if>
+                        {{ f.value }}
+                      </span>
+                      <sc-if value="{{ f.hasSub }}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; color: var(--ink-500);">{{ f.sub }}</span></sc-if>
+                    </div>
+                    <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="{{ f.tone }}" hint-size="70px,20px">{{ f.tag }}</x-import>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px; min-width: 0;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+                <sc-for list="{{ blocks }}" as="bl" hint-placeholder-count="3">
+                  <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+                    <span style="font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">{{ bl.title }}</span>
+                    <sc-if value="{{ bl.empty }}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; color: var(--ink-400);">Nothing yet</span></sc-if>
+                    <sc-for list="{{ bl.items }}" as="it" hint-placeholder-count="2">
+                      <div style="display: flex; flex-direction: column; gap: 6px; animation: dcIn 360ms var(--ease-out);">
+                        <button onClick="{{ it.onClick }}" style="text-align: left; padding: 0; border: 0; background: transparent; cursor: {{ it.cursor }}; display: flex; flex-direction: column; gap: 5px; font-size: 13px; line-height: 1.45; color: var(--ink-800);">
+                          <span style="text-wrap: pretty;">{{ it.text }}</span>
+                          <span style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <sc-if value="{{ it.hasTag }}" hint-placeholder-val="{{ false }}">
+                              <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="{{ it.tone }}" hint-size="70px,20px">{{ it.tag }}</x-import>
+                            </sc-if>
+                            <sc-if value="{{ it.hasSrc }}" hint-placeholder-val="{{ false }}">
+                              <span style="font-size: 11px; font-weight: 600; color: var(--accent-600);">{{ it.srcLabel }}</span>
+                            </sc-if>
+                          </span>
+                        </button>
+                        <sc-if value="{{ it.open }}" hint-placeholder-val="{{ false }}">
+                          <div style="padding: 10px 12px; border-radius: 8px; background: var(--ink-050); border: 1px solid var(--ink-200); display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 1.5;">
+                            <span style="font-size: 9.5px; font-weight: 700; letter-spacing: .14em; color: var(--ink-500);">{{ it.exMeta }}</span>
+                            <span style="color: var(--ink-900);">“{{ it.ex }}”</span>
+                            <sc-if value="{{ it.hasTr }}" hint-placeholder-val="{{ false }}"><span style="color: var(--ink-500); font-style: italic;">Translation: {{ it.tr }}</span></sc-if>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px;">
+                  <span style="font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">IS THERE AN APPROPRIATE NEXT ACTION?</span>
+                  <span style="font-size: 14px; font-weight: 600; color: var(--ink-900);">{{ nextAction }}</span>
+                </div>
+                <div style="position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;">
+                  <div style="position: absolute; left: 12.5%; right: 12.5%; top: 9px; height: 2px; background: var(--ink-200);"></div>
+                  <div style="position: absolute; left: 12.5%; top: 9px; height: 2px; width: {{ enqBar }}; background: var(--accent-500); transition: width 600ms var(--ease-out);"></div>
+                  <sc-for list="{{ stages }}" as="st" hint-placeholder-count="4">
+                    <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;">
+                      <span style="width: 20px; height: 20px; border-radius: 50%; background: {{ st.dot }}; border: 3px solid {{ st.ring }}; box-sizing: border-box; transition: all 400ms var(--ease-out);"></span>
+                      <span style="font-size: 12px; line-height: 1.35; color: {{ st.color }}; font-weight: {{ st.weight }}; transition: color 300ms;">{{ st.label }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+
+                <sc-if value="{{ showReview }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding: 18px; border-radius: 12px; border: 1px solid var(--teal-200); background: var(--teal-050); animation: dcIn 480ms var(--ease-out);">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="info" hint-size="150px,22px">Awaiting regional review</x-import>
+                        <span style="font-size: 11px; color: var(--ink-500);">Enquiry · not a qualified opportunity</span>
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">RECEIVING TEAM · SIMULATED ROUTING</span>
+                        <strong style="font-size: 18px; color: var(--ink-900);">Calastone Europe team</strong>
+                        <span style="font-size: 12px; color: var(--ink-600);">London &amp; Luxembourg</span>
+                        <span style="font-size: 12px; color: var(--ink-600);">{{ routeNote }}</span>
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">CONTACT · SUPPLIED BY VISITOR</span>
+                        <span style="font-size: 13px; font-weight: 600; color: var(--ink-900);">{{ contact.name }}</span>
+                        <span style="font-size: 12px; color: var(--ink-600);">{{ contact.email }}</span>
+                        <span style="font-size: 12px; color: var(--ink-600);">{{ contact.org }}</span>
+                      </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                      <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">SUMMARY · CONFIRMED BY VISITOR</span>
+                      <span style="font-size: 13px; line-height: 1.55; color: var(--ink-800); white-space: pre-wrap; text-wrap: pretty;">{{ summary }}</span>
+                      <sc-if value="{{ hasSummaryEn }}" hint-placeholder-val="{{ false }}">
+                        <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500); margin-top: 6px;">TRANSLATION FOR THE TEAM</span>
+                        <span style="font-size: 13px; line-height: 1.55; color: var(--ink-600); white-space: pre-wrap; font-style: italic;">{{ summaryEn }}</span>
+                      </sc-if>
+                      <span style="font-size: 11px; color: var(--ink-500);">{{ replyLang }}</span>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <div style="border-top: 1px solid var(--ink-100); padding-top: 12px; display: flex; flex-direction: column; gap: 10px;">
+                  <button onClick="{{ toggleTranscript }}" style="align-self: flex-start; padding: 0; border: 0; background: transparent; color: var(--accent-600); font-size: 13px; font-weight: 600; cursor: pointer;">{{ transcriptLabel }}</button>
+                  <sc-if value="{{ showTranscript }}" hint-placeholder-val="{{ false }}">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                      <sc-for list="{{ transcript }}" as="t" hint-placeholder-count="3">
+                        <div style="display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 10px; font-size: 12px; line-height: 1.5;">
+                          <span style="font-weight: 700; color: var(--ink-500); letter-spacing: .06em;">{{ t.who }}</span>
+                          <span style="color: var(--ink-800);">{{ t.text }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDemand }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Demand overview" style="flex: 1; min-width: 0; overflow-y: auto; padding: 28px clamp(16px, 4vw, 48px) 48px;">
+        <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--teal-600);">DEMAND OVERVIEW · LAST 30 DAYS</span>
+              <h1 style="margin: 0; font-size: 28px; font-weight: 800; color: var(--ink-900); letter-spacing: -.01em;">What visitors are asking Calastone</h1>
+            </div>
+            <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="warning" hint-size="220px,22px">Demonstration data · counts are illustrative</x-import>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px;">
+            <sc-for list="{{ funnel }}" as="fu" hint-placeholder-count="4">
+              <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">{{ fu.label }}</span>
+                <span style="font-size: 32px; font-weight: 800; color: var(--ink-900); letter-spacing: -.02em;">{{ fu.value }}</span>
+                <span style="font-size: 12px; color: var(--teal-600); font-weight: 600;">{{ fu.sub }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <sc-for list="{{ geoCards }}" as="g" hint-placeholder-count="2">
+              <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                  <span style="font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">{{ g.title }}</span>
+                  <span style="font-size: 12px; color: var(--ink-500);">{{ g.sub }}</span>
+                </div>
+                <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="6">
+                  <div style="display: grid; grid-template-columns: 130px minmax(0, 1fr) 40px; align-items: center; gap: 10px; font-size: 13px;">
+                    <span style="display: flex; align-items: center; gap: 8px; color: var(--ink-800); white-space: nowrap; overflow: hidden;"><span style="width: 18px; height: 12px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--ink-200); display: inline-block; flex: 0 0 auto; background-image: url({{ r.flagUrl }}); background-size: cover; background-position: center;"></span>{{ r.name }}</span>
+                    <span style="height: 10px; border-radius: 999px; background: var(--ink-100); overflow: hidden;"><span style="display: block; height: 100%; width: {{ r.w }}; background: {{ g.color }}; border-radius: 999px;"></span></span>
+                    <span style="text-align: right; font-family: var(--font-mono); font-size: 12px; color: var(--ink-600);">{{ r.n }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">TOPIC CLUSTERS</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <sc-for list="{{ topics }}" as="tp" hint-placeholder-count="7">
+                  <span style="display: inline-flex; align-items: center; gap: 8px; padding: {{ tp.pad }}; border-radius: 999px; background: {{ tp.bg }}; color: {{ tp.fg }}; font-size: {{ tp.fs }}; font-weight: 600;">{{ tp.name }} <span style="font-family: var(--font-mono); font-weight: 500; opacity: .8;">{{ tp.pct }}</span></span>
+                </sc-for>
+              </div>
+              <span style="font-size: 12px; color: var(--ink-500);">Pricing questions are logged but never answered publicly.</span>
+            </div>
+            <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">CONVERSATION LANGUAGES</span>
+              <div style="display: flex; height: 28px; border-radius: 6px; overflow: hidden; gap: 2px;">
+                <sc-for list="{{ langs }}" as="l" hint-placeholder-count="7">
+                  <span style="width: {{ l.w }}; background: {{ l.c }};"></span>
+                </sc-for>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px;">
+                <sc-for list="{{ langs }}" as="l" hint-placeholder-count="7">
+                  <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-700);"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{ l.c }};"></span>{{ l.name }} <span style="font-family: var(--font-mono); color: var(--ink-500);">{{ l.w }}</span></span>
+                </sc-for>
+              </div>
+              <span style="font-size: 12px; color: var(--ink-500);">18% of conversations change language at least once.</span>
+            </div>
+          </div>
+
+          <div style="background: #fff; border: 1px solid var(--ink-200); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--ink-500);">QUESTIONS WITHOUT AN APPROVED ANSWER</span>
+              <span style="font-size: 12px; color: var(--ink-500);">Content gaps for marketing and the Europe team</span>
+            </div>
+            <sc-for list="{{ gaps }}" as="gp" hint-placeholder-count="5">
+              <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto 48px; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--ink-100); font-size: 13px;">
+                <span style="color: var(--ink-800); text-wrap: pretty;">{{ gp.q }}</span>
+                <x-import component-from-global-scope="CalastoneDesignSystem_d5328f.Badge" tone="{{ gp.tone }}" hint-size="110px,20px">{{ gp.tag }}</x-import>
+                <span style="text-align: right; font-family: var(--font-mono); font-size: 12px; color: var(--ink-600);">{{ gp.n }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const REGIONS = {
+  BG: { name: 'Bulgaria', flag: 'bg', lang: 'bg', langName: 'Bulgarian' },
+  DE: { name: 'Germany', flag: 'de', lang: 'de', langName: 'German' },
+  FR: { name: 'France', flag: 'fr', lang: 'fr', langName: 'French' },
+  ES: { name: 'Spain', flag: 'es', lang: 'es', langName: 'Spanish' },
+  IT: { name: 'Italy', flag: 'it', lang: 'it', langName: 'Italian' },
+  GB: { name: 'United Kingdom', flag: 'gb', lang: 'en', langName: 'English' },
+  SA: { name: 'Saudi Arabia', flag: 'sa', lang: 'ar', langName: 'Arabic' },
+};
+const flagUrl = (c) => `https://flagcdn.com/w40/${c}.png`;
+const EN_DATA = ['Conversations help improve answers and show which topics visitors ask about.', 'They stay anonymous unless you choose to share contact details.', 'Nothing is passed to a Calastone team without your confirmation.'];
+const CHROME = {
+  bg: { title: 'Попитайте каквото и да е за Calastone', ai: 'Отговорите се генерират с AI', ph: 'Задайте въпрос…', sugg: "Често задавани въпроси", reassure: "Няма твърде прост въпрос. Не е нужна регистрация.", notice: 'Отговорите се основават на одобрено съдържание на Calastone. Възможни са неточности.', data: 'Как използваме данните от разговора',
+    greet: 'Здравейте! Какво бихте искали да научите за Calastone? Попитайте за нашата мрежа, услуги или конкретен пазар.',
+    starters: ["Какво прави Calastone?","Как Calastone помага на управляващо дружество?","Как Calastone помага на дистрибутор?","Как става свързването към мрежата?","На кои пазари работите?","Трябва ли да променям системите си?"],
+    dataBody: ['Разговорите помагат да подобряваме отговорите и да разбираме кои теми интересуват посетителите.', 'Те остават анонимни, освен ако не решите да споделите данни за контакт.', 'Нищо не се предава на екип на Calastone без вашето потвърждение.'] },
+  en: { title: 'Ask anything about Calastone', ai: 'Answers generated with AI', ph: 'Ask a question…', sugg: "Popular questions", reassure: "No question is too basic. No sign-up needed.", notice: 'Answers are grounded in approved Calastone content and may contain errors.', data: 'How we use conversation data',
+    greet: "Hello. What would you like to know about Calastone? Ask about our network, our services or a specific market.",
+    starters: ["What does Calastone do?","How can Calastone help an asset manager?","How can Calastone help a distributor?","How does connecting work?","Which markets do you cover?","Will I need to change my systems?"], dataBody: EN_DATA },
+  de: { title: 'Fragen Sie alles über Calastone', ai: 'Antworten KI-generiert', ph: 'Stellen Sie eine Frage…', sugg: "Häufige Fragen", reassure: "Keine Frage ist zu einfach. Keine Registrierung nötig.", notice: 'Antworten basieren auf freigegebenen Calastone-Inhalten und können Fehler enthalten.', data: 'Wie wir Gesprächsdaten verwenden',
+    greet: 'Guten Tag! Was möchten Sie über Calastone wissen? Fragen Sie zu unserem Netzwerk, unseren Services oder einem bestimmten Markt.',
+    starters: ["Was macht Calastone?","Wie unterstützt Calastone Asset Manager?","Wie unterstützt Calastone Vertriebspartner?","Wie funktioniert die Anbindung?","Welche Märkte decken Sie ab?","Muss ich meine Systeme ändern?"], dataBody: EN_DATA },
+  fr: { title: 'Posez toutes vos questions sur Calastone', ai: 'Réponses générées par IA', ph: 'Posez une question…', sugg: "Questions fréquentes", reassure: "Aucune question n'est trop simple. Aucune inscription requise.", notice: "Les réponses s'appuient sur des contenus Calastone validés et peuvent comporter des erreurs.", data: 'Utilisation des données de conversation',
+    greet: "Bonjour ! Que souhaitez-vous savoir sur Calastone ? Interrogez-nous sur notre réseau, nos services ou un marché précis.",
+    starters: ["Que fait Calastone ?","Comment Calastone aide-t-il les sociétés de gestion ?","Comment Calastone aide-t-il les distributeurs ?","Comment fonctionne la connexion ?","Quels marchés couvrez-vous ?","Dois-je modifier mes systèmes ?"], dataBody: EN_DATA },
+  es: { title: 'Pregunte lo que quiera sobre Calastone', ai: 'Respuestas generadas con IA', ph: 'Haga una pregunta…', sugg: "Preguntas frecuentes", reassure: "Ninguna pregunta es demasiado básica. Sin registro.", notice: 'Las respuestas se basan en contenido aprobado de Calastone y pueden contener errores.', data: 'Cómo usamos los datos de la conversación',
+    greet: '¡Hola! ¿Qué le gustaría saber sobre Calastone? Pregunte sobre nuestra red, nuestros servicios o un mercado concreto.',
+    starters: ["¿Qué hace Calastone?","¿Cómo ayuda Calastone a una gestora?","¿Cómo ayuda Calastone a un distribuidor?","¿Cómo funciona la conexión?","¿En qué mercados operan?","¿Tendré que cambiar mis sistemas?"], dataBody: EN_DATA },
+  ar: { dir: 'rtl', title: 'اسأل عن أي شيء يخص Calastone', ai: 'إجابات مُولَّدة بالذكاء الاصطناعي', ph: 'اكتب سؤالك…', sugg: 'أسئلة شائعة', reassure: 'لا يوجد سؤال بسيط جدًا. لا حاجة للتسجيل.', notice: 'تستند الإجابات إلى محتوى معتمد من Calastone وقد تحتوي على أخطاء.', data: 'كيف نستخدم بيانات المحادثة',
+    greet: 'مرحبًا! ماذا تود أن تعرف عن Calastone؟ اسأل عن شبكتنا أو خدماتنا أو سوق معيّن.',
+    starters: ['ما الذي تقدمه Calastone؟', 'كيف تساعد Calastone مديري الأصول؟', 'كيف تساعد Calastone الموزعين؟', 'كيف يتم الربط بالشبكة؟', 'ما الأسواق التي تغطونها؟', 'هل سأحتاج إلى تغيير أنظمتي؟'], dataBody: EN_DATA },
+  it: { title: 'Chieda qualsiasi cosa su Calastone', ai: 'Risposte generate con IA', ph: 'Scriva una domanda…', sugg: "Domande frequenti", reassure: "Nessuna domanda è troppo semplice. Nessuna registrazione.", notice: 'Le risposte si basano su contenuti Calastone approvati e possono contenere errori.', data: 'Come utilizziamo i dati della conversazione',
+    greet: "Buongiorno! Che cosa desidera sapere su Calastone? Chieda della nostra rete, dei nostri servizi o di un mercato specifico.",
+    starters: ["Che cosa fa Calastone?","Come aiuta Calastone un asset manager?","Come aiuta Calastone un distributore?","Come funziona la connessione?","In quali mercati operate?","Devo cambiare i miei sistemi?"], dataBody: EN_DATA },
+};
+
+const FORM = {
+  en: { head: 'SO THE TEAM CAN REPLY', name: 'Name', email: 'Work email', org: 'Organisation', optional: 'optional', summary: 'Summary to share', edit: 'edit anything', sharedWith: 'Shared with', team: 'Calastone Europe team', share: 'Share with Calastone', cancel: 'Cancel', foot: 'Only these details and this summary are shared. Nothing is sent until you confirm.', done: 'Summary and contact details shared with the Calastone Europe team', yes: 'Yes, please', no: 'Not now', estLabel: 'BASED ON WHAT YOU TOLD ME', estBadge: 'Your estimate', decline: 'No problem. The offer stands whenever it would help. Just ask.' },
+  bg: { head: 'ЗА ДА МОЖЕ ЕКИПЪТ ДА ВИ ОТГОВОРИ', name: 'Име', email: 'Служебен имейл', org: 'Организация', optional: 'по избор', summary: 'Резюме за споделяне', edit: 'можете да редактирате', sharedWith: 'Споделя се с', team: 'екипа на Calastone за Европа', share: 'Изпрати на Calastone', cancel: 'Отказ', foot: 'Споделят се само тези данни и резюмето. Нищо не се изпраща без ваше потвърждение.', done: 'Резюмето и данните за контакт са споделени с екипа на Calastone за Европа', yes: 'Да, моля', no: 'Не сега', estLabel: 'СПОРЕД ВАШАТА ИНФОРМАЦИЯ', estBadge: 'Ваша оценка', decline: 'Няма проблем. Предложението остава в сила, когато ви е полезно.' },
+};
+const OFFER_EN = 'Would you like the relevant Calastone team to pick this up with the context from our conversation?';
+const HANDOFF_EN = { paras: ['Happy to arrange that. The team only needs a way to reply. Please check what will be shared. You can edit anything before it is sent.'] };
+const CONFIRM_EN = (n) => `Thank you, ${n}. Your summary has been shared with Calastone's Europe team in London and Luxembourg, who will reply by email. You're welcome to keep asking questions here.`;
+const ANON = 'Anonymous visitor · no question asked yet';
+const FRICTION_EN = {
+  bullets: [
+    { lead: 'Order capture.', body: 'Re-keying adds errors and delay before an order reaches the transfer agent.' },
+    { lead: 'Confirmations.', body: 'Contract notes and confirmations are often chased and matched by hand.' },
+    { lead: 'Reconciliation.', body: 'Cash and settlement breaks take longer to investigate when records sit in separate systems.' }],
+  after: "Calastone's order routing replaces these steps with automated, standardised messaging between your client, its distributors and its transfer agent.",
+  estimate: '~300 orders a month, received by email and re-keyed', estimateNote: "I can't calculate savings or discuss pricing, as that depends on your client's set-up and is best assessed with our Europe team.",
+  noteLabel: 'DATA ACCESS', note: "I can't see any Calastone transaction data. Existing clients can investigate their own activity through a separate, authorised connection.",
+  offer: OFFER_EN,
+};
+const CONSULTANT_ITEMS = {
+  asked: [[2, 'a1', 'Distributing funds in Germany', 2], [3, 'a2', 'Both distribution access and operational connectivity, on behalf of a client', 3], [4, 'a3', 'How order routing reduces manual re-keying', 4], [5, 'a4', 'A conversation with the Europe team', 5]],
+  known: [[2, 'k1', 'Target market: Germany', 'Stated', 2], [3, 'k2', 'Consultant advising an asset manager', 'Stated', 3], [4, 'k3', '~300 orders a month arrive by email and are re-keyed', 'Visitor estimate', 4]],
+  unclear: [[1, 'u0', 'Who the visitor represents', 'Unknown', 0, 3], [1, 'u1', "The asset manager's identity and fund range", 'Unknown'], [2, 'u2', 'Launch timeline for Germany', 'Unknown'], [2, 'u3', 'Which German distributors or platforms are targeted', 'Unknown'], [3, 'u4', 'Could not name connected German distributors: no approved content', 'Content gap']],
+};
+const CONSULTANT_CTX = {
+  market: [[0, 'Unknown', 'Unknown'], [2, 'Germany', 'Stated', '', 'de']],
+  type: [[0, 'Unknown', 'Unknown'], [3, 'Consultant', 'Stated', 'Advising an asset manager']],
+  topic: [[0, 'Unknown', 'Unknown'], [2, 'Fund distribution', 'Observed'], [3, 'Distribution access + connectivity', 'Observed'], [4, 'Distribution connectivity · order routing', 'Observed']],
+  op: [[0, 'Unknown', 'Unknown'], [4, '~300 emailed orders/month, re-keyed', 'Visitor estimate']],
+};
+const CONSULTANT_HEAD = [[0, ANON], [2, 'Fund distribution in Germany'], [3, 'German distribution access and connectivity, for an asset-manager client'], [4, 'A consultant exploring order-routing connectivity for an asset manager entering Germany']];
+const CONSULTANT_SUMMARY = 'Consultant advising an asset manager that plans to distribute funds in Germany. Interested in both distribution access and operational connectivity.\n\nThe client currently receives around 300 orders a month by email, which are re-keyed manually (visitor estimate). Would like to discuss order routing and connectivity options.';
+
+const FLOWS = {
+  'consultant-en': {
+    label: 'Consultant · Germany', region: 'DE',
+    chromeLang: () => 'en', formLang: 'en',
+    fill: { name: 'Lukas Becker', email: 'lukas.becker@rheinfundadvisory.de', org: 'Rhein Fund Advisory' },
+    summary: CONSULTANT_SUMMARY, confirm: CONFIRM_EN,
+    V: {
+      2: { lang: 'English', text: "We're looking at options for distributing funds in Germany." },
+      3: { lang: 'English', text: "Both. I'm a consultant advising an asset manager that plans to offer its funds in Germany." },
+      4: { lang: 'English', text: "That's helpful. Their main concern is manual processing: around 300 orders a month arrive by email and are re-keyed." },
+      5: { lang: 'English', text: "Yes please, I'd like to talk this through with someone." },
+    },
+    A: {
+      2: { paras: ['The Calastone network connects fund managers, distributors, platforms and transfer agents across 51 countries, including Germany.', 'To give you a more precise answer: are you exploring distribution partners, operational connectivity, or both?'] },
+      3: { paras: ['Thank you, that helps. For an asset manager entering the German market, Calastone helps in two ways:'],
+        bullets: [
+          { lead: 'Distribution access.', body: 'Calastone is not a distributor, but a single connection to the network enables trading with the platforms and distributors already using it.' },
+          { lead: 'Operational connectivity.', body: 'Orders, settlements and payments are processed automatically across message formats, with no separate integration for each counterparty.' }],
+        noteLabel: 'LIMITATION', note: "I don't have approved information on which German distributors are currently connected, so I can't name them. Our Europe team can confirm this.",
+        resource: { title: "Where your client sits on the network", caption: "Your client's fund connects once through its transfer agent. Every distributor and platform on the network can then trade it, with no separate link to build.", youRight: true } },
+      4: { ...FRICTION_EN, paras: ['When emailed orders are re-keyed, friction usually sits in three places:'] },
+      5: HANDOFF_EN,
+    },
+    lang: [[0, 'English', 'Inferred', 'Default for this demo'], [2, 'English', 'Observed']],
+    ctx: CONSULTANT_CTX, head: CONSULTANT_HEAD,
+    items: { ...CONSULTANT_ITEMS, known: [...CONSULTANT_ITEMS.known, ] },
+    route: (R) => 'Market discussed: Germany · visitor region: ' + R.name + '. Both covered by the Europe team.',
+    replyLang: 'Reply language: English',
+    captions: ['Visitor arrives · region detected (simulated)', 'Greeting', 'Asks about Germany → clarifying question', 'Consultant context → grounded answer + resource', 'Describes manual processing → friction guidance + offer', 'Requests a discussion · details fill in', 'Reviews summary and contact details', 'Confirmed → Europe team review'],
+    next: ['Open Ask Calastone', 'Ask about Germany', 'Add consultant context', 'Describe manual processing', 'Request discussion', 'Fill contact details', 'Confirm & share', 'Show insight view'],
+  },
+  'distributor-bg': {
+    label: 'Distributor · Bulgaria', region: 'BG',
+    chromeLang: () => 'en', formLang: 'en',
+    fill: { name: 'Georgi Dimitrov', email: 'g.dimitrov@sofiawealth.bg', org: 'Sofia Wealth Partners' },
+    summary: 'Distributor in Bulgaria wanting to offer clients funds from Luxembourg and Ireland. Currently sends around 150 orders a month by email to several transfer agents (visitor estimate).\n\nInterested in connecting to the Calastone network without changing existing systems.',
+    confirm: CONFIRM_EN,
+    V: {
+      2: { lang: 'English', text: "We're a distributor in Bulgaria. How can we offer our clients funds from Luxembourg and Ireland?" },
+      3: { lang: 'English', text: 'Today we email orders to several transfer agents, around 150 a month. We want to expand our fund range.' },
+      4: { lang: 'English', text: 'How long does connecting take, and would we need to change our systems?' },
+      5: { lang: 'English', text: "Yes, please. I'd like to speak to someone." },
+    },
+    A: {
+      2: { paras: ['With one connection to Calastone, distributors can send orders to many fund managers and transfer agents, including for funds domiciled in Luxembourg and Ireland.', 'To give you a more precise answer: do you process orders manually today, or do you already use a platform or intermediary?'] },
+      3: { paras: ['Thank you. When orders are emailed to different transfer agents, friction usually sits in three places:'],
+        bullets: [
+          { lead: 'Different formats.', body: 'Each transfer agent expects its own format and process.' },
+          { lead: 'Confirmations.', body: 'Confirmations and contract notes are often chased by hand.' },
+          { lead: 'Growth.', body: 'Every new fund or counterparty means another manual relationship.' }],
+        after: 'With one connection to Calastone, orders are sent in a standard format and routed automatically to the right transfer agent.',
+        estimate: '~150 orders a month, sent by email', estimateNote: "I can't calculate savings or discuss pricing. That depends on your set-up and is best discussed with our Europe team.",
+        noteLabel: 'LIMITATION', note: "I don't have approved information on which specific funds are available to Bulgarian distributors, so I can't list them." },
+      4: { paras: ['Usually you would not need to change your systems. Calastone accepts different message formats and translates them, so you can connect using your existing processes.', "Timing depends on your set-up, so I can't give an exact timeframe."],
+        resource: { title: 'Where you sit on the network', caption: 'You connect once, in your existing format. Calastone translates and routes each order to the right transfer agent, and returns confirmations the same way.', youLeft: true },
+        offer: OFFER_EN },
+      5: HANDOFF_EN,
+    },
+    lang: [[0, 'English', 'Inferred', 'Default for this demo'], [2, 'English', 'Observed']],
+    ctx: {
+      market: [[0, 'Unknown', 'Unknown'], [2, 'Bulgaria · LU & IE funds', 'Stated', 'Distributing in Bulgaria', 'bg']],
+      type: [[0, 'Unknown', 'Unknown'], [2, 'Distributor', 'Stated']],
+      topic: [[0, 'Unknown', 'Unknown'], [2, 'Fund access for distributors', 'Observed'], [3, 'Order routing · multiple TAs', 'Observed'], [4, 'Onboarding & systems', 'Observed']],
+      op: [[0, 'Unknown', 'Unknown'], [3, '~150 emailed orders/month', 'Visitor estimate']],
+    },
+    head: [[0, ANON], [2, 'A Bulgarian distributor wanting access to Luxembourg and Irish funds'], [3, 'A distributor replacing emailed orders to several transfer agents'], [4, 'A distributor ready to connect, checking the impact on its systems']],
+    items: {
+      asked: [[2, 'a1', 'How to offer Luxembourg and Irish funds to clients in Bulgaria', 2], [3, 'a2', 'How to stop emailing orders to several transfer agents', 3], [4, 'a3', 'Whether connecting means changing systems, and how long it takes', 4], [5, 'a4', 'A conversation with the Europe team', 5]],
+      known: [[2, 'k1', 'Distributor based in Bulgaria', 'Stated', 2], [2, 'k2', 'Wants Luxembourg and Irish-domiciled funds', 'Stated', 2], [3, 'k3', '~150 orders a month emailed to several transfer agents', 'Visitor estimate', 3]],
+      unclear: [[1, 'u1', "Distributor's name and client base", 'Unknown'], [2, 'u2', 'Which fund managers or ranges they want', 'Unknown'], [2, 'u3', 'Current back-office or platform system', 'Unknown'], [3, 'u4', 'Could not list funds available to Bulgarian distributors: no approved content', 'Content gap']],
+    },
+    route: () => 'Distributor in Bulgaria accessing Luxembourg and Irish funds. Covered by the Europe team.',
+    replyLang: 'Reply language: English',
+    captions: ['Visitor arrives · region detected (simulated)', 'Greeting', 'Distributor asks about fund access → clarifying question', 'Describes emailed orders → friction guidance', 'Asks about systems → reassurance + resource + offer', 'Requests a discussion · details fill in', 'Reviews summary and contact details', 'Confirmed → Europe team review'],
+    next: ['Open Ask Calastone', 'Ask about fund access', 'Describe current process', 'Ask about systems', 'Request discussion', 'Fill contact details', 'Confirm & share', 'Show insight view'],
+  },
+  'am-sa': {
+    label: 'Asset manager · Saudi Arabia', region: 'SA',
+    chromeLang: () => 'en', formLang: 'en',
+    fill: { name: 'Faisal Al-Harbi', email: 'f.alharbi@riyadhharbourcapital.sa', org: 'Riyadh Harbour Capital' },
+    summary: 'Asset manager based in Riyadh launching a Luxembourg UCITS fund for distribution in Europe. Priority is operational connectivity: avoiding separate connections for each distributor, with the team working Riyadh hours.\n\nExpects around 2,000 orders a month in year one (visitor forecast). Asked about pricing, which was not discussed.',
+    confirm: CONFIRM_EN,
+    V: {
+      2: { lang: 'English', text: "We're an asset manager in Riyadh launching a Luxembourg UCITS fund. How would we reach European distributors?" },
+      3: { lang: 'English', text: 'Mostly the operations side. We want to avoid building a separate connection for each distributor, and our team works Riyadh hours.' },
+      4: { lang: 'English', text: 'Helpful. We expect around 2,000 orders a month in the first year. What would it cost?' },
+      5: { lang: 'English', text: "Yes, please. I'd like to speak to someone." },
+    },
+    A: {
+      2: { paras: ['Once a Luxembourg UCITS fund is set up with its transfer agent on the Calastone network, distributors already connected can place orders without a separate link to you.', 'To point you in the right direction: is your priority finding distribution partners, or making sure orders and settlement run smoothly once you have them?'] },
+      3: { paras: ['That makes sense. For a manager working in a different time zone, a single network connection helps in three ways:'],
+        bullets: [
+          { lead: 'One connection.', body: 'Distributors on the network route orders to your transfer agent in a standard format, with no bilateral build for each one.' },
+          { lead: 'Automated flow.', body: 'Orders, confirmations and settlement messages move without manual handling, so less depends on overlapping working hours.' },
+          { lead: 'Visibility.', body: 'Order status is tracked end to end rather than chased by email.' }],
+        noteLabel: 'LIMITATION', note: "I don't have approved information on Saudi regulatory requirements, so I can't advise on those. Your legal advisers and our team can help.",
+        resource: { title: 'Where your fund sits on the network', caption: 'Your Luxembourg fund connects once through its transfer agent. European distributors already on the network can then place orders automatically, around the clock.', youRight: true } },
+      4: { paras: ["I can't share pricing here, as it depends on your set-up and is discussed directly with our team."],
+        estimate: '~2,000 orders a month expected in year one', estimateNote: 'This is your forecast, not a figure Calastone has verified. It helps the team prepare a relevant conversation.',
+        offer: OFFER_EN },
+      5: HANDOFF_EN,
+    },
+    lang: [[0, 'English', 'Inferred', 'Default for this demo'], [2, 'English', 'Observed']],
+    ctx: {
+      market: [[0, 'Unknown', 'Unknown'], [2, 'Luxembourg · Europe', 'Stated', 'UCITS fund distributing into Europe', 'lu']],
+      type: [[0, 'Unknown', 'Unknown'], [2, 'Asset manager', 'Stated', 'Based in Riyadh']],
+      topic: [[0, 'Unknown', 'Unknown'], [2, 'Cross-border distribution', 'Observed'], [3, 'Distribution connectivity · operations', 'Observed'], [4, 'Pricing question (not answered)', 'Observed']],
+      op: [[0, 'Unknown', 'Unknown'], [3, 'Works Riyadh hours', 'Stated'], [4, '~2,000 orders/month forecast', 'Visitor estimate']],
+    },
+    head: [[0, ANON], [2, 'A Riyadh asset manager taking a Luxembourg UCITS fund into Europe'], [3, 'An asset manager prioritising cross-border operational connectivity'], [4, 'An asset manager sizing a European launch and asking about cost']],
+    items: {
+      asked: [[2, 'a1', 'How a Luxembourg UCITS fund reaches European distributors', 2], [3, 'a2', 'Avoiding a separate connection per distributor, across time zones', 3], [4, 'a3', 'What it would cost', 4], [5, 'a4', 'A conversation with the Europe team', 5]],
+      known: [[2, 'k1', 'Asset manager based in Riyadh', 'Stated', 2], [2, 'k2', 'Launching a Luxembourg UCITS fund', 'Stated', 2], [3, 'k3', 'Priority: operational connectivity', 'Stated', 3], [4, 'k4', '~2,000 orders a month expected in year one', 'Visitor estimate', 4]],
+      unclear: [[1, 'u1', 'Firm name and fund strategy', 'Unknown'], [2, 'u2', 'Launch date and transfer agent', 'Unknown'], [2, 'u3', 'Target European markets', 'Unknown'], [3, 'u4', 'Saudi regulatory questions: no approved content', 'Content gap'], [4, 'u5', 'Pricing: deliberately not answered publicly', 'Pricing · withheld']],
+    },
+    route: (R) => 'Fund domiciled in Luxembourg, distributing into Europe · visitor region: ' + R.name + '. Proposed owner: Europe team.',
+    replyLang: 'Reply language: English',
+    captions: ['Visitor arrives from Saudi Arabia (simulated)', 'Greeting', 'Asks about European distribution → clarifying question', 'Operations focus → grounded answer + resource', 'Asks about cost → pricing withheld, forecast noted + offer', 'Requests a discussion · details fill in', 'Reviews summary and contact details', 'Confirmed → Europe team review'],
+    next: ['Open Ask Calastone', 'Ask about European distribution', 'Explain operations focus', 'Ask about cost', 'Request discussion', 'Fill contact details', 'Confirm & share', 'Show insight view'],
+  },
+};
+const pick = (stages, step) => { let r = stages[0]; stages.forEach((x) => { if (x[0] <= step) r = x; }); return r; };
+const TONES = { Stated: 'teal', Observed: 'info', Inferred: 'warning', Unknown: 'neutral', 'Visitor estimate': 'warning', Supplied: 'success', Confirmed: 'success', Offered: 'accent', None: 'neutral', 'Content gap': 'danger', 'Pricing · withheld': 'neutral' };
+
+function HeroStreaks() {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const cv = ref.current, ctx = cv.getContext('2d');
+    const COLS = ['#56a773', '#2b8fc4', '#2ea39b', '#3d8dbc'];
+    let w = 0, h = 0, raf, last = performance.now();
+    const fit = () => { const d = window.devicePixelRatio || 1; w = cv.clientWidth; h = cv.clientHeight; cv.width = w * d; cv.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0); };
+    const make = (seed) => ({ a: Math.random() * Math.PI * 2, r: seed ? Math.random() * 0.9 : 0.04 + Math.random() * 0.08, v: 0.05 + Math.random() * 0.09, c: COLS[(Math.random() * COLS.length) | 0], lw: 3 + Math.random() * 2.5 });
+    const N = 34; let S = Array.from({ length: N }, () => make(true));
+    fit(); window.addEventListener('resize', fit);
+    const draw = (t) => {
+      const dt = Math.min(0.05, (t - last) / 1000); last = t;
+      ctx.clearRect(0, 0, w, h);
+      const cx = w / 2, cy = h / 2, R = Math.hypot(cx, cy);
+      ctx.lineCap = 'round';
+      S.forEach((s, i) => {
+        s.r += s.v * dt * (0.4 + s.r * 1.6);
+        if (s.r > 1.15) { S[i] = make(false); return; }
+        const r1 = s.r * R, len = Math.max(8, s.r * R * 0.38), r0 = Math.max(0, r1 - len);
+        const x0 = cx + Math.cos(s.a) * r0, y0 = cy + Math.sin(s.a) * r0, x1 = cx + Math.cos(s.a) * r1, y1 = cy + Math.sin(s.a) * r1;
+        const g = ctx.createLinearGradient(x0, y0, x1, y1);
+        g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, s.c);
+        ctx.globalAlpha = Math.min(1, s.r * 3);
+        ctx.strokeStyle = g; ctx.lineWidth = s.lw * (0.5 + s.r);
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+      raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', fit); };
+  }, []);
+  return React.createElement('canvas', { ref, style: { width: '100%', height: '100%', display: 'block' } });
+}
+const HERO = React.createElement(HeroStreaks);
+
+class Component extends DCLogic {
+  state = { flow: 'consultant-en', view: 'visitor', region: 'DE', step: 0, phase: 'done', draft: '', extra: [], busy: false, open: false, typing: null,
+    contact: { name: '', email: '', org: '' }, summary: FLOWS['consultant-en'].summary, enq: 0, ev: null, showData: false, declined: false, showTranscript: false };
+  chatRef = React.createRef(); draftRef = React.createRef(); nameRef = React.createRef(); emailRef = React.createRef(); orgRef = React.createRef();
+  timers = [];
+  get F() { return FLOWS[this.state.flow]; }
+
+  focusField(k) { const r = this[k + 'Ref']; const el = r && r.current; if (el) { try { el.focus({ preventScroll: true }); el.setSelectionRange(el.value.length, el.value.length); el.scrollLeft = el.scrollWidth; } catch (e) {} } }
+  blurField() { const a = document.activeElement; if (a && a.blur && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA')) a.blur(); }
+
+  componentDidMount() {
+    this.onKeyDoc = (e) => {
+      const t = e.target && e.target.tagName;
+      if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') return;
+      if (e.key === 'ArrowRight') this.next();
+      if (e.key === 'ArrowLeft') this.back();
+    };
+    window.addEventListener('keydown', this.onKeyDoc);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKeyDoc); this.clear(); }
+  componentDidUpdate() { const el = this.chatRef.current; if (el && this.state.typing !== 'draft') el.scrollTop = el.scrollHeight; if (this.state.typing) this.focusField(this.state.typing); }
+
+  clear() { this.timers.forEach(clearTimeout); this.timers = []; }
+  later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
+
+  typeDraft(text, done) {
+    const chunk = Math.max(1, Math.ceil(text.length / 80));
+    let i = 0;
+    this.setState({ typing: 'draft' });
+    const tick = () => {
+      i = Math.min(text.length, i + chunk);
+      this.setState({ draft: text.slice(0, i) });
+      if (i < text.length) this.later(tick, 30 + Math.random() * 30); else this.later(() => { this.setState({ typing: null }); this.blurField(); done(); }, 450);
+    };
+    tick();
+  }
+
+  fillContact() {
+    if (this.state.step !== 5 || this.state.phase !== 'done') return;
+    this.setState({ phase: 'typing' });
+    const keys = ['name', 'email', 'org'], fill = this.F.fill;
+    const run = (k) => {
+      if (k >= keys.length) { this.setState({ step: 6, phase: 'done', typing: null }); this.blurField(); return; }
+      const key = keys[k], txt = fill[key]; let i = 0;
+      this.setState({ typing: key });
+      const tick = () => { i++; this.setState((s) => ({ contact: { ...s.contact, [key]: txt.slice(0, i) } })); if (i < txt.length) this.later(tick, 45 + Math.random() * 45); else this.later(() => run(k + 1), 380); };
+      this.later(tick, 250);
+    };
+    this.later(() => run(0), 300);
+  }
+
+  next = () => {
+    const { step, phase, busy } = this.state;
+    if (phase !== 'done' || busy) return;
+    if (step === 0) return this.setState({ step: 1, open: true });
+    if (step >= 1 && step <= 4) {
+      if (!this.state.open) this.setState({ open: true });
+      this.setState({ phase: 'typing' });
+      this.typeDraft(this.F.V[step + 1].text, () => {
+        this.setState({ step: step + 1, phase: 'thinking', draft: '' });
+        this.later(() => { this.setState({ phase: 'done' }); if (step + 1 === 5) this.later(() => this.fillContact(), 900); }, step === 2 ? 1700 : 1300);
+      });
+      return;
+    }
+    if (step === 5) return this.fillContact();
+    if (step === 6) return this.submit();
+    if (step === 7) return this.setState({ view: 'insight' });
+  };
+
+  submit = () => {
+    const c = this.state.contact;
+    if (!c.name.trim() || !c.email.trim()) return;
+    this.clear(); this.blurField();
+    this.setState({ step: 7, phase: 'thinking', enq: 1, typing: null });
+    this.later(() => this.setState({ phase: 'done' }), 900);
+    this.later(() => this.setState({ enq: 2 }), 900);
+    this.later(() => this.setState({ enq: 3 }), 1800);
+  };
+
+  back = () => {
+    this.clear(); this.blurField();
+    const s = Math.max(0, this.state.step - 1);
+    this.setState({ typing: null, step: s, phase: 'done', draft: '', busy: false, open: s >= 1 ? true : false, enq: 0, declined: false,
+      extra: this.state.extra.filter((x) => x.at <= s), contact: s < 6 ? { name: '', email: '', org: '' } : this.state.contact });
+  };
+
+  reset = (flow) => {
+    this.clear(); this.blurField();
+    const f = FLOWS[flow || this.state.flow];
+    this.setState({ typing: null, step: 0, phase: 'done', draft: '', extra: [], busy: false, open: false, contact: { name: '', email: '', org: '' }, summary: f.summary, enq: 0, ev: null, declined: false, showData: false });
+  };
+
+  async custom(text) {
+    const { step, extra } = this.state;
+    const at = Math.max(1, step);
+    this.setState({ extra: [...extra, { at, role: 'v', text }], draft: '', busy: true, open: true, step: at });
+    const history = this.buildMessages().filter((m) => m.isV || m.isA).map((m) => (m.isV ? 'Visitor: ' + m.text : 'Calastone: ' + (m.paras || []).join(' '))).join('\n');
+    const prompt = `You power "Ask anything about Calastone" on calastone.com. Never call yourself an assistant or chatbot; speak as Calastone. Calastone, an SS&C company, runs the world's largest funds network: order routing, settlement, payments, ETF servicing, transfer agency and data services, connecting distributors, fund managers, transfer agents and custodians through a single connection in 51 countries. Its Europe team is based in London and Luxembourg. Rules: reply in the same language as the visitor's latest message; under 80 words; plain text, no markdown or lists, no dashes; answer the question first; never discuss pricing, fees, tariffs or discounts; never claim access to transaction data; never invent market-specific facts, if you lack approved information, say so plainly; never ask for contact details.\n\n${history}\nVisitor: ${text}\nCalastone:`;
+    let reply;
+    try { reply = window.claude && window.claude.complete ? await window.claude.complete(prompt) : null; } catch (e) { reply = null; }
+    if (!reply) reply = "I don't have approved content on that yet. I've noted the question so the team can improve future answers.";
+    this.setState((s) => ({ busy: false, extra: [...s.extra, { at, role: 'a', paras: String(reply).trim().split(/\n\s*\n/) }] }));
+  }
+
+  buildMessages() {
+    const { step, phase, extra, region, declined, busy } = this.state;
+    const F = this.F, form = FORM[F.formLang];
+    const out = [];
+    const base = { isV: false, isA: false, isTyping: false, hasBullets: false, hasNote: false, hasResource: false, hasEstimate: false, hasOffer: false, offerActive: false, isForm: false, isFormDone: false, hasAfter: false, paras: [], dir: 'ltr', estLabel: form.estLabel, estBadge: form.estBadge };
+    const pushExtras = (k) => extra.filter((x) => x.at === k).forEach((x) => out.push(x.role === 'v' ? { ...base, isV: true, text: x.text } : { ...base, isA: true, dir: 'auto', paras: x.paras }));
+    if (step >= 1) { const gl = F.chromeLang(step, REGIONS[region].lang); out.push({ ...base, isA: true, dir: CHROME[gl].dir || 'ltr', paras: [CHROME[gl].greet] }); pushExtras(1); }
+    for (let k = 2; k <= Math.min(step, 5); k++) {
+      out.push({ ...base, isV: true, text: F.V[k].text });
+      if (!(k === step && phase === 'thinking')) {
+        const a = F.A[k];
+        out.push({ ...base, isA: true, paras: a.paras, bullets: a.bullets || [], hasBullets: !!a.bullets, after: a.after, hasAfter: !!a.after,
+          note: a.note, noteLabel: a.noteLabel, hasNote: !!a.note, resource: a.resource, hasResource: !!a.resource,
+          estimate: a.estimate, estimateNote: a.estimateNote, hasEstimate: !!a.estimate,
+          offer: a.offer, hasOffer: !!a.offer, offerActive: !!a.offer && step === 4 && phase === 'done' && !declined,
+          isForm: k === 5 && (step === 5 || step === 6), isFormDone: k === 5 && step >= 7 });
+        if (k === 4 && declined) out.push({ ...base, isA: true, paras: [form.decline] });
+      }
+      pushExtras(k);
+    }
+    if (step >= 7) {
+      if (phase !== 'thinking') out.push({ ...base, isA: true, paras: [F.confirm((this.state.contact.name || 'there').split(' ')[0])] });
+      pushExtras(7);
+    }
+    if (phase === 'thinking' || busy) out.push({ ...base, isTyping: true });
+    return out;
+  }
+
+  renderVals() {
+    const s = this.state, FL = this.F;
+    const { step, region } = s;
+    const R = REGIONS[region];
+    const C = CHROME[FL.chromeLang(step, R.lang)] || CHROME.en;
+    const chrome = { ...C, dir: C.dir || 'ltr', data1: C.dataBody[0], data2: C.dataBody[1], data3: C.dataBody[2] };
+    const form = FORM[FL.formLang];
+    const messages = this.buildMessages();
+
+    const field = (label, stages, extra = {}) => {
+      const [from, value0, tag, sub, flag] = pick(stages, step);
+      const value = value0 == null ? R.langName : value0;
+      const fresh = from === step && step > 0;
+      return { label, value, tag, tone: TONES[tag] || 'neutral', sub: sub || '', hasSub: !!sub, hasFlag: !!flag, flagUrl: flag ? flagUrl(flag) : '',
+        bg: fresh ? 'var(--teal-050)' : 'transparent', border: fresh ? 'var(--accent-300)' : 'transparent',
+        color: tag === 'Unknown' || value === 'Anonymous' || value === 'Not requested' ? 'var(--ink-500)' : 'var(--ink-900)' };
+    };
+    const name = s.contact.name || FL.fill.name;
+    const ctx = [
+      field('Visitor region', [[0, R.name, 'Inferred', 'Simulated detection for demo', R.flag]]),
+      field('Conversation language', FL.lang),
+      field('Market discussed', FL.ctx.market),
+      field('Visitor type', FL.ctx.type),
+      field('Topic', FL.ctx.topic),
+      field('Operational detail', FL.ctx.op),
+      field('Identity', [[0, 'Anonymous', 'None'], [5, 'Anonymous', 'None', 'Nothing shared until the visitor confirms'], [7, name, 'Supplied', s.contact.org]]),
+      field('Follow-up', [[0, 'Not requested', 'None'], [4, 'Offered in conversation', 'Offered'], [5, 'Requested · awaiting confirmation', 'Stated'], [7, 'Confirmed · Europe team review', 'Confirmed']]),
+    ];
+    const headline = pick(FL.head, step)[1];
+    const nextAction = step < 4 ? 'None needed. Keep answering' : step === 4 ? (s.declined ? 'Visitor declined for now. Keep helping' : 'Handoff offered in conversation') : step < 7 ? 'Visitor reviewing summary. Nothing shared yet' : s.enq >= 3 ? 'Review by the Europe team' : 'Sharing…';
+
+    const V = FL.V;
+    const item = (id, text, tag, src) => {
+      const open = s.ev === id && !!src;
+      return { text, tag: tag || '', hasTag: !!tag, tone: TONES[tag] || 'neutral', hasSrc: !!src, srcLabel: open ? 'Hide excerpt' : 'Show excerpt', cursor: src ? 'pointer' : 'default', open,
+        ex: src ? V[src].text : '', tr: src && V[src].tr ? V[src].tr : '', hasTr: !!(src && V[src].tr), exMeta: src ? `VISITOR · MESSAGE ${src} · ${V[src].lang.toUpperCase()}` : '',
+        onClick: () => src && this.setState({ ev: s.ev === id ? null : id }) };
+    };
+    const asked = FL.items.asked.filter((x) => step >= x[0]).map(([, id, t, src]) => item(id, t, '', src));
+    const known = FL.items.known.filter((x) => step >= x[0]).map(([, id, t, tag, src]) => item(id, t, tag, src));
+    const unclear = FL.items.unclear.filter((x) => step >= x[0] && (x[5] == null || step < x[5])).map(([, id, t, tag]) => item(id, t, tag));
+    const blocks = [
+      { title: 'WHAT THEY ASKED', items: asked, empty: !asked.length },
+      { title: 'WHAT IS KNOWN', items: known, empty: !known.length },
+      { title: 'WHAT REMAINS UNCLEAR', items: unclear, empty: !unclear.length },
+    ];
+
+    const stageLabels = ['Anonymous conversation', 'Contact details supplied', 'Summary confirmed', 'Europe team review'];
+    const stages = stageLabels.map((label, i) => {
+      const done = i < s.enq, cur = i === s.enq;
+      return { label, dot: done ? 'var(--accent-500)' : cur ? '#fff' : 'var(--ink-100)', ring: done || cur ? 'var(--accent-500)' : 'var(--ink-200)', color: done || cur ? 'var(--ink-900)' : 'var(--ink-400)', weight: cur ? 700 : 500 };
+    });
+
+    const transcript = messages.filter((m) => m.isV || m.isA).map((m) => ({ who: m.isV ? 'VISITOR' : 'CALASTONE', text: m.isV ? m.text : [...m.paras, ...(m.bullets || []).map((b) => b.lead + ' ' + b.body), m.after || ''].join(' ') }));
+
+    const bars = (rows, max) => rows.map(([nm, flag, n]) => ({ name: nm, flagUrl: flagUrl(flag), n, w: Math.round((n / max) * 100) + '%' }));
+    const geoCards = [
+      { title: 'MARKETS DISCUSSED', sub: 'Stated or inferred from conversation', color: 'var(--teal-500)', rows: bars([['Germany', 'de', 412], ['United Kingdom', 'gb', 356], ['Luxembourg', 'lu', 248], ['Ireland', 'ie', 201], ['France', 'fr', 174], ['Switzerland', 'ch', 133], ['Italy', 'it', 98]], 412) },
+      { title: 'VISITOR REGIONS', sub: 'Detected location, kept separate from market discussed', color: 'var(--role-investor)', rows: bars([['United Kingdom', 'gb', 389], ['Germany', 'de', 214], ['France', 'fr', 152], ['Spain', 'es', 118], ['Italy', 'it', 96], ['Saudi Arabia', 'sa', 72], ['Bulgaria', 'bg', 61]], 389) },
+    ];
+    const topicData = [['Order routing', 31], ['Distribution access', 22], ['Settlement & payments', 14], ['ETF servicing', 11], ['Transfer agency', 9], ['Data services', 7], ['Pricing (not answered)', 6]];
+    const topics = topicData.map(([nm, p], i) => ({ name: nm, pct: p + '%', pad: p > 20 ? '10px 18px' : p > 10 ? '8px 14px' : '6px 12px', fs: p > 20 ? '15px' : p > 10 ? '13px' : '12px',
+      bg: i === 6 ? 'var(--ink-100)' : p > 20 ? 'var(--teal-500)' : p > 10 ? 'var(--teal-100)' : 'var(--teal-050)', fg: i === 6 ? 'var(--ink-600)' : p > 20 ? '#fff' : 'var(--teal-700)' }));
+    const langs = [['English', 54, 'var(--ink-800)'], ['German', 14, 'var(--teal-500)'], ['French', 9, 'var(--teal-300)'], ['Italian', 6, 'var(--green-500)'], ['Spanish', 5, 'var(--green-300)'], ['Arabic', 3, 'var(--role-transferagent)'], ['Bulgarian', 3, 'var(--role-investor)'], ['Other', 6, 'var(--ink-300)']].map(([nm, w, c]) => ({ name: nm, w: w + '%', c }));
+    const funnel = [
+      { label: 'CONVERSATIONS', value: '1,846', sub: '91% stayed anonymous' },
+      { label: 'HANDOFF OFFERED', value: '214', sub: 'Clear reason for a specialist' },
+      { label: 'FOLLOW-UP REQUESTED', value: '71', sub: 'Visitor asked for a person' },
+      { label: 'SUMMARY CONFIRMED', value: '58', sub: 'Routed to the Europe team' },
+    ];
+    const gaps = [
+      { q: 'Which German platforms are live on the network?', tag: 'Content gap', tone: 'danger', n: 23 },
+      { q: 'Tariffs for low-volume distributors', tag: 'Pricing · withheld', tone: 'neutral', n: 17 },
+      { q: 'Settlement cut-off times for Swiss-domiciled funds', tag: 'Content gap', tone: 'danger', n: 14 },
+      { q: 'Saudi regulatory requirements for cross-border funds', tag: 'Content gap', tone: 'danger', n: 11 },
+      { q: 'Funds available to Bulgarian distributors', tag: 'Content gap', tone: 'danger', n: 6 },
+    ];
+
+    return {
+      heroAnim: HERO, view: s.view, region, flow: s.flow,
+      flowOptions: Object.keys(FLOWS).map((id) => ({ id, label: FLOWS[id].label })),
+      onFlow: (e) => { const f = e.target.value; this.reset(f); this.setState({ flow: f, region: FLOWS[f].region }); },
+      draftRef: this.draftRef, nameRef: this.nameRef, emailRef: this.emailRef, orgRef: this.orgRef,
+      fx: ['draft', 'name', 'email', 'org'].reduce((o, k) => { const on = s.typing === k; o[k] = { b: on ? 'var(--accent-500)' : 'var(--ink-300)', s: on ? '0 0 0 3px rgba(15, 184, 156, 0.25)' : 'none' }; return o; }, {}),
+      viewOptions: [{ value: 'visitor', label: 'Visitor experience' }, { value: 'split', label: 'Side by side' }, { value: 'insight', label: 'Commercial insight' }, { value: 'demand', label: 'Demand overview' }],
+      setView: (v) => this.setState({ view: v }),
+      onRegion: (e) => { this.reset(); this.setState({ region: e.target.value }); },
+      showSite: s.view === 'visitor' || s.view === 'split', isSplit: s.view === 'split', isInsight: s.view === 'insight', isDemand: s.view === 'demand',
+      stepNum: step + 1, stepCaption: FL.captions[step], nextLabel: FL.next[step],
+      routeNote: FL.route(R), replyLang: FL.replyLang, summaryEn: FL.summaryEn || '', hasSummaryEn: !!FL.summaryEn,
+      nextDisabled: s.phase !== 'done' || s.busy,
+      next: this.next, back: this.back, reset: () => this.reset(), submit: this.submit,
+      submitDisabled: !s.contact.name.trim() || !s.contact.email.trim() || s.phase !== 'done',
+      showLauncher: !s.open,
+      openPanel: () => { if (step === 0) this.next(); else this.setState({ open: true }); },
+      closePanel: () => this.setState({ open: false, showData: false }),
+      panelTransform: s.open ? 'translateX(0)' : 'translateX(105%)',
+      chrome, form, chatRef: this.chatRef, messages,
+      dots: React.createElement('span', { style: { display: 'inline-flex', gap: 4 } }, [0, 1, 2].map((i) => React.createElement('span', { key: i, style: { width: 6, height: 6, borderRadius: 3, background: 'var(--teal-500)', animation: `dcDot 1.1s ${i * 0.16}s infinite ease-in-out` } }))),
+      showStarters: step === 1 && !s.extra.length && s.phase === 'done',
+      starters: C.starters.map((label) => ({ label, onClick: () => this.custom(label) })),
+      draft: s.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.sendNow(); } },
+      send: () => this.sendNow(),
+      showData: s.showData, toggleData: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ showData: !s.showData }); },
+      acceptOffer: this.next, declineOffer: () => this.setState({ declined: true }),
+      contact: s.contact, summary: s.summary,
+      onName: (e) => this.setState({ contact: { ...s.contact, name: e.target.value } }),
+      onEmail: (e) => this.setState({ contact: { ...s.contact, email: e.target.value } }),
+      onOrg: (e) => this.setState({ contact: { ...s.contact, org: e.target.value } }),
+      onSummary: (e) => this.setState({ summary: e.target.value }),
+      ctx, headline, nextAction, blocks, stages, enqBar: (s.enq / 3) * 75 + '%', showReview: step >= 7 && s.enq >= 3,
+      msgCount: transcript.length, transcript, showTranscript: s.showTranscript,
+      transcriptLabel: s.showTranscript ? 'Hide full transcript' : `Show full transcript (${transcript.length} messages)`,
+      toggleTranscript: () => this.setState({ showTranscript: !s.showTranscript }),
+      geoCards, topics, langs, funnel, gaps,
+    };
+  }
+
+  sendNow() {
+    if (this.state.phase !== 'done' || this.state.busy) return;
+    const t = this.state.draft.trim();
+    if (!t) this.next(); else this.custom(t);
+  }
+}
+</script>
+</body>
+</html>
