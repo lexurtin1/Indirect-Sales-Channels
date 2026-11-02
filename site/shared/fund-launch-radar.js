@@ -236,12 +236,15 @@
     items.forEach((e) => {
       const c = CAT[e.cat];
       const row = document.createElement("div");
-      row.className = "row cat-" + e.cat + (e.eid === selectedEid ? " sel" : "");
+      row.className = "row" + (e.eid === selectedEid ? " sel" : "");
       row.dataset.eid = e.eid;
       const factsHtml = (e.details && e.details.facts ? e.details.facts : [])
         .map((f) => "<li>" + escapeHtml(f) + "</li>")
         .join("");
       row.innerHTML =
+        '<span class="row-dot" style="color:' +
+        c.css +
+        '" aria-hidden="true"></span>' +
         '<div class="row-body">' +
         '<div class="row-top">' +
         '<span class="flag">' +
