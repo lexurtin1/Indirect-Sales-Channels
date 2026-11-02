@@ -69,22 +69,22 @@ header.pulse-header {
 
 .ph-user { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex: 1; min-width: 0; }
 
-main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 20px 28px 24px; }
+main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 14px 24px 16px; }
 
 .page-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   flex-wrap: wrap;
 }
 .page-head h1 {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--ink-900);
   letter-spacing: -0.02em;
-  margin: 4px 0 0;
+  margin: 2px 0 0;
 }
 .eyebrow {
   font-size: 11px;
@@ -117,13 +117,13 @@ main { width: 100%; max-width: 1440px; margin: 0 auto; padding: 20px 28px 24px; 
 
 .home-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-  gap: 36px;
+  grid-template-columns: minmax(0, 0.68fr) minmax(0, 1.32fr);
+  gap: 28px;
   align-items: start;
 }
 .home-cards {
   min-width: 0;
-  padding-right: 28px;
+  padding-right: 22px;
   border-right: 1px solid var(--ink-200);
 }
 .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
