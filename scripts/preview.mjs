@@ -18,7 +18,8 @@ const types = {
   ".svg": "image/svg+xml",
   ".png": "image/png",
   ".webp": "image/webp",
-  ".ico": "image/x-icon"
+  ".ico": "image/x-icon",
+  ".mp4": "video/mp4"
 };
 
 function route(urlPath) {
